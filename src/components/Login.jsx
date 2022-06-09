@@ -1,17 +1,36 @@
 import React, { useRef, useState, useEffect } from 'react';
+import useAuth from '../hooks/useAuth';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import '../style/login.css';
 
 const LoginPage = () => {
+
+  const { setAuth } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
+
   const userRef = useRef();
   const errRef = useRef();
-  const [errMsg, setErrMsg] = useState('');
-  const [userT, setUser] = useState('');
-  const [pwd, setPwd] = useState('');
-  const navigate = useNavigate();
 
-  const login = () => {
-    navigate('/', { replace: true });
+  const [user, setUser] = useState('');
+  const [pwd, setPwd] = useState('');
+  const [errMsg, setErrMsg] = useState('');
+
+  useEffect(() => {
+    userRef.current.focus();
+  }, [])
+  useEffect(() => {
+    setErrMsg('');
+  }, [user, pwd]);
+
+  const login = (e) => {
+    e.preventDefault();
+    setAuth({ user, pwd });
+    setUser('');
+    setPwd('');
+    setUser(true);
+    navigate('/', { replace: true } );
   }
   return (
     <div className='login'>
@@ -25,7 +44,7 @@ const LoginPage = () => {
           ref={userRef}
           autoComplete="off"
           onChange={(e) => setUser(e.target.value)}
-          value={userT}
+          value={user}
           required
         />
         <label htmlFor="password">Contraseña:</label>
