@@ -1,12 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Row, Col, Card, Statistic } from 'antd';
-import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
+import { Card, Statistic } from 'antd';
 import 'antd/dist/antd.css';
 import '../style/home.css';
 
 const Home = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate();  
   const handleNewTicket = (e) => {
     navigate('newticket', { replace: true });
   }
