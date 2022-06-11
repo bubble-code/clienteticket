@@ -5,7 +5,6 @@ import useAuth from '../hooks/useAuth';
 import SelectList0 from './SelectListMauinas';
 import { Form, Input, Button, Switch, Space, Row, Col, Divider, message } from 'antd';
 import '../style/newTicket.css';
-import { async } from '@firebase/util';
 
 const { TextArea } = Input;
 const listPriority = [

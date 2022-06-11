@@ -1,11 +1,12 @@
 import { Outlet, useNavigate } from 'react-router-dom';
+import PageHeader from './PageHeader';
 
 const Layout = () => {
   const navigate = useNavigate();
   const goBack = () => navigate('/', { replace: true })
   return (
     <main className='App'>
-      <h1>Hola Layout</h1>
+      <PageHeader />
       <section>
         <div className="flexGrow">
           <button onClick={goBack}>Go Back</button>

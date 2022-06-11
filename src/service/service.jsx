@@ -32,7 +32,14 @@ class DataService {
   async newTicket(ticket) {
     const { maquina, tipoAveria, prioridad, estadoMaquina, taquillero, isDinero, cantDinero, detallesTicket, currentDate, currenTime, user } = ticket;
     const dataRef = doc(db, this._pathAverias, maquina);
-    return await setDoc(dataRef, { tipoAveria, prioridad, estadoMaquina, taquillero, isDinero, cantDinero, detallesTicket, currentDate, currenTime, user });
+    return await setDoc(dataRef, { maquina, tipoAveria, prioridad, estadoMaquina, taquillero, isDinero, cantDinero, detallesTicket, currentDate, currenTime, user });
+  }
+  async getListaAverias(salon) {
+    const collectionn = collection(db, this._pathAverias);
+    const querySnapShot = query(collectionn, where('user', '==', salon));
+    const result = await getDocs(querySnapShot);
+    result.docs.map(doc => console.log(doc.data()));
+    return result.docs;
   }
 }
 
