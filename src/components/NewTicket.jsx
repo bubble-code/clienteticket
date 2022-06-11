@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import DataService from '../service/service';
-import { Form, Input, Button, Switch, Space, Row, Col, Divider, message } from 'antd';
 import useAuth from '../hooks/useAuth';
 import SelectList0 from './SelectListMauinas';
+import { Form, Input, Button, Switch, Space, Row, Col, Divider, message } from 'antd';
 import '../style/newTicket.css';
+import { async } from '@firebase/util';
 
 const { TextArea } = Input;
 const listPriority = [
@@ -22,31 +24,47 @@ const NewTicket = () => {
   const [form] = Form.useForm();
   const { auth } = useAuth();
   const { user } = auth;
-  const handleChange = (value) => {
-    console.log(`selected ${value}`);
-  }
-  const onfinish = (values) => {
+  const navigate = useNavigate();
+
+  /**
+   * GoBack() is a function that navigates to the root route, replacing the current
+   * route in the history stack.
+   */
+  const goBack = () => navigate('/', { replace: true })
+  /**
+   * Onfinish is a function that takes in a parameter called values, and then
+   * creates a new date, and then displays a message, and then resets the form, and
+   * then calls a function called DataService.newTicket, and then calls a function
+   * called goBack.
+   */
+  const onfinish = async (values) => {
+    const date = new Date();
+    const currenTime = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+    const currentDate = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
     message.success("Ticket creado correctamente");
-    console.log('Received values of form: ', values);
     form.resetFields();
+    await DataService.newTicket({ ...values, currentDate, currenTime, user });
+    goBack();
   }
-  const cargarList = async (salon) => {
+  /**
+   * LoadLists is an async function that calls DataService.getMaquinas and
+   * DataService.getTipostAverias, and then sets the state of listMaquinas and
+   * listTipoAverias.
+   */
+  const loadLists = async (salon) => {
     try {
       const listMaquinas = await DataService.getMaquinas(salon);
       const listTipAverias = await DataService.getTipostAverias();
       setListMaquinas(listMaquinas.docs);
       setlistTipoAverias(listTipAverias.docs)
-      // listMaquinas.docs.map(maquina => console.log(maquina.id))
     } catch (error) {
       console.log('error');
     }
   }
-  // const getListTipoAverias = async ()=>{
-  //   re
-  // }
+
   useEffect(() => {
-    cargarList('Alcala 260');
-  }, []);
+    loadLists(user);
+  }, [user]);
   return (
     <>
       <Form
@@ -69,35 +87,35 @@ const NewTicket = () => {
         <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32, }}>
           <Col span={16} className="gutter-row" offset={3}>
             <Row>
+              <Divider className='divider' />
               <Col span={8}>
-                <h3>Email:</h3>
+                {/* <h3>Email:</h3> */}
                 <h3>Cliente:</h3>
               </Col>
               <Col span={8}>
-                <h3>Carabanchel@merkur-casino.com</h3>
+                {/* <h3>{user}@merkur-casino.com</h3> */}
                 <h3>{user}</h3>
               </Col>
             </Row>
-            <Divider className='divider' />
           </Col>
         </Row>
         <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32, }}>
           <Col span={16} className="gutter-row" offset={3}>
-            <h3>Carabanchel 2 Formulario</h3>
+            <h3>Formulario de rellenado de nuevo ticket</h3>
             <Divider className='divider' />
             <h3>Maquina *</h3>
-            <SelectList0 list={listMaquinas} handleChange={handleChange} id='maquina' placeholder='Seleccione una maquina' />
-            <h3>Comentario</h3>
+            <SelectList0 list={listMaquinas} id='maquina' placeholder='Seleccione una maquina' />
+            {/* <h3>Comentario</h3>
             <Form.Item name={'comentario'} rules={[{ required: true, message: 'Este campo es obligatorio' }]}>
               <TextArea rows={2} title="Comentario" className='border-select-selector' />
-            </Form.Item>
+            </Form.Item> */}
             {/* <Divider /> */}
             <h3>Tipo de Averia</h3>
-            <SelectList0 list={listTipoAverias} handleChange={handleChange} id='tipoAveria' placeholder='Seleccione una averia' />
+            <SelectList0 list={listTipoAverias} id='tipoAveria' placeholder='Seleccione una averia' />
             <h3>Prioridad</h3>
-            <SelectList0 id='prioridad' list={listPriority} handleChange={handleChange} placeholder='Seleccione la prioridad' />
+            <SelectList0 id='prioridad' list={listPriority} placeholder='Seleccione la prioridad' />
             <h3>Estado de la Maquina</h3>
-            <SelectList0 id='estadoMaquina' list={estateMachine} handleChange={handleChange} placeholder='Diga el estado de la maquina' />
+            <SelectList0 id='estadoMaquina' list={estateMachine} placeholder='Diga el estado de la maquina' />
             <h3>Taquillero</h3>
             <Form.Item name={'taquillero'} rules={[{ required: true, message: 'Este campo es obligatorio' }]}>
               <Input style={{ width: 300 }} className='border-select-selector' />
@@ -106,11 +124,11 @@ const NewTicket = () => {
             <h3>Dinero en Maquina</h3>
             <h6>Dinero pendiente</h6>
             <h6>Este campo se completa cuando la maquina tenga dinero</h6>
-            <Form.Item name={'isDinero'}>
+            <Form.Item name={'isDinero'} initialValue={false}>
               <Switch />
             </Form.Item>
             <h3>Cantidad de Dinero</h3>
-            <Form.Item name='cantDinero'>
+            <Form.Item name='cantDinero' initialValue={0}>
               <Input style={{ width: 300 }} className='border-select-selector' />
             </Form.Item>
             <h3>Detalles de Ticket</h3>

@@ -1,11 +1,12 @@
 import { db } from './firebase';
-import { collection, getDoc, getDocs, onSnapshot, doc, query, where, addDoc } from 'firebase/firestore'
+import { collection, getDoc, getDocs, onSnapshot, doc, query, where, addDoc, setDoc } from 'firebase/firestore'
 
 
 class DataService {
   _collectionName = "Checklist";
   _pathSalones = "salones/Madrid/Salones";
   _pathTipoAverias = "salones/Madrid/TiposAverias";
+  _pathAverias = "salones/Madrid/Averias";
   async getMaquinas1(salon) {
     const collectionn = collection(db, "salones/Madrid/Averias")
     // onSnapshot(collectionn, (snapShot) => console.log(snapShot))
@@ -25,8 +26,13 @@ class DataService {
     return await getDocs(query(collectionn));
   }
   async getTipostAverias() {
-    const collectionn = collection(db, 'salones/Madrid/TiposAverias');
+    const collectionn = collection(db, this._pathTipoAverias);
     return await getDocs(query(collectionn));
+  }
+  async newTicket(ticket) {
+    const { maquina, tipoAveria, prioridad, estadoMaquina, taquillero, isDinero, cantDinero, detallesTicket, currentDate, currenTime, user } = ticket;
+    const dataRef = doc(db, this._pathAverias, maquina);
+    return await setDoc(dataRef, { tipoAveria, prioridad, estadoMaquina, taquillero, isDinero, cantDinero, detallesTicket, currentDate, currenTime, user });
   }
 }
 

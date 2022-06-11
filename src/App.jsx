@@ -8,6 +8,7 @@ import RequireAuth from './components/RequireAuth';
 import 'antd/dist/antd.css';
 import Admin from './components/Admin';
 import NewTicket from './components/NewTicket';
+import ListTicket from './components/ListTicket';
 
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
         <Route element={<RequireAuth />}>
           <Route path="admin" element={<Admin />} />
           <Route path="newticket" element={<NewTicket />} />
+          <Route path="listticket" element={<ListTicket />} />
           <Route path="/" element={<Home />} />
         </Route>
       </Route>
