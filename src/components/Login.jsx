@@ -1,40 +1,48 @@
 import React, { useRef, useState, useEffect } from 'react';
 import useAuth from '../hooks/useAuth';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import '../style/login.css';
 
 const users = [
   {
     user: 'Admin',
-    pass: '123'
+    pass: '123',
+    role: 1
   },
   {
     user: 'Alcala 260',
-    pass: '123'
+    pass: '123',
+    role: 2
   },
   {
     user: 'Alcala 610',
-    pass: '123'
+    pass: '123',
+    role: 2
   },
   {
     user: 'Alcobendas',
-    pass: '123'
+    pass: '123',
+    role: 2
   },
   {
     user: 'Carabanchel',
-    pass: '123'
+    pass: '123',
+    role: 2
   },
   {
     user: 'Carabanchel 2',
-    pass: '123'
+    pass: '123',
+    role: 2
   },
   {
     user: 'Mejorada del campo',
-    pass: '123'
+    pass: '123',
+    role: 2
   },
   {
     user: 'Villanueva de la Cañada',
-    pass: '123'
+    pass: '123',
+    role: 2
   },
 
 ]
@@ -63,15 +71,13 @@ const LoginPage = () => {
   const login = (e) => {
     let te = false;
     users.forEach(ele => {
-      const { user, pass } = ele;
+      const { user, pass, role } = ele;
       if (user === userIn && pass === pwd) {
         te = true;
-        setAuth({ user, pwd });
+        setAuth({ user, pwd, role });
         setUser('');
         setPwd('');
-        // setUser(true);
         navigate('/', { replace: true });
-        // return;
       }
 
     })

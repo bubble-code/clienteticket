@@ -1,6 +1,3 @@
-html{
-  font-size: 16px;
-}
 
 .App-header {
   background-color: #282c34;
@@ -12,4 +9,29 @@ html{
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
+.boton-inicio-ticket::before,
+.boton-inicio-ticket::after {
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:1px;
+  width:0;
+  background: #2B4C8C;
+  box-shadow:
+   -1px -1px 5px 0px #fff,
+   7px 7px 20px 0px #2B4C8C,
+   4px 4px 5px 0px #2B4C8C;
+  transition:400ms ease all;
+}
+.boton-inicio-ticket::after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.boton-inicio-ticket:hover::before,
+.boton-inicio-ticket:hover::after{
+  width:100%;
+  transition:800ms ease all;
+}

@@ -5,11 +5,11 @@ import Layout from './components/Layouts';
 import Home from './components/Home';
 import Unauthorized from './components/Unauthorized';
 import RequireAuth from './components/RequireAuth';
-import 'antd/dist/antd.css';
 import Admin from './components/Admin';
 import NewTicket from './components/NewTicket';
 import ListTicket from './components/ListTicket';
-import './App.css';
+import 'antd/dist/antd.css';
+import './App.css'
 
 
 const App = () => {

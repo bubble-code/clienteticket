@@ -116,7 +116,7 @@ const NewTicket = () => {
             <h3>Estado de la Maquina</h3>
             <SelectList0 id='estadoMaquina' list={estateMachine} placeholder='Diga el estado de la maquina' />
             <h3>Taquillero</h3>
-            <Form.Item name={'taquillero'} rules={[{ required: true, message: 'Este campo es obligatorio' }]} initialValue="">
+            <Form.Item name={'taquillero'} rules={[{ required: true, message: 'Este campo es obligatorio' }]}>
               <Input style={{ width: 300 }} className='border-select-selector' />
             </Form.Item>
             {/* <Divider /> */}
@@ -131,7 +131,7 @@ const NewTicket = () => {
               <Input style={{ width: 300 }} className='border-select-selector' />
             </Form.Item>
             <h3>Detalles de Ticket</h3>
-            <Form.Item name={'detallesTicket'} rules={[{ required: true, message: 'Este campo es obligatorio' }]} initialValue="">
+            <Form.Item name={'detallesTicket'} rules={[{ required: true, message: 'Este campo es obligatorio' }]}>
               <TextArea rows={4} title="Detalles de Ticket" className='border-select-selector' />
             </Form.Item>
             <Form.Item>
