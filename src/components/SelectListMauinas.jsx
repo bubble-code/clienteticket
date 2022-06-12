@@ -4,7 +4,7 @@ import { Select, Form } from 'antd';
 const SelectList0 = ({ id, list, handleChange, placeholder }) => {
   const { Option } = Select;
   return (
-    <Form.Item name={id} rules={[{ required: true, message: 'Este campo es obligatorio' }]}  >
+    <Form.Item name={id} rules={[{ required: true, message: 'Este campo es obligatorio' }]} initialValue=""  >
       <Select defaultValue="" style={{ width: 300 }} onChange={handleChange} placeholder={placeholder} className='border-select-selector' >
         {list.map(item => {
           const { id } = item;

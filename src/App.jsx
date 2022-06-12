@@ -9,6 +9,7 @@ import 'antd/dist/antd.css';
 import Admin from './components/Admin';
 import NewTicket from './components/NewTicket';
 import ListTicket from './components/ListTicket';
+import './App.css';
 
 
 const App = () => {
