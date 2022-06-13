@@ -13,7 +13,7 @@ const Home = () => {
     navigate('newticket', { replace: true });
   }
   const handleListTicket = (e) => {
-    navigate('listticket', { replace: true });
+    navigate('listticket', { replace: true }); 
   }
   return (
     <div className="home">
