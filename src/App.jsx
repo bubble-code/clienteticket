@@ -8,6 +8,7 @@ import RequireAuth from './components/RequireAuth';
 import Admin from './components/Admin';
 import NewTicket from './components/NewTicket';
 import ListTicket from './components/ListTicket';
+import ListTicketTecnicos from './components/ListTicketTecnicos';
 import 'antd/dist/antd.css';
 import './App.css'
 
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="admin" element={<Admin />} />
           <Route path="newticket" element={<NewTicket />} />
           <Route path="listticket" element={<ListTicket />} />
+          <Route path="ListTicketTecnicos" element={<ListTicketTecnicos />} />
           <Route path="/" element={<Home />} />
         </Route>
       </Route>

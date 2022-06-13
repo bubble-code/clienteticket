@@ -41,6 +41,12 @@ class DataService {
     result.docs.map(doc => console.log(doc.data()));
     return result.docs;
   }
+  async getListTicketTecnico() {
+    const collectionn = collection(db, this._pathAverias);
+    const querySnapShot = query(collectionn);
+    const result = await getDocs(querySnapShot)
+    return result.docs;
+  }
 }
 
 export default new DataService();

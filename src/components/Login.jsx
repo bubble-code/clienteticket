@@ -5,6 +5,11 @@ import '../style/login.css';
 
 const users = [
   {
+    user: 'Adrian',
+    pass: '123',
+    role: 2
+  },
+  {
     user: 'Admin',
     pass: '123',
     role: 1
@@ -12,37 +17,37 @@ const users = [
   {
     user: 'Alcala 260',
     pass: '123',
-    role: 2
+    role: 4
   },
   {
     user: 'Alcala 610',
     pass: '123',
-    role: 2
+    role: 4
   },
   {
     user: 'Alcobendas',
     pass: '123',
-    role: 2
+    role: 4
   },
   {
     user: 'Carabanchel',
     pass: '123',
-    role: 2
+    role: 4
   },
   {
     user: 'Carabanchel 2',
     pass: '123',
-    role: 2
+    role: 4
   },
   {
     user: 'Mejorada del campo',
     pass: '123',
-    role: 2
+    role: 4
   },
   {
     user: 'Villanueva de la Cañada',
     pass: '123',
-    role: 2
+    role: 4
   },
 
 ]

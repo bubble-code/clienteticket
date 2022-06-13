@@ -106,12 +106,6 @@ const ListTicket = () => {
           </Space>
 
         </Col>
-        {/* <Col span={6} className="gutter-row" offset={3}>
-          <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
-            <Segmented options={['New', 'Cerrados']} value={segmentValue} onChange={setSegmentValue} />
-          </Space>
-
-        </Col> */}
       </Row>
       <Row  >
         <Col span={18} className="gutter-row" offset={3}>

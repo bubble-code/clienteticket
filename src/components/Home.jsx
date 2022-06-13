@@ -9,18 +9,27 @@ const Home = () => {
   const navigate = useNavigate();
   const { auth } = useAuth();
   const { role, user } = auth;
+  // console.log(role)
   const handleNewTicket = (e) => {
     navigate('newticket', { replace: true });
   }
   const handleListTicket = (e) => {
-    navigate('listticket', { replace: true }); 
+    navigate('listticket', { replace: true });
+  }
+  const handleListTicketTecnicos = (e) => {
+    navigate('ListTicketTecnicos', { replace: true })
   }
   return (
     <div className="home">
-      {role === 2 ? <></> : <h1>{user}</h1>}
-      <Card style={{ marginRight: 20 }} bordered className="boton-inicio-ticket" onClick={handleNewTicket}>
-        <Statistic value={'Nuevo Ticket'} precision={2} valueStyle={{ color: '#3f8600', }} />
-      </Card>
+      {role === 2 ?
+        <Card style={{ marginLeft: 20 }} bordered className="boton-inicio-ticket" onClick={handleListTicketTecnicos}>
+          <Statistic value={'Ver Ticket'} precision={2} valueStyle={{ color: '#3f8600', }} />
+        </Card>
+        : <Card style={{ marginRight: 20 }} bordered className="boton-inicio-ticket" onClick={handleNewTicket}>
+          <Statistic value={'Nuevo Ticket'} precision={2} valueStyle={{ color: '#3f8600', }} />
+        </Card>}
+
+
       <Card style={{ marginLeft: 20 }} bordered className="boton-inicio-ticket" onClick={handleListTicket}>
         <Statistic value={'Ver Ticket'} precision={2} valueStyle={{ color: '#3f8600', }} />
       </Card>
