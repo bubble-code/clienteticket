@@ -5,6 +5,11 @@ import { DownOutlined } from '@ant-design/icons';
 
 const columns = [
   {
+    title: 'Salon',
+    dataIndex: 'Salon',
+    key: 'Salon',
+  },
+  {
     title: 'Creado',
     dataIndex: 'Creado',
     key: 'Creado',
@@ -38,15 +43,21 @@ const columns = [
     ),
   },
   {
-    title: 'Salon',
-    dataIndex: 'Salon',
-    key: 'Salon',
+    title: 'Action',
+    dataIndex: 'operation',
+    key: 'operation',
+    render: () => (
+      <Space size="middle">
+        <a>Resolver</a>
+        <a>Aplazar</a>
+      </Space>
+    ),
   },
-  {
-    title: 'Taquillero',
-    dataIndex: 'Taquillero',
-    key: 'Taquillero',
-  }
+  // {
+  //   title: 'Taquillero',
+  //   dataIndex: 'Taquillero',
+  //   key: 'Taquillero',
+  // }
 ];
 
 const menu = (
@@ -80,7 +91,7 @@ const ListTicketTecnicos = () => {
     listDocs?.forEach((doc, index) => {
       const tem = doc.data();
       const { currentDate, state = 'Abierto', detallesTicket = "", taquillero, maquina, user } = tem;
-      dataListTickets.push({ key: index, Ticket: index, Creado: currentDate, Asunto: detallesTicket, tags: [state], Taquillero: taquillero, Maquina: maquina, Salon: user });
+      dataListTickets.push({Salon: user, key: index, Ticket: index, Creado: currentDate, Asunto: detallesTicket, tags: [state], Taquillero: taquillero, Maquina: maquina,  });
       expandedRowRender({ key: index, Detalles: detallesTicket })
     })
     setListTickets(dataListTickets)
@@ -134,4 +145,4 @@ const ListTicketTecnicos = () => {
   </Col>)
 }
 
-export default ListTicketTecnicos;
+export default ListTicketTecnicos; 

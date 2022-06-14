@@ -7,6 +7,7 @@ class DataService {
   _pathSalones = "salones/Madrid/Salones";
   _pathTipoAverias = "salones/Madrid/TiposAverias";
   _pathAverias = "salones/Madrid/Averias";
+  _pathIsInicioTec = "salones/Madrid/Tecnicos";
   async getMaquinas1(salon) {
     const collectionn = collection(db, "salones/Madrid/Averias")
     // onSnapshot(collectionn, (snapShot) => console.log(snapShot))
@@ -46,6 +47,26 @@ class DataService {
     const querySnapShot = query(collectionn);
     const result = await getDocs(querySnapShot)
     return result.docs;
+  }
+  async getStateInicioTecnico({ tec }) {
+    const result = await getDoc(doc(db, this._pathIsInicioTec, tec))
+    return result.data().isInicio;
+  }
+  async setIniciarJornada({ tec }) {
+    await setDoc(doc(db, this._pathIsInicioTec, tec), { isInicio: true })
+    const date = new Date();
+    const currenTime = (date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds());
+    const currentDate = (date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear());
+    const inicoRef = doc(db, `${this._pathIsInicioTec}/${tec}/Inicio`, currentDate)
+    await setDoc(inicoRef, { hora: currenTime })
+  }
+  async setFinalizarJornada({ tec }) {
+    await setDoc(doc(db, this._pathIsInicioTec, tec), { isInicio: false })
+    const date = new Date();
+    const currenTime = (date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds());
+    const currentDate = (date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear());
+    const inicoRef = doc(db, `${this._pathIsInicioTec}/${tec}/Cierre`, currentDate)
+    await setDoc(inicoRef, { hora: currenTime })
   }
 }
 
