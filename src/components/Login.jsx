@@ -79,7 +79,7 @@ const LoginPage = () => {
       const { user, pass, role } = ele;
       if (user === userIn && pass === pwd) {
         te = true;
-        setAuth({ user, pwd, role });
+        setAuth({ user, pwd, role, isInicio: false });
         setUser('');
         setPwd('');
         navigate('/', { replace: true });

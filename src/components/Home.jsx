@@ -9,9 +9,10 @@ import '../style/home.css';
 const Home = () => {
   const [isInicio, setIsInicio] = useState(false)
   const navigate = useNavigate();
+  const { setAuth } = useAuth();
   const { auth } = useAuth();
   const { role, user } = auth;
-  // console.log(role)
+  // console.log(setAuth)
   const handleNewTicket = (e) => {
     navigate('newticket', { replace: true });
   }
@@ -25,7 +26,7 @@ const Home = () => {
     let res;
     try {
       res = await DataService.getStateInicioTecnico({ tec: user })
-      console.log(res)
+      // console.log(res)
       setIsInicio(res)
 
     } catch (error) {
@@ -35,6 +36,8 @@ const Home = () => {
   const setIniciarJornadas = async () => {
     try {
       await DataService.setIniciarJornada({ tec: user })
+      setAuth({ isInicio: true, ...auth })
+      // console.log(auth)
       setIsInicio(true)
     } catch (error) {
       console.log(error);
@@ -43,6 +46,7 @@ const Home = () => {
   const setFinalizarJornadas = async () => {
     try {
       await DataService.setFinalizarJornada({ tec: user })
+      setAuth({ isInicio: false, ...auth })
       setIsInicio(false)
     } catch (error) {
       console.log(error);
@@ -69,7 +73,7 @@ const Home = () => {
         : <Card style={{ marginLeft: 20 }} bordered className="boton-inicio-ticket" onClick={handleListTicket}>
           <Statistic value={'Ver Ticket'} precision={2} valueStyle={{ color: '#3f8600', }} />
         </Card>}
-      <h1>{isInicio.toString()}</h1>
+
 
     </div>
   );

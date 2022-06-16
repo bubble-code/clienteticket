@@ -1,5 +1,5 @@
 import { db } from './firebase';
-import { collection, getDoc, getDocs, onSnapshot, doc, query, where, addDoc, setDoc } from 'firebase/firestore'
+import { collection, getDoc, getDocs, onSnapshot, doc, query, where, addDoc, setDoc, deleteDoc } from 'firebase/firestore'
 
 
 class DataService {
@@ -7,6 +7,7 @@ class DataService {
   _pathSalones = "salones/Madrid/Salones";
   _pathTipoAverias = "salones/Madrid/TiposAverias";
   _pathAverias = "salones/Madrid/Averias";
+  _pathAveriasCerradas = "salones/Madrid/AveriasCerradas";
   _pathIsInicioTec = "salones/Madrid/Tecnicos";
   async getMaquinas1(salon) {
     const collectionn = collection(db, "salones/Madrid/Averias")
@@ -33,7 +34,7 @@ class DataService {
   async newTicket(ticket) {
     const { maquina, tipoAveria, prioridad, estadoMaquina, taquillero, isDinero, cantDinero, detallesTicket, currentDate, currenTime, user } = ticket;
     const dataRef = doc(db, this._pathAverias, maquina);
-    return await setDoc(dataRef, { maquina, tipoAveria, prioridad, estadoMaquina, taquillero, isDinero, cantDinero, detallesTicket, currentDate, currenTime, user });
+    return await setDoc(dataRef, { maquina, tipoAveria, prioridad, estadoMaquina, taquillero, isDinero, cantDinero, detallesTicket, currentDate, currenTime, user, state: 'Abierto' });
   }
   async getListaAverias(salon) {
     const collectionn = collection(db, this._pathAverias);
@@ -67,6 +68,29 @@ class DataService {
     const currentDate = (date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear());
     const inicoRef = doc(db, `${this._pathIsInicioTec}/${tec}/Cierre`, currentDate)
     await setDoc(inicoRef, { hora: currenTime })
+  }
+  async getTicketById({ ticket }) {
+    const result = await getDoc(doc(db, this._pathAverias, ticket))
+    return result.data();
+  }
+  async closeTicket({ ticket, comment }) {
+    const date = new Date();
+    const closeTime = (date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds());
+    const closetDate = (date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear());
+    const collectionn = collection(db, this._pathAveriasCerradas);
+    const result = await this.getTicketById({ ticket });
+    await addDoc(collectionn, { ...result, comment, closeTime, closetDate });
+    await deleteDoc(doc(db, this._pathAverias, ticket))
+  }
+  async aplazarTicket({ ticket, comment }) {
+    const date = new Date();
+    const aplazarTime = (date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds());
+    const aplazarDate = (date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear());
+    const dataCurrentTicket = await this.getTicketById({ ticket });
+    const ticketRef = doc(db, this._pathAverias, ticket);
+    await setDoc(ticketRef, { ...dataCurrentTicket, commentAplazar: comment, aplazarTime, aplazarDate, state: 'En Proceso' });
+
+
   }
 }
 

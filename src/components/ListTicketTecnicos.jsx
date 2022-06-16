@@ -1,83 +1,103 @@
 import React, { useEffect, useState } from "react";
 import DataService from '../service/service';
-import { Col, Row, Space, Table, Tag, Badge, Dropdown, Menu } from 'antd';
+import useAuth from '../hooks/useAuth';
+import { Col, Row, Space, Table, Tag, Badge, Dropdown, Menu, Button } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
-
-const columns = [
-  {
-    title: 'Salon',
-    dataIndex: 'Salon',
-    key: 'Salon',
-  },
-  {
-    title: 'Creado',
-    dataIndex: 'Creado',
-    key: 'Creado',
-  },
-  {
-    title: 'Maquina',
-    dataIndex: 'Maquina',
-    key: 'Maquina',
-  },
-  {
-    title: 'Estado',
-    key: 'Estado',
-    dataIndex: 'Estado',
-    render: (_, { tags }) => (
-      <>
-        {tags.map((tag) => {
-          let color;
-          // let color = tag.length > 5 ? 'geekblue' : 'green';
-
-          if (tag === 'Abierto') {
-            color = 'green';
-          }
-
-          return (
-            <Tag color={color} key={tag}>
-              {tag.toUpperCase()}
-            </Tag>
-          );
-        })}
-      </>
-    ),
-  },
-  {
-    title: 'Action',
-    dataIndex: 'operation',
-    key: 'operation',
-    render: () => (
-      <Space size="middle">
-        <a>Resolver</a>
-        <a>Aplazar</a>
-      </Space>
-    ),
-  },
-  // {
-  //   title: 'Taquillero',
-  //   dataIndex: 'Taquillero',
-  //   key: 'Taquillero',
-  // }
-];
-
-const menu = (
-  <Menu
-    items={[
-      {
-        key: '1',
-        label: 'Action 1',
-      },
-      {
-        key: '2',
-        label: 'Action 2',
-      },
-    ]}
-  />
-);
+import ModalAccionTicker from "./ModalAccionTicke";
+import ModalAplazarTicker from "./ModalAplazarTicket";
 
 const ListTicketTecnicos = () => {
+  const [isInicio, setIsInicio] = useState(false)
+  const [visibleModalAccinoTicke, setVisibleModalAccinoTicke] = useState(false);
+  const [visibleModalAplazarTicke, setVisibleModalAplazarTicke] = useState(false);
+  const [idModal, setIdModal] = useState(0);
   const dataListTickets = [];
+  const { auth } = useAuth();
+  // const { isInicio } = auth;
+  const { user } = auth;
   const [listTickets, setListTickets] = useState([]);
+  // console.log(auth)
+  const showModal = ({ id }) => {
+    setIdModal(id)
+    // console.log(id)
+    setVisibleModalAccinoTicke(true);
+  };
+  const showModalAplazar = ({ id }) => {
+    setIdModal(id)
+    // console.log(id)
+    setVisibleModalAplazarTicke(true);
+  };
+  const handleModalAplazar = () => {
+    setVisibleModalAplazarTicke(false);
+  }
+  const handleCancel = () => {
+    setVisibleModalAccinoTicke(false);
+  };
+  const loadIsInicio = async (user) => {
+    let res;
+    try {
+      res = await DataService.getStateInicioTecnico({ tec: user })
+      // console.log(res)
+      setIsInicio(res)
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  const columns = [
+    {
+      title: 'Salon',
+      dataIndex: 'Salon',
+      key: 'Salon',
+    },
+    {
+      title: 'Creado',
+      dataIndex: 'Creado',
+      key: 'Creado',
+    },
+    {
+      title: 'Maquina',
+      dataIndex: 'Maquina',
+      key: 'Maquina',
+    },
+    {
+      title: 'Estado',
+      key: 'Estado',
+      dataIndex: 'Estado',
+      render: (_, { tags }) => (
+        <>
+          {tags.map((tag) => {
+            let color;
+            color = tag === 'Abierto' ? 'green' : 'geekblue';
+
+            // if (tag === 'Abierto') {
+            //   color = 'green';
+            // } else {
+            //   color = 'geekblue';
+            // }
+
+            return (
+              <Tag color={color} key={tag}>
+                {tag.toUpperCase()}
+              </Tag>
+            );
+          })}
+        </>
+      ),
+    },
+    {
+      title: 'Action',
+      dataIndex: 'operation',
+      key: 'operation',
+      render: isInicio ? (_, record) => (
+        <Space size="middle">
+          <Button onClick={() => { showModal({ id: record.key }) }} >Resolver</Button>
+          <Button onClick={() => { showModalAplazar({ id: record.key }) }}>Aplazar</Button>
+        </Space>
+      ) : () => <></>,
+    },
+  ];
+  // console.log({ isInicio })
   const loadListTicket = async () => {
     let res;
     try {
@@ -91,47 +111,29 @@ const ListTicketTecnicos = () => {
     listDocs?.forEach((doc, index) => {
       const tem = doc.data();
       const { currentDate, state = 'Abierto', detallesTicket = "", taquillero, maquina, user } = tem;
-      dataListTickets.push({Salon: user, key: index, Ticket: index, Creado: currentDate, Asunto: detallesTicket, tags: [state], Taquillero: taquillero, Maquina: maquina,  });
-      expandedRowRender({ key: index, Detalles: detallesTicket })
+      dataListTickets.push({ Salon: user, key: doc.id, Ticket: doc.id, Creado: currentDate, Asunto: detallesTicket, tags: [state], Taquillero: taquillero, Maquina: maquina, });
+      expandedRowRender({ key: doc.id, Detalles: detallesTicket })
     })
     setListTickets(dataListTickets)
   }
 
   const expandedRowRender = ({ key, Detalles }) => {
-    // console.log({ key, Detalles })
+    // console.log({ key })
     const columns = [
       {
         title: 'Detalles',
         dataIndex: 'Detalles',
         key: 'Detalles',
       },
-      {
-        title: 'Action',
-        dataIndex: 'operation',
-        key: 'operation',
-        render: () => (
-          <Space size="middle">
-            <a>Resolver</a>
-            <a>Aplazar</a>
-          </Space>
-        ),
-      },
-    ];
+    ]
     const data = [];
     data.push({ key, Detalles })
-
-    // for (let i = 0; i < 3; ++i) {
-    //   data.push({
-    //     key: i,
-    //     Detalles: '2014-12-24 23:12:00',
-    //   });
-    // }
-
     return <Table columns={columns} dataSource={data} pagination={false} />;
   };
 
   useEffect(() => {
     loadListTicket();
+    loadIsInicio(user)
   }, [])
 
   return (<Col>
@@ -142,6 +144,8 @@ const ListTicketTecnicos = () => {
         <Table columns={columns} dataSource={listTickets} style={{ width: '100%' }} expandable={{ expandedRowRender: (record) => { return <p>{record.Asunto}</p> } }} />
       </Col>
     </Row>
+    <ModalAccionTicker visibl={visibleModalAccinoTicke} cancel={handleCancel} id={idModal} />
+    <ModalAplazarTicker visibl={visibleModalAplazarTicke} cancel={handleModalAplazar} id={idModal} />
   </Col>)
 }
 
