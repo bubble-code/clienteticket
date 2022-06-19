@@ -89,8 +89,12 @@ class DataService {
     const dataCurrentTicket = await this.getTicketById({ ticket });
     const ticketRef = doc(db, this._pathAverias, ticket);
     await setDoc(ticketRef, { ...dataCurrentTicket, commentAplazar: comment, aplazarTime, aplazarDate, state: 'En Proceso' });
-
-
+  }
+  async getTicketCloseByHall({ hall }) {
+    const collectionn = collection(db, this._pathAveriasCerradas);
+    const querySnapShot = query(collectionn, where('user', '==', hall));
+    const result = await getDocs(querySnapShot);
+    return result.docs;
   }
 }
 

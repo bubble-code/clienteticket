@@ -9,6 +9,10 @@ import Admin from './components/Admin';
 import NewTicket from './components/NewTicket';
 import ListTicket from './components/ListTicket';
 import ListTicketTecnicos from './components/ListTicketTecnicos';
+import BotonesInicio from './components/BotonesInicio';
+import AnalisView from './components/AnalisView';
+import MonitorView from './components/MonitorView';
+import WorkplaceView from './components/WorkplaceView';
 import 'antd/dist/antd.css';
 import './App.css'
 
@@ -23,10 +27,15 @@ const App = () => {
         {/* Protect routes */}
         <Route element={<RequireAuth />}>
           <Route path="admin" element={<Admin />} />
-          <Route path="newticket" element={<NewTicket />} />
-          <Route path="listticket" element={<ListTicket />} />
-          <Route path="ListTicketTecnicos" element={<ListTicketTecnicos />} />
-          <Route path="/" element={<Home />} />
+          <Route path="inicio/newticket" element={<NewTicket />} />
+          <Route path="inicio/listticket" element={<ListTicket />} />
+          <Route path="inicio/ListTicketTecnicos" element={<ListTicketTecnicos />} />
+          <Route path="/" element={<Home />} >
+            <Route path="inicio" element={<BotonesInicio />} />
+            <Route path="analisview" element={<AnalisView />} />
+            <Route path="monitorview" element={<MonitorView />} />
+            <Route path="workplaceview" element={<WorkplaceView />} />
+          </Route>
         </Route>
       </Route>
     </Routes>

@@ -82,7 +82,7 @@ const LoginPage = () => {
         setAuth({ user, pwd, role, isInicio: false });
         setUser('');
         setPwd('');
-        navigate('/', { replace: true });
+        navigate('/inicio', { replace: true });
       }
 
     })
