@@ -96,6 +96,42 @@ class DataService {
     const result = await getDocs(querySnapShot);
     return result.docs;
   }
+  async getCantTicketOpen() {
+    const collectionn = collection(db, this._pathAverias);
+    const querySnapShot = query(collectionn, where('state', '==', 'Abierto'));
+    const result = await getDocs(querySnapShot);
+    return result.docs.length;
+  }
+  async getCantTicketStandBy() {
+    const collectionn = collection(db, this._pathAverias);
+    const querySnapShot = query(collectionn, where('state', '==', 'En Proceso'));
+    const result = await getDocs(querySnapShot);
+    return result.docs.length;
+  }
+  async getCantTicketCloseToday() {
+    const date = new Date();
+    const closetDate = (date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear());
+    // console.log(closetDate);
+    const collectionn = collection(db, this._pathAveriasCerradas);
+    const querySnapShot = query(collectionn, where('closetDate', '==', closetDate));
+    const result = await getDocs(querySnapShot);
+    return result.docs.length;
+  }
+  async getHallWithTicketOpen() {
+    const arrayHallWhitFauls = []
+    const collectionn = collection(db, this._pathAverias);
+    const querySnapShot = query(collectionn);
+    const result = await getDocs(querySnapShot);
+    result.docs.forEach(doc => {
+      const hall = doc.data().user;
+      if (arrayHallWhitFauls[hall]) {
+        arrayHallWhitFauls[hall] += 1;
+      } else {
+        arrayHallWhitFauls[hall] = 1;
+      }
+    })
+    return arrayHallWhitFauls;
+  }
 }
 
 export default new DataService();
