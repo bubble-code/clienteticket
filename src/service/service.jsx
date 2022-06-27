@@ -9,18 +9,11 @@ class DataService {
   _pathAverias = "salones/Madrid/Averias";
   _pathAveriasCerradas = "salones/Madrid/AveriasCerradas";
   _pathIsInicioTec = "salones/Madrid/Tecnicos";
+
   async getMaquinas1(salon) {
     const collectionn = collection(db, "salones/Madrid/Averias")
-    // onSnapshot(collectionn, (snapShot) => console.log(snapShot))
     const querySnapshot = await getDocs(query(collectionn));
     querySnapshot.docs.map(doc => console.log(doc.id))
-    // const result = await getDoc(doc(db, 'salones', "Madrid"))
-    // console.log(result.ref.path)
-    // console.log(querySnapshot.docs[0].id);
-    // console.log({ querySnapshot });
-    // querySnapshot.docs.map(doc => { console.log(doc) });
-    // console.log(querySnapshot.docs.values());
-    // return list;
   }
   async getMaquinas(salon) {
     const path = `${this._pathSalones}/${salon}/Maquinas`;
@@ -132,6 +125,22 @@ class DataService {
     })
     return arrayHallWhitFauls;
   }
+  async getLocationsHall() {
+    const collectionn = collection(db, this._pathSalones);
+    const querySnapShot = query(collectionn);
+    const result = await getDocs(querySnapShot);
+    const locations = [];
+    result.docs.forEach(doc => {
+      const { _lat, _long } = doc.data().location;
+      locations[doc.id] = { _lat, _long };
+    })
+    return locations;
+  }
+  async getListHall() {
+    const collectionn = collection(db, this._pathSalones);
+    const querySnapShot = query(collectionn);
+    const result = await getDocs(querySnapShot);
+    return result.docs;
+  }
 }
-
 export default new DataService();

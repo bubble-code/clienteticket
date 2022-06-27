@@ -1,0 +1,12 @@
+.cardHallsWorkPlace{
+  box-shadow: 2px 2px 12px rgba(0,0,0,0.5);
+  margin: 0;
+}
+.workplace-card-wrapper{
+  display: grid; 
+  grid-template-columns: 5fr 5fr 5fr; 
+  grid-template-rows: 1fr 1fr 1fr; 
+  gap: 22px 24px;  
+  width: 100%;
+  padding-right: 20px;
+}
