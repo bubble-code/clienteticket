@@ -7,7 +7,7 @@ const WorkplaceView = () => {
   const [listHall, setListHall] = useState([]);
   const getListHall = async () => {
     const listHall = await DataService.getListHall();
-    console.log(listHall);
+    // console.log(listHall);
     setListHall(listHall);
   }
   useEffect(() => {
@@ -16,15 +16,15 @@ const WorkplaceView = () => {
   return (
     <div className="workplace-card-wrapper">
       {/* <Row justify="space-around" gutter={16}> */}
-        {listHall.map((hall, index) => {
-          return (
-            <Col span={24} key={index}>
-              <Card title={hall.id} bordered={true} className={"cardHallsWorkPlace"} p>
-                Card content
-              </Card>
-            </Col>
-          )
-        })}
+      {listHall.map((hall, index) => {
+        return (
+          <Col span={24} key={index}>
+            <Card title={hall.id} bordered={true} className={"cardHallsWorkPlace"} extra={<a href="#">More</a>}>
+              Card content
+            </Card>
+          </Col>
+        )
+      })}
       {/* </Row> */}
     </div>
   );

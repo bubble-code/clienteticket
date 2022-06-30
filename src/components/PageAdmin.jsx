@@ -19,7 +19,7 @@ const items = [
     getItem('Workplace', 'workplaceview'),
   ]),
   getItem('Account', 'sub2', <UserOutlined />, [
-    getItem('Account Center', '4'),
+    getItem('Account Center', 'accountcenter'),
     getItem('Account Settings', '5'),
   ]),
   getItem('List', 'sub3', <TableOutlined />, [

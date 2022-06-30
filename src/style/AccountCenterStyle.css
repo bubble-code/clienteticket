@@ -1,0 +1,8 @@
+.containerAccountCenter {
+  display: grid; 
+  grid-template-columns: 1fr 4fr; 
+  grid-template-rows: 1fr; 
+  gap: 22px 24px;  
+  width: 100%;
+  padding-right: 20px;
+}

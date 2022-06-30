@@ -62,6 +62,15 @@ class DataService {
     const inicoRef = doc(db, `${this._pathIsInicioTec}/${tec}/Cierre`, currentDate)
     await setDoc(inicoRef, { hora: currenTime })
   }
+  async getTimeStartTec({ tec }) {
+    const date = new Date();
+    const dateInicio = (date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear());
+    // const collectionn = collection(db, `${this._pathIsInicioTec}/${tec}/Inicio`);
+    const result = await getDoc(doc(db, `${this._pathIsInicioTec}/${tec}/Inicio`, dateInicio));
+    console.log(result.data());
+    return result.data()?.hora ?? '00:00:00';
+  }
+
   async getTicketById({ ticket }) {
     const result = await getDoc(doc(db, this._pathAverias, ticket))
     return result.data();
