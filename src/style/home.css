@@ -1,5 +1,6 @@
 .home{
-  height: 80vh;
+  height: auto;
+  padding-top: 30px;
   display: flex;
   justify-content: center;
   align-items: center;

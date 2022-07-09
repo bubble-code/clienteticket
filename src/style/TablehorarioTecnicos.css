@@ -3,13 +3,13 @@
   border-collapse: collapse;
   border-spacing: 0;
   font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
+  font-size: 10px;
   color: #333;
 }
 .tableHorarioTecnicos th{
   background-color: #f5f5f5;
   text-align: center;
-  padding: 10px;
+  padding: 8px;
   font-weight: bold;
 }
 .tableHorarioTecnicos th:hover{
@@ -17,10 +17,23 @@
 }
 .tableHorarioTecnicos tr td:nth-child(1){
   text-align: center;
-  background-color: rgb(184, 180, 180);
+  background-color: #77A6B6;
+  padding: 1px !important;
+}
+.tableHorarioTecnicos thead th {
+padding: 0;
+text-align: center;
+background: #9DC3C2;
+border: 1px solid #d2e8e7;
+}
+.tableHorarioTecnicos tbody td {
+padding: 0;
+/* text-align: center;
+background: #9DC3C2;
+border: 1px solid #d2e8e7; */
 }
 .cardInTableHorarios{
-  border: solid 1px #5039f9;
+  border: solid 1px #4f39f9;
   border-radius: 3px;
   padding: 2px;
   text-align: center;
@@ -28,15 +41,37 @@
 }
 .cardInTablePartial{
   background-color: #7cf39065 !important;
-  border: solid 1px #7cf39065 !important;
+  border: solid 1px #7cf390 !important;
 }
 .cardInTableTecnico{
   background-color: #f9c83965 !important;
-  border: solid 1px #f9c83965 !important;
+  border: solid 1px #ffc412 !important;
+}
+.cardInTableCierre{
+  border:1px #fb572e solid ;
+  background: repeating-linear-gradient(
+    135deg,
+    #f7c7bb8d  30px,
+    #f7c7bb8d  45px,
+    #ee846a8d 40px,
+    #df6c4f8d 60px,
+    #df6c4f8d 60px
+  );
+}
+.cardInTableGuardia{
+  border: 1px solid #5bf42d;
+  background: repeating-linear-gradient(
+    135deg,
+    #7adf4f3b 30px,
+    #7adf4f3b  45px,
+    #71df4f8d 40px,
+    #71df4f8d 60px,
+    #71df4f8d 60px
+  );
 }
 .cardInTableHorarios p{
-  font-size: 12px;
-  color: rgb(90, 88, 88);
+  font-size: 10px;
+  color: #000;
   font-weight: bold;
   margin: 0px;
 }

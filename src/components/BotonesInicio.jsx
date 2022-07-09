@@ -3,6 +3,10 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import DataService from '../service/service';
 import ModalStartWorkingDayTec from "./ModalStartWorkingDayTec";
+import CardInicioSalones from "./CardInicioSalones";
+import CardInicioSalonesHorario from "./CardInicioSalonesHorario";
+import CardInicioNewTicket from "./CardInicioNewTicket";
+import CardInicioListTickets from "./CardInicioListTickets";
 import { Card, Statistic } from 'antd';
 import 'antd/dist/antd.css';
 import '../style/home.css';
@@ -17,13 +21,20 @@ const BotonesInicio = () => {
   // console.log(setAuth)
 
   const handleNewTicket = (e) => {
+    // e.preventDefault();
     navigate('newticket', { replace: true });
   }
-  const handleListTicket = (e) => {
-    navigate('listticket', { replace: true });
-  }
+
   const handleListTicketTecnicos = (e) => {
+    e.preventDefault();
     navigate('ListTicketTecnicos', { replace: true })
+  }
+  const handleHorariosTecnicos = (e) => {
+    navigate('PageHorariosTecnicos', { replace: true });
+  }
+  const handleListTicket = (e) => {
+    // e.preventDefault();
+    navigate('listticket', { replace: true });
   }
   const loadIsInicio = async (user) => {
     let res;
@@ -66,17 +77,22 @@ const BotonesInicio = () => {
         <Card style={{ marginLeft: 20 }} bordered className="boton-inicio-ticket" onClick={handleListTicketTecnicos}>
           <Statistic value={'Averias'} precision={2} valueStyle={{ color: '#3f8600', }} />
         </Card>
-        : <Card style={{ marginRight: 20 }} bordered className="boton-inicio-ticket" onClick={handleNewTicket}>
-          <Statistic value={'Nuevo Ticket'} precision={2} valueStyle={{ color: '#3f8600', }} />
-        </Card>}
+        : [
+          <CardInicioNewTicket functionClick={handleNewTicket} />,
+          <CardInicioListTickets handleListTickets={handleListTicket} />,
+          <CardInicioSalonesHorario horarioClick={handleHorariosTecnicos} />
+        ]
+      }
+      {/* <Card style={{ marginLeft: 20 }} bordered className="boton-inicio-ticket" onClick={handleListTicket}>
+        <Statistic value={'Ver Ticket'} precision={2} valueStyle={{ color: '#3f8600', }} />
+      </Card> */}
 
       {role === 2 ? !isInicio ? <Card style={{ marginLeft: 20 }} bordered className="boton-inicio-ticket" onClick={setIniciarJornadas}>
         <Statistic value={'Iniciar'} precision={2} valueStyle={{ color: '#3f8600', }} /> </Card>
         : <Card style={{ marginLeft: 20 }} bordered className="boton-inicio-ticket" onClick={setFinalizarJornadas}>
           <Statistic value={'Finalizar'} precision={2} valueStyle={{ color: '#3f8600', }} /> </Card>
-        : <Card style={{ marginLeft: 20 }} bordered className="boton-inicio-ticket" onClick={handleListTicket}>
-          <Statistic value={'Ver Ticket'} precision={2} valueStyle={{ color: '#3f8600', }} />
-        </Card>}
+        : <CardInicioSalones functionOnClick={handleNewTicket} />
+      }
       <ModalStartWorkingDayTec isVisible={visible} setVisible={setVisible} />
     </div>
   );
