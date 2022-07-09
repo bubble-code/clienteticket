@@ -9,6 +9,7 @@ class DataService {
   _pathAverias = "salones/Madrid/Averias";
   _pathAveriasCerradas = "salones/Madrid/AveriasCerradas";
   _pathIsInicioTec = "salones/Madrid/Tecnicos";
+  _pathComunidades = "/salones";
 
   async getMaquinas1(salon) {
     const collectionn = collection(db, "salones/Madrid/Averias")
@@ -151,5 +152,14 @@ class DataService {
     const result = await getDocs(querySnapShot);
     return result.docs;
   }
+
+  // metodos para el manejo de los horarios de los tecnicos  
+  async getPartialRecaudacion({ comunidad, mes, queryData }) {
+    const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/Horario/${mes}/${queryData}`);
+    const querySnapShot = query(collectionn);
+    const result = await getDocs(querySnapShot);
+    return result.docs;
+  }
+
 }
 export default new DataService();

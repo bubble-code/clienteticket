@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import DataService from '../service/service';
+import ModalStartWorkingDayTec from "./ModalStartWorkingDayTec";
 import { Card, Statistic } from 'antd';
 import 'antd/dist/antd.css';
 import '../style/home.css';
 
 const BotonesInicio = () => {
   const [isInicio, setIsInicio] = useState(false)
+  const [visible, setVisible] = useState(false);
   const navigate = useNavigate();
   const { setAuth } = useAuth();
   const { auth } = useAuth();
@@ -35,6 +37,7 @@ const BotonesInicio = () => {
     }
   }
   const setIniciarJornadas = async () => {
+    setVisible(true);
     try {
       await DataService.setIniciarJornada({ tec: user })
       setAuth({ isInicio: true, ...auth })
@@ -74,7 +77,7 @@ const BotonesInicio = () => {
         : <Card style={{ marginLeft: 20 }} bordered className="boton-inicio-ticket" onClick={handleListTicket}>
           <Statistic value={'Ver Ticket'} precision={2} valueStyle={{ color: '#3f8600', }} />
         </Card>}
-
+      <ModalStartWorkingDayTec isVisible={visible} setVisible={setVisible} />
     </div>
   );
 }

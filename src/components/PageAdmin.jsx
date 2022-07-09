@@ -20,7 +20,7 @@ const items = [
   ]),
   getItem('Account', 'sub2', <UserOutlined />, [
     getItem('Account Center', 'accountcenter'),
-    getItem('Account Settings', '5'),
+    getItem('Account Settings', 'PageHorariosTecnicos'),
   ]),
   getItem('List', 'sub3', <TableOutlined />, [
     getItem('Search List', '6'),
