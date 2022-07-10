@@ -78,7 +78,7 @@ const BotonesInicio = () => {
           <Statistic value={'Averias'} precision={2} valueStyle={{ color: '#3f8600', }} />
         </Card>
         : [
-          <CardInicioNewTicket functionClick={handleNewTicket} />,
+          <CardInicioNewTicket />,
           <CardInicioListTickets handleListTickets={handleListTicket} />,
           <CardInicioSalonesHorario horarioClick={handleHorariosTecnicos} />
         ]

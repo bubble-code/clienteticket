@@ -26,9 +26,9 @@ class DataService {
     return await getDocs(query(collectionn));
   }
   async newTicket(ticket) {
-    const { maquina, tipoAveria, prioridad, estadoMaquina, taquillero, isDinero, cantDinero, detallesTicket, currentDate, currenTime, user } = ticket;
-    const dataRef = doc(db, this._pathAverias, maquina);
-    return await setDoc(dataRef, { maquina, tipoAveria, prioridad, estadoMaquina, taquillero, isDinero, cantDinero, detallesTicket, currentDate, currenTime, user, state: 'Abierto' });
+    const { maquina, tipoAveria, prioridad, estadoMaquina, taquillero, cantDinero, detallesTicket, currentDate, currenTime, user } = ticket;
+    const collectionn = collection(db, this._pathAverias);
+    return await addDoc(collectionn, { maquina, tipoAveria, prioridad, estadoMaquina, taquillero, cantDinero, detallesTicket, currentDate, currenTime, user, state: 'Abierto' });
   }
   async getListaAverias(salon) {
     const collectionn = collection(db, this._pathAverias);

@@ -29,7 +29,7 @@ const NewTicket = () => {
    * GoBack() is a function that navigates to the root route, replacing the current
    * route in the history stack.
    */
-  const goBack = () => navigate('/', { replace: true })
+  const goBack = () => navigate(-1)
   /**
    * Onfinish is a function that takes in a parameter called values, and then
    * creates a new date, and then displays a message, and then resets the form, and
@@ -87,7 +87,7 @@ const NewTicket = () => {
               </Col>
             </Row>
           </Col>
-          <Row justify='space-between' gutter={{ xs: 8, sm: 24, md: 24, lg: 32 }} style={{margin:5}}>
+          <Row justify='space-between' gutter={{ xs: 8, sm: 24, md: 24, lg: 32 }} style={{ margin: 5 }}>
             <Col span={{ xs: 24, sm: 8, md: 8, lg: 8 }} className="gutter-row">
               <h3>Maquina</h3>
               <SelectList0 list={listMaquinas} id='maquina' placeholder='Seleccione una maquina' />
@@ -126,10 +126,10 @@ const NewTicket = () => {
               </Form.Item>
             </Col>
             <Col span={24} className="gutter-row">
-          <Form.Item>
-            <Button type="primary" htmlType="submit" >Enviar</Button>
-          </Form.Item>
-          </Col>
+              <Form.Item>
+                <Button type="primary" htmlType="submit" >Enviar</Button>
+              </Form.Item>
+            </Col>
           </Row>
 
         </Row>
