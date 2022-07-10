@@ -2,6 +2,7 @@ import React from 'react';
 import { Col, Row } from 'antd';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import PageHeader from './PageHeader';
+import MenuHeader from './MenuHeader';
 
 const Layout = () => {
   const navigate = useNavigate();
@@ -13,8 +14,9 @@ const Layout = () => {
         <main className='App'>
           <PageHeader />
           <section>
-            {(pathName === '/' || pathName === '/login'|| pathName==='/inicio') ? <></> : <div className="flexGrow">
-              <button onClick={goBack}>Go Back</button>
+            {(pathName === '/' || pathName === '/login' || pathName === '/inicio') ? <></> : <div className="flexGrow">
+              {/* <button onClick={goBack}>Go Back</button> */}
+              <MenuHeader />
             </div>}
           </section>
           <Outlet />
