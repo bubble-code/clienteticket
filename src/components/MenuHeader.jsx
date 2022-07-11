@@ -14,6 +14,7 @@ const titleArray = {
   },
   'listticket': { 'title': 'Lista de Tickets' },
   'PageHorariosTecnicos': { 'title': 'Horarios de Tecnicos' },
+  "pageobjetivos": { "title": "Objetivos del Trimestre" },
 }
 
 
@@ -27,7 +28,7 @@ const MenuHeader = () => {
     <Affix offsetTop={0}>
       <PageHeader className='menu-header'
         onBack={() => navigate(-1)}
-        title={titleArray[pathName].title || 'Inicio'}
+        title={titleArray[pathName]?.title || 'Inicio'}
         tags={<Tag color="blue">Salon: {user}</Tag>}
         subTitle={titleArray[pathName].subtitle || ''}
         extra={[

@@ -15,6 +15,7 @@ import MonitorView from './components/MonitorView';
 import WorkplaceView from './components/WorkplaceView';
 import AccountCenter from './components/AccountCenter';
 import PageHorariosTecnicos from './components/PageHorariosTecnicos';
+import PageObjetivos from './components/PageObjetivos';
 import 'antd/dist/antd.css';
 import './App.css'
 
@@ -33,6 +34,7 @@ const App = () => {
           <Route path="inicio/listticket" element={<ListTicket />} />
           <Route path="inicio/ListTicketTecnicos" element={<ListTicketTecnicos />} />
           <Route path="inicio/pagehorariostecnicos" element={<PageHorariosTecnicos />} />
+          <Route path="inicio/pageobjetivos" element={<PageObjetivos />} />
           <Route path="/" element={<Home />} >
             <Route path="inicio" element={<BotonesInicio />} />
             <Route path="analisview" element={<AnalisView />} />

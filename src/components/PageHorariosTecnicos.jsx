@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Col, Row, Table, Typography } from 'antd';
+import { Col, Row, Table, Typography, Card } from 'antd';
 import DataService from '../service/service';
+import useAuth from '../hooks/useAuth';
 import '../style/TablehorarioTecnicos.css';
 
 
@@ -23,12 +24,13 @@ for (let i = 1; i <= currentCantDaybyMonth; i++) {
     title: `${dayOfWeek[dayofWeek]} ${i}`,
     dataIndex: i,
     key: `dia${i}`,
-    width: 120,
+    width: 90,
   });
 }
 
 const PageHorariosTecnicos = () => {
-
+  const { auth } = useAuth();
+  const { comunidad } = auth;
   const [data, setData] = useState([{}]);
   const [loading, setLoading] = useState(true)
 
@@ -50,11 +52,11 @@ const PageHorariosTecnicos = () => {
       key: 3,
       horario: `Al Cierre`,
     };
-    let globalQuery = await DataService.getPartialRecaudacion({ comunidad: "Mallorca", mes: "Julio", queryData: "Global" });
-    let partialQuery = await DataService.getPartialRecaudacion({ comunidad: "Mallorca", mes: "Julio", queryData: "Partial" });
-    let tecnicoQuery = await DataService.getPartialRecaudacion({ comunidad: "Mallorca", mes: "Julio", queryData: "Tecnico" });
-    let alCierreQuery = await DataService.getPartialRecaudacion({ comunidad: "Mallorca", mes: "Julio", queryData: "AlCierre" });
-    let guardiaQuery = await DataService.getPartialRecaudacion({ comunidad: "Mallorca", mes: "Julio", queryData: "Guardia" });
+    let globalQuery = await DataService.getPartialRecaudacion({ comunidad: comunidad, mes: "Julio", queryData: "Global" });
+    let partialQuery = await DataService.getPartialRecaudacion({ comunidad: comunidad, mes: "Julio", queryData: "Partial" });
+    let tecnicoQuery = await DataService.getPartialRecaudacion({ comunidad: comunidad, mes: "Julio", queryData: "Tecnico" });
+    let alCierreQuery = await DataService.getPartialRecaudacion({ comunidad: comunidad, mes: "Julio", queryData: "AlCierre" });
+    let guardiaQuery = await DataService.getPartialRecaudacion({ comunidad: comunidad, mes: "Julio", queryData: "Guardia" });
 
     globalQuery.forEach((el, key) => {
       let day = 0;
@@ -127,20 +129,30 @@ const PageHorariosTecnicos = () => {
     dd();
   }, [])
   return (
-    <div style={{ maxWidth: 1400, height: 'auto' }}>
-      <Col span={18} offset={1}>
-        <Row>
-          <Table className='tableHorarioTecnicos'
-            columns={columns}
-            dataSource={data ?? []}
-            pagination={{ pageSize: 10, responsive: true, }}
-            direction='ltr' scroll={{ x: 500, y: 600 }}
-            loading={loading}
-            title={() => <Text>{`Calendario de Guardia de los tecnicos para el mes de ${date.getMonth() + 1}`} </Text>}
-          />
-        </Row>
+    <Row gutter={{ xs: 8, sm: 24, md: 24, lg: 32 }}>
+      <Col span={6} >
+        <div className='card-left-horario-page'>Horarios Técnicos {comunidad}</div>
+        <div className='card-left-horario-page'>Rango de Tiempo
+          <p>Mes Actual</p>
+          <p>Semana Actual</p>
+          <p>Dia Actual</p>
+        </div>
       </Col>
-    </div>
+      <Col span={18} >
+        <Card className='main-card-horario-page'  >
+          <Row>
+            <Table className='tableHorarioTecnicos'
+              columns={columns}
+              dataSource={data ?? []}
+              pagination={{ pageSize: 10, responsive: true, }}
+              direction='ltr' scroll={{ x: 500, y: false }}
+              loading={loading}
+            // title={() => <Text>{`Calendario de Guardia de los tecnicos para el mes de ${date.getMonth() + 1}`} </Text>}
+            />
+          </Row>
+        </Card>
+      </Col>
+    </Row>
   );
 }
 

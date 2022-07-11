@@ -7,47 +7,86 @@ const users = [
   {
     user: 'Adrian',
     pass: '123',
-    role: 2
+    role: 2,
+    comunidad: 'Madrid',
   },
   {
     user: 'Admin',
     pass: '123',
-    role: 1
+    role: 1,
+    comunidad: 'Madrid',
   },
   {
     user: 'Alcala 260',
     pass: '123',
-    role: 4
+    role: 4,
+    comunidad: 'Madrid',
   },
   {
     user: 'Alcala 610',
     pass: '123',
-    role: 4
+    role: 4,
+    comunidad: 'Madrid',
   },
   {
     user: 'Alcobendas',
     pass: '123',
-    role: 4
+    role: 4,
+    comunidad: 'Madrid',
   },
   {
     user: 'Carabanchel',
     pass: '123',
-    role: 4
+    role: 4,
+    comunidad: 'Madrid',
   },
   {
     user: 'Carabanchel 2',
     pass: '123',
-    role: 4
+    role: 4,
+    comunidad: 'Madrid',
   },
   {
     user: 'Mejorada del campo',
     pass: '123',
-    role: 4
+    role: 4,
+    comunidad: 'Madrid',
   },
   {
     user: 'Villanueva de la Cañada',
     pass: '123',
-    role: 4
+    role: 4,
+    comunidad: 'Madrid',
+  },
+  {
+    user: 'Tropicana',
+    pass: '123',
+    role: 4,
+    comunidad: 'Mallorca',
+  },
+  {
+    user: 'Riviera',
+    pass: '123',
+    role: 4,
+    comunidad: 'Mallorca',
+  },
+  {
+    user: 'Fortuna',
+    pass: '123',
+    role: 4,
+    comunidad: 'Mallorca',
+  },
+  {
+    user: 'Malibu',
+    pass: '123',
+    role: 4,
+    comunidad: 'Mallorca',
+  },
+  {
+    user: 'Cancun',
+    pass: '123',
+    role: 4,
+    comunidad: 'Mallorca',
   },
 
 ]
@@ -76,10 +115,10 @@ const LoginPage = () => {
   const login = (e) => {
     let te = false;
     users.forEach(ele => {
-      const { user, pass, role } = ele;
+      const { user, pass, role, comunidad } = ele;
       if (user === userIn && pass === pwd) {
         te = true;
-        setAuth({ user, pwd, role, isInicio: false });
+        setAuth({ user, pwd, role, isInicio: false, comunidad });
         setUser('');
         setPwd('');
         navigate('/inicio', { replace: true });

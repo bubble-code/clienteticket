@@ -3,22 +3,30 @@
   border-collapse: collapse;
   border-spacing: 0;
   font-family: 'Open Sans', sans-serif;
-  font-size: 10px;
-  color: #333;
+  font-size: 10px; 
+  background: #e5effa;
 }
 .tableHorarioTecnicos th{
-  background-color: #f5f5f5;
+  background: #e5effa !important;
   text-align: center;
   padding: 8px;
   font-weight: bold;
+  color: #2686BD !important;
+  border:none !important;
+  border-top: 1px solid #2686BD !important;
+  border-bottom: 1px solid #2686BD !important;
+  border-radius: 5px;
 }
 .tableHorarioTecnicos th:hover{
   background-color: rgb(184, 180, 180);
 }
 .tableHorarioTecnicos tr td:nth-child(1){
   text-align: center;
-  background-color: #77A6B6;
+  background: #e5effa;
   padding: 1px !important;
+  border-left: 1px solid #2686BD ;
+  border-right: 1px solid #2686BD ;
+  border-radius: 5px;
 }
 .tableHorarioTecnicos thead th {
 padding: 0;
@@ -28,9 +36,9 @@ border: 1px solid #d2e8e7;
 }
 .tableHorarioTecnicos tbody td {
 padding: 0;
-/* text-align: center;
-background: #9DC3C2;
-border: 1px solid #d2e8e7; */
+/* text-align: center; */
+background: #e5effa;
+/* border: 1px solid #d2e8e7; */
 }
 .cardInTableHorarios{
   border: solid 1px #4f39f9;
@@ -38,6 +46,7 @@ border: 1px solid #d2e8e7; */
   padding: 2px;
   text-align: center;
   background-color: #4f39f965;
+  margin: 3px 2px 3px 2px;
 }
 .cardInTablePartial{
   background-color: #7cf39065 !important;
@@ -74,4 +83,45 @@ border: 1px solid #d2e8e7; */
   color: #000;
   font-weight: bold;
   margin: 0px;
+}
+.main-card-horario-page{
+  border-radius: 5px !important;
+  padding: 10px !important;
+  margin: 40px !important;
+  /* border: 1px solid #000 !important; */
+  font-family: sans-serif;
+  /* top:0; */
+  /* width:100%; */
+  background: #e5effa;
+}
+.card-left-horario-page{
+  font-family: "Proxima Nova Soft", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  background: #e5effa;
+  margin: 40px 0px 0px 40px;
+  padding: 10px  ;
+  text-align: center;
+  color: #2686BD;
+  font-weight: 600;
+}
+.card-left-horario-page:nth-child(2){
+  background: #e5effa;
+  margin: 4px 0px 0px 40px;
+  padding: 10px  ;
+  text-align: center;
+  color: #101111;
+  font-weight: 600;
+}
+.card-left-horario-page p{
+  text-align: left;
+  margin-top: 15px;
+  font-size: 0.8rem;
+  font-family: "Proxima Nova Soft", 
+  "Helvetica Neue", 
+  Arial, 
+  "Noto Sans", 
+  sans-serif, 
+  "Apple Color Emoji",
+   "Segoe UI Emoji", 
+   "Segoe UI Symbol", 
+   "Noto Color Emoji";  
 }

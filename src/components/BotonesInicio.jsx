@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import DataService from '../service/service';
 import ModalStartWorkingDayTec from "./ModalStartWorkingDayTec";
-import CardInicioSalones from "./CardInicioSalones";
+import CardInicioObjetivos from "./CardInicioSalones";
 import CardInicioSalonesHorario from "./CardInicioSalonesHorario";
 import CardInicioNewTicket from "./CardInicioNewTicket";
 import CardInicioListTickets from "./CardInicioListTickets";
@@ -79,8 +79,8 @@ const BotonesInicio = () => {
         </Card>
         : [
           <CardInicioNewTicket />,
-          <CardInicioListTickets handleListTickets={handleListTicket} />,
-          <CardInicioSalonesHorario horarioClick={handleHorariosTecnicos} />
+          <CardInicioListTickets  />,
+          <CardInicioSalonesHorario />
         ]
       }
       {/* <Card style={{ marginLeft: 20 }} bordered className="boton-inicio-ticket" onClick={handleListTicket}>
@@ -91,7 +91,7 @@ const BotonesInicio = () => {
         <Statistic value={'Iniciar'} precision={2} valueStyle={{ color: '#3f8600', }} /> </Card>
         : <Card style={{ marginLeft: 20 }} bordered className="boton-inicio-ticket" onClick={setFinalizarJornadas}>
           <Statistic value={'Finalizar'} precision={2} valueStyle={{ color: '#3f8600', }} /> </Card>
-        : <CardInicioSalones functionOnClick={handleNewTicket} />
+        : <CardInicioObjetivos/>
       }
       <ModalStartWorkingDayTec isVisible={visible} setVisible={setVisible} />
     </div>
