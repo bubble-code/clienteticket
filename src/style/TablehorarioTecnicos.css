@@ -78,6 +78,11 @@ background: #e5effa;
     #71df4f8d 60px
   );
 }
+.cardOtros{
+  border: 1px solid #4fdfd89d;
+  background:  #92a9a7 40px;
+ 
+}
 .cardInTableHorarios p{
   font-size: 10px;
   color: #000;
@@ -85,7 +90,7 @@ background: #e5effa;
   margin: 0px;
 }
 .main-card-horario-page{
-  border-radius: 5px !important;
+  border-radius: 5px !important; 
   padding: 10px !important;
   margin: 40px !important;
   /* border: 1px solid #000 !important; */

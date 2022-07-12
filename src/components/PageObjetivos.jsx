@@ -1,28 +1,74 @@
-import React from 'react';
-import { Row, Col, Statistic, Card } from 'antd';
+import React, { useEffect, useState } from 'react';
+import DataService from '../service/service'
+import useAuth from '../hooks/useAuth';
+import { Row, Col, Statistic, Card, Menu } from 'antd';
 import iconTarget from '../style/img/objetivo.gif';
+import '../style/PageObjetivos.css'
+
+const date = new Date();
+const currentMonth = date.getMonth() + 1;
+const currentDay = date.getDay();
+const currentWeek = date.getDay() + 7;
+
+const itemsMenu = [
+  { key: `${currentMonth}`, label: 'Mes Actual' },
+  { key: `dia${currentDay}`, label: 'Dia Actual' },
+  { key: `semana${currentWeek}`, label: 'Semana Actual' },
+];
+
 
 const PageObjetivos = () => {
+  const [obj, setObj] = useState(0);
+  const { auth } = useAuth();
+  const { comunidad, user } = auth;
+  const getObjetivos = async () => {
+    const objetivos = await DataService.getObjetivosBySalon({ comunidad: comunidad, salon: user, periodo: 3 });
+    const ob = objetivos.objetivo
+    const totalAlcanzado = await DataService.getObjetivosTotalAlcanzadosBySalon({ comunidad: comunidad, salon: user, periodo: 3 });
+    const tDiario = await DataService.getObjetivosDiarioTotalAlcanzadosBySalon({ comunidad: comunidad, salon: user, periodo: 3, dia: currentDay });
+    const totalDiario = tDiario.data().value;
+    setObj({ ob, totalAlcanzado, totalDiario });
+  }
+  const onCLickMenu = async (e) => {
+  }
+  useEffect(() => {
+    getObjetivos();
+  }, [])
   return (
-    <Row gutter={{ xs: 8, sm: 24, md: 24, lg: 32 }}>
-      <Col span={6} >
-        <div className='card-left-horario-page'>Objetivos del Trimestre
-          <img className='icon-target' src={iconTarget} alt="user" />
-        </div>
-        <div className='card-left-horario-page'>Rango de Tiempo
-          <p>Mes Actual</p>
+    <Col span={{xs: 8, sm: 24, md: 24, lg: 32}}>
+      <Row gutter={{ xs: 8, sm: 24, md: 24, lg: 32 }}>
+        <Col span={6} >
+          <div className='card-left-horario-page'>Objetivos del Trimestre {user}
+            <img className='icon-target' src={iconTarget} alt="user" />
+          </div>
+          <div className='card-left-horario-page'>Rango de Tiempo
+            <Menu
+              onClick={(e) => onCLickMenu(e)}
+              defaultSelectedKeys={[`${currentMonth}`]}
+              mode='inline'
+              items={itemsMenu} />
+            {/* <p>Mes Actual</p>
           <p>Semana Actual</p>
-          <p>Dia Actual</p>
-        </div>
-      </Col>
-      <Row gutter={{xs: 8, sm: 24, md: 24, lg: 32}}>
-        <Col span={18} >
+          <p>Dia Actual</p> */}
+          </div>
+        </Col>
+        <Col span={4} className='card-objetivos' >
           <Card>
-            <Statistic title="Objetivo" value={12.8} precision={2} suffix="%" style={{ border: '1px solid grey' }} />
+            <Statistic title="Diario Alcanzado" value={obj.totalDiario} precision={2} prefix="€" style={{ border: '1px solid grey' }} />
+          </Card>
+        </Col>
+        <Col span={4} className='card-objetivos' >
+          <Card>
+            <Statistic title="Total Alcanzado" value={obj.totalAlcanzado} precision={2} prefix="€" style={{ border: '1px solid grey' }} />
+          </Card>
+        </Col>
+        <Col span={4} className='card-objetivos' >
+          <Card>
+            <Statistic title="Objetivo Trimestre" value={obj.ob} precision={0} prefix="€" style={{ border: '1px solid grey' }} />
           </Card>
         </Col>
       </Row>
-    </Row>
+    </Col>
   );
 }
 export default PageObjetivos;

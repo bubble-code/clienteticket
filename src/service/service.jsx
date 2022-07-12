@@ -29,7 +29,7 @@ class DataService {
     const { maquina, tipoAveria, prioridad, estadoMaquina, taquillero, cantDinero, detallesTicket, currentDate, currenTime, user } = ticket;
     const collectionn = collection(db, this._pathAverias);
     return await addDoc(collectionn, { maquina, tipoAveria, prioridad, estadoMaquina, taquillero, cantDinero, detallesTicket, currentDate, currenTime, user, state: 'Abierto' });
-  }
+  } id
   async getListaAverias(salon) {
     const collectionn = collection(db, this._pathAverias);
     const querySnapShot = query(collectionn, where('user', '==', salon));
@@ -161,5 +161,32 @@ class DataService {
     return result.docs;
   }
 
+  /**
+   * It gets the objectives of a classroom by community, classroom and period.
+   */
+  async getObjetivosBySalon({ comunidad, salon, periodo }) {
+    const collectionn = doc(db, `${this._pathComunidades}/${comunidad}/Salones/${salon}/Objetivos/${periodo}`);
+    const result = await getDoc(collectionn);
+    return result.data();
+  }
+  async getObjetivosTotalAlcanzadosBySalon({ comunidad, salon, periodo }) {
+    let result = 0;
+    // const arraCollections = await collectionGroup(getDoc(doc(db, `${this._pathComunidades}/${comunidad}/Salones/${salon}/Objetivos/${periodo}`)));
+    // console.log(arraCollections.get());
+    const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/Salones/${salon}/Objetivos/${periodo}/7`);
+    const querySnapShot = query(collectionn);
+    const arrayDocs = await getDocs(querySnapShot);
+    arrayDocs.forEach(doc => {
+      result += doc.data().value;
+    })
+    return result;
+  }
+  async getObjetivosDiarioTotalAlcanzadosBySalon({ comunidad, salon, periodo, dia }) {
+    const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/Salones/${salon}/Objetivos/${periodo}/7`);
+    const querySnapShot = query(collectionn);
+    const arrayDocs = await getDocs(querySnapShot);
+    const aa = arrayDocs.docs.sort((a, b) => b.id - a.id)
+    return aa[0];
+  }
 }
 export default new DataService();

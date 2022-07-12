@@ -52,11 +52,18 @@ const PageHorariosTecnicos = () => {
       key: 3,
       horario: `Al Cierre`,
     };
+    //data Otros
+    const otrosObject = {
+      key: 5,
+      horario: `Otros`,
+    }
+
     let globalQuery = await DataService.getPartialRecaudacion({ comunidad: comunidad, mes: "Julio", queryData: "Global" });
     let partialQuery = await DataService.getPartialRecaudacion({ comunidad: comunidad, mes: "Julio", queryData: "Partial" });
     let tecnicoQuery = await DataService.getPartialRecaudacion({ comunidad: comunidad, mes: "Julio", queryData: "Tecnico" });
     let alCierreQuery = await DataService.getPartialRecaudacion({ comunidad: comunidad, mes: "Julio", queryData: "AlCierre" });
     let guardiaQuery = await DataService.getPartialRecaudacion({ comunidad: comunidad, mes: "Julio", queryData: "Guardia" });
+    let otrosQuery = await DataService.getPartialRecaudacion({ comunidad: comunidad, mes: "Julio", queryData: "Otros" });
 
     globalQuery.forEach((el, key) => {
       let day = 0;
@@ -111,11 +118,16 @@ const PageHorariosTecnicos = () => {
         <p>{el.data().Tecnicos}</p>
       </div>
     })
-    //data Otros
-    const otrosObject = {
-      key: 5,
-      horario: `Otros`,
-    }
+    // data Otros
+    otrosQuery.forEach((el) => {
+      let day = 0;
+      day = el.id;
+      otrosObject[day] = <div className='cardInTableHorarios cardOtros'>
+        <p>{el.data().place}</p>
+        <p>{el.data().causa}</p>
+        <p>{el.data().Tecnicos}</p>
+      </div>
+    })
     //data Vacaciones
     const vacacionesObject = {
       key: 6,
