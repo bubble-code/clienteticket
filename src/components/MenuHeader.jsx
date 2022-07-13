@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import { Button, Descriptions, PageHeader, Row, Statistic, Tag, Affix } from 'antd';
 import '../style/menuHeader.css'
+import { style } from '@mui/system';
 
 const date = new Date();
 const currentDate = `Buenos dias: ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
@@ -23,18 +24,18 @@ const MenuHeader = () => {
   const pathName = useLocation().pathname.replace('/inicio/', '');
   const { auth } = useAuth();
   const { role, user } = auth;
-  console.log(pathName)
+  // console.log(pathName)
   return (
     <Affix offsetTop={0}>
       <PageHeader className='menu-header'
         onBack={() => navigate(-1)}
-        title={titleArray[pathName]?.title || 'Inicio'}
-        tags={<Tag color="blue">Salon: {user}</Tag>}
+        title={titleArray[pathName]?.title || 'Inicio' }
+        tags={<Tag color="blue" style={{marginLeft:'300px', height:'30px', textAlign:'center', fontSize:16, fontWeight:600, borderRadius:5}} >Salon: {user}</Tag>}
         subTitle={titleArray[pathName].subtitle || ''}
         extra={[
           // <Button key="3">New Ticket</Button>,
-          <Statistic title="Abiertos" value="0"  style={{margin: '0 32px'}}/>,
-          <Statistic title="Abiertos" value="0" style={{margin: '0 32px'}} />,
+          // <Statistic title="Abiertos" value="0"  style={{margin: '0 32px'}}/>,
+          // <Statistic title="Abiertos" value="0" style={{margin: '0 32px'}} />,
           // <Button key="2">List Ticket</Button>,
           // <Button key="2">Horarios</Button>,
           // <Button key="1" type="primary">

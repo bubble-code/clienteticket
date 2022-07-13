@@ -186,8 +186,8 @@ const PageHorariosTecnicos = () => {
             mode='inline'
             items={itemsMenu} />
         </div>
-        <div className='card-left-horario-page'>
-          <Calendario />
+        <div className='card-left-horario-page'> 
+          <Calendario /> 
         </div>
         <div className='card-left-horario-page card-left-horario-page-flex'>
           {[...listTecnicos]}

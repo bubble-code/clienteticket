@@ -97,7 +97,7 @@ background: #e5effa;
   font-family: sans-serif;
   /* top:0; */
   /* width:100%; */
-  background: #e5effa;
+  background: transparent !important;
 }
 .card-left-horario-page{
   font-family: "Proxima Nova Soft", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -144,7 +144,7 @@ background: #e5effa;
 }
 .site-calendar-demo-card {
   /* width: 300px; */
-  background:#e5effa !important;
+  /* background:#e5effa !important; */
   border: 1px solid #f0f0f0;
   border-radius: 2px;
 }
