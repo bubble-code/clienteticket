@@ -8,7 +8,7 @@ const CardInicioSalonesHorario = () => {
   return (
     <div class="plan-card">
       <h2>Horario<span>Horario de los tecnicos</span></h2>
-      <img class="round" src={slotImg} alt="user" />
+      <img class="round horario-icon-efect" src={slotImg} alt="user" />
       {/* <div class="etiquet-price">
         <p>254.99</p>
         <div></div>

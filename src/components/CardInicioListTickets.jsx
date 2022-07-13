@@ -8,7 +8,7 @@ import slotImg from '../style/img/growth.gif';
 
 const CardInicioListTickets = () => {
   return (
-    <div class="plan-card">
+    <div class="plan-card no-usar">
       <h2>Lista de Ticket<span>Ver ticket generados</span></h2>
       <img class="round" src={slotImg} alt="user" />
       {/* <div class="etiquet-price">

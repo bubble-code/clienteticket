@@ -12,14 +12,16 @@ const ChartObjetivosView = () => {
   const { comunidad, user } = auth;
   const labelArray = [];
   const valuesArray = [];
+  const valueLineaCero = [];
   const [dataset, setDataset] = useState({ labelArray, valuesArray });
   const loadObjetivos = async () => {
     const res = await DataService.getObjetivosByDayAlcanzadosBySalon({ comunidad, periodo: 3, salon: user })
-    res.forEach(doc => {
+    res.sort((a, b) => a.id - b.id).forEach(doc => {
       labelArray.push(doc.id);
       valuesArray.push(doc.data().value);
+      valueLineaCero.push(0);
     })
-    setDataset({ labelArray, valuesArray });
+    setDataset({ labelArray, valuesArray, valueLineaCero });
   }
 
   useEffect(() => {
@@ -41,9 +43,16 @@ const ChartObjetivosView = () => {
     labels: dataset.labelArray,
     datasets: [
       {
-        label: 'Facturacion por Dia',
+        label: 'Facturacion',
         data: dataset.valuesArray,
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        backgroundColor: 'rgba(114, 57, 248, 0.758)',
+        borderColor: 'rgba(114, 57, 248, 0.519)',
+      },
+      {
+        label: '',
+        data: dataset.valueLineaCero,
+        // backgroundColor: 'rgba(68, 67, 67, 0.5)',
+        // borderColor: 'rgba(78, 77, 77, 0.779)',
       },
     ],
   }
