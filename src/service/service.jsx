@@ -37,10 +37,11 @@ class DataService {
     result.docs.map(doc => console.log(doc.data()));
     return result.docs;
   }
-  async getListTicketTecnico() {
-    const collectionn = collection(db, this._pathAverias);
+  async getListTicketTecnico({ comunidad }) {
+    const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/Tecnicos`);
     const querySnapShot = query(collectionn);
     const result = await getDocs(querySnapShot)
+    // console.log(result.docs);
     return result.docs;
   }
   async getStateInicioTecnico({ tec }) {
@@ -154,11 +155,12 @@ class DataService {
   }
 
   // metodos para el manejo de los horarios de los tecnicos  
-  async getPartialRecaudacion({ comunidad, mes, queryData }) {
+  async getPartialRecaudacion({ comunidad, mes, queryData, startDay = 1 }) {
     const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/Horario/${mes}/${queryData}`);
     const querySnapShot = query(collectionn);
-    const result = await getDocs(querySnapShot);
-    return result.docs;
+    const tempResult = await getDocs(querySnapShot);
+    const result = tempResult.docs.filter(doc => doc.id >= startDay);
+    return result;
   }
 
   /**
@@ -181,12 +183,19 @@ class DataService {
     })
     return result;
   }
-  async getObjetivosDiarioTotalAlcanzadosBySalon({ comunidad, salon, periodo, dia }) {
+  async getObjetivosLastDayByAlcanzadosBySalon({ comunidad, salon, periodo, dia }) {
     const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/Salones/${salon}/Objetivos/${periodo}/7`);
     const querySnapShot = query(collectionn);
     const arrayDocs = await getDocs(querySnapShot);
     const aa = arrayDocs.docs.sort((a, b) => b.id - a.id)
     return aa[0];
+  }
+  async getObjetivosByDayAlcanzadosBySalon({ comunidad, salon, periodo, dia }) {
+    const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/Salones/${salon}/Objetivos/${periodo}/7`);
+    const querySnapShot = query(collectionn);
+    const arrayDocs = await getDocs(querySnapShot);
+    // const aa = arrayDocs.docs.sort((a, b) => b.id - a.id)
+    return arrayDocs.docs;
   }
 }
 export default new DataService();

@@ -8,3 +8,13 @@
   color: #2686BD;
   font-weight: 600;
 }
+.card-new-objetivos {
+  font-family: "Proxima Nova Soft", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+  margin: 40px 0px 0px 40px;
+  padding: 10px;
+  text-align: center;
+  width: 190px;
+  height: 120px;
+  background: #e5effa;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+ }

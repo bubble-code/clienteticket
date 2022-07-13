@@ -1,12 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { Col, Row, Table, Typography, Card } from 'antd';
+import { Col, Row, Table, Typography, Card, Menu } from 'antd';
 import DataService from '../service/service';
 import useAuth from '../hooks/useAuth';
+import Calendario from './Calendario';
 import '../style/TablehorarioTecnicos.css';
+import { useCallback } from 'react';
+import { async } from '@firebase/util';
 
 
 const { Text } = Typography;
 const date = new Date()
+const currentMonth = date.getMonth() + 1;
+const currentDay = date.getDate();
+const currentWeek = date.getDay();
+
+const itemsMenu = [
+  { key: `Month`, label: 'Mes Actual', dia: 1 },
+  { key: `dia`, label: 'Dia Actual', dia: currentDay },
+  { key: `semana`, label: 'Semana Actual', dia: currentWeek },
+];
 const currentCantDaybyMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
 const dayOfWeek = ['Dom', 'Lun', 'Mar', 'Miér', 'Jue', 'Vie', 'Sáb',];
 const columns = [
@@ -33,8 +45,13 @@ const PageHorariosTecnicos = () => {
   const { comunidad } = auth;
   const [data, setData] = useState([{}]);
   const [loading, setLoading] = useState(true)
-
-  const dd = async () => {
+  const [colums, setColums] = useState(columns);
+  const [dayStartHorario, setDayStartHorario] = useState(currentDay - currentWeek);
+  const [listTecnicos, setListTecnicos] = useState([])
+  const dd = useCallback(async ({ dayStart }) => {
+    const temColums1 = colums[0];
+    const temColums = colums.filter(col => col.dataIndex >= dayStart);
+    setColums([temColums1, ...temColums]);
     const globalObject = {
       key: 0,
       horario: `Global`,
@@ -58,14 +75,14 @@ const PageHorariosTecnicos = () => {
       horario: `Otros`,
     }
 
-    let globalQuery = await DataService.getPartialRecaudacion({ comunidad: comunidad, mes: "Julio", queryData: "Global" });
-    let partialQuery = await DataService.getPartialRecaudacion({ comunidad: comunidad, mes: "Julio", queryData: "Partial" });
-    let tecnicoQuery = await DataService.getPartialRecaudacion({ comunidad: comunidad, mes: "Julio", queryData: "Tecnico" });
-    let alCierreQuery = await DataService.getPartialRecaudacion({ comunidad: comunidad, mes: "Julio", queryData: "AlCierre" });
-    let guardiaQuery = await DataService.getPartialRecaudacion({ comunidad: comunidad, mes: "Julio", queryData: "Guardia" });
-    let otrosQuery = await DataService.getPartialRecaudacion({ comunidad: comunidad, mes: "Julio", queryData: "Otros" });
+    let globalQuery = await DataService.getPartialRecaudacion({ comunidad: comunidad, mes: "Julio", queryData: "Global", startDay: dayStart });
+    let partialQuery = await DataService.getPartialRecaudacion({ comunidad: comunidad, mes: "Julio", queryData: "Partial", startDay: dayStart });
+    let tecnicoQuery = await DataService.getPartialRecaudacion({ comunidad: comunidad, mes: "Julio", queryData: "Tecnico", startDay: dayStart });
+    let alCierreQuery = await DataService.getPartialRecaudacion({ comunidad: comunidad, mes: "Julio", queryData: "AlCierre", startDay: dayStart });
+    let guardiaQuery = await DataService.getPartialRecaudacion({ comunidad: comunidad, mes: "Julio", queryData: "Guardia", startDay: dayStart });
+    let otrosQuery = await DataService.getPartialRecaudacion({ comunidad: comunidad, mes: "Julio", queryData: "Otros", startDay: dayStart });
 
-    globalQuery.forEach((el, key) => {
+    globalQuery.forEach((el) => {
       let day = 0;
       day = el.id;
       globalObject[day] = <div className='cardInTableHorarios'>
@@ -135,26 +152,52 @@ const PageHorariosTecnicos = () => {
     }
     setData([globalObject, partialObject, tecnicoObject, cierreObject, guardiaObject, otrosObject, vacacionesObject]);
     setLoading(false)
+  }, []);
+  const loadListTecnicos = async () => {
+    const queryListTecnicos = await DataService.getListTicketTecnico({ comunidad: comunidad })
+    const temp = [];
+    queryListTecnicos?.forEach((el) => {
+      temp.push(<p>{el.id}<div><span>Movil</span><span>{el.data().movil}</span></div></p>)
+    });
+    setListTecnicos(temp)
   }
-
+  const onCLickMenu = (e) => {
+    const firtDayofWeek = currentDay - currentWeek;
+    const f = {
+      'Month': 1,
+      'semana': firtDayofWeek,
+      'dia': currentDay,
+    }
+    setDayStartHorario(f[e.key])
+    // dd({ dayStart: dayStartHorario })
+  }
   useEffect(() => {
-    dd();
-  }, [])
+    dd({ dayStart: dayStartHorario });
+    loadListTecnicos();
+  }, [dayStartHorario, dd]);
   return (
     <Row gutter={{ xs: 8, sm: 24, md: 24, lg: 32 }}>
       <Col span={6} >
         <div className='card-left-horario-page'>Horarios Técnicos {comunidad}</div>
-        <div className='card-left-horario-page'>Rango de Tiempo
-          <p>Mes Actual</p>
-          <p>Semana Actual</p>
-          <p>Dia Actual</p>
+        <div className='card-left-horario-page'>
+          <Menu
+            onClick={(e) => onCLickMenu(e)}
+            defaultSelectedKeys={[`semana`]}
+            mode='inline'
+            items={itemsMenu} />
+        </div>
+        <div className='card-left-horario-page'>
+          <Calendario />
+        </div>
+        <div className='card-left-horario-page card-left-horario-page-flex'>
+          {[...listTecnicos]}
         </div>
       </Col>
       <Col span={18} >
         <Card className='main-card-horario-page'  >
           <Row>
             <Table className='tableHorarioTecnicos'
-              columns={columns}
+              columns={colums}
               dataSource={data ?? []}
               pagination={{ pageSize: 10, responsive: true, }}
               direction='ltr' scroll={{ x: 500, y: false }}

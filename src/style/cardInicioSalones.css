@@ -69,14 +69,14 @@
 }
 
 .etiquet-price p:before {
-  content: "$";
+  content: "€";
   margin-right: 5px;
   font-size: 15px;
   font-weight: 300;
 }
 
 .etiquet-price p:after {
-  content: "/ handle";
+  content: "/ trimestre";
   margin-left: 5px;
   font-size: 15px;
   font-weight: 300;

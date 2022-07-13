@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import DataService from '../service/service'
 import useAuth from '../hooks/useAuth';
 import { Row, Col, Statistic, Card, Menu } from 'antd';
+import ChartObjetivosView from './ChartObjetivos';
 import iconTarget from '../style/img/objetivo.gif';
 import '../style/PageObjetivos.css'
 
@@ -25,7 +26,7 @@ const PageObjetivos = () => {
     const objetivos = await DataService.getObjetivosBySalon({ comunidad: comunidad, salon: user, periodo: 3 });
     const ob = objetivos.objetivo
     const totalAlcanzado = await DataService.getObjetivosTotalAlcanzadosBySalon({ comunidad: comunidad, salon: user, periodo: 3 });
-    const tDiario = await DataService.getObjetivosDiarioTotalAlcanzadosBySalon({ comunidad: comunidad, salon: user, periodo: 3, dia: currentDay });
+    const tDiario = await DataService.getObjetivosLastDayByAlcanzadosBySalon({ comunidad: comunidad, salon: user, periodo: 3, dia: currentDay });
     const totalDiario = tDiario.data().value;
     setObj({ ob, totalAlcanzado, totalDiario });
   }
@@ -35,7 +36,7 @@ const PageObjetivos = () => {
     getObjetivos();
   }, [])
   return (
-    <Col span={{xs: 8, sm: 24, md: 24, lg: 32}}>
+    <Col span={{ xs: 8, sm: 24, md: 24, lg: 32 }}>
       <Row gutter={{ xs: 8, sm: 24, md: 24, lg: 32 }}>
         <Col span={6} >
           <div className='card-left-horario-page'>Objetivos del Trimestre {user}
@@ -48,24 +49,33 @@ const PageObjetivos = () => {
               mode='inline'
               items={itemsMenu} />
             {/* <p>Mes Actual</p>
-          <p>Semana Actual</p>
+          <p>Semana Actual</p> 
           <p>Dia Actual</p> */}
           </div>
         </Col>
-        <Col span={4} className='card-objetivos' >
-          <Card>
-            <Statistic title="Diario Alcanzado" value={obj.totalDiario} precision={2} prefix="€" style={{ border: '1px solid grey' }} />
-          </Card>
-        </Col>
-        <Col span={4} className='card-objetivos' >
-          <Card>
-            <Statistic title="Total Alcanzado" value={obj.totalAlcanzado} precision={2} prefix="€" style={{ border: '1px solid grey' }} />
-          </Card>
-        </Col>
-        <Col span={4} className='card-objetivos' >
-          <Card>
-            <Statistic title="Objetivo Trimestre" value={obj.ob} precision={0} prefix="€" style={{ border: '1px solid grey' }} />
-          </Card>
+        <Col span={18}>
+          <Row>
+            <Col span={6} className='card-new-objetivos' >
+              <Card style={{ background: 'transparent' }}>
+                <Statistic title="Diario Alcanzado" value={obj.totalDiario} precision={2} prefix="€" />
+              </Card>
+            </Col>
+            <Col span={6} className='card-new-objetivos' >
+              <Card style={{ background: 'transparent' }}>
+                <Statistic title="Total Alcanzado" value={obj.totalAlcanzado} precision={2} prefix="€" />
+              </Card>
+            </Col>
+            <Col span={6} className='card-new-objetivos' >
+              <Card style={{ background: 'transparent' }}>
+                <Statistic title="Objetivo Trimestre" value={obj.ob} precision={0} prefix="€" />
+              </Card>
+            </Col>
+          </Row>
+          <Row gutter={24} justify='start'>
+            <Col span={18} >
+              <ChartObjetivosView />
+            </Col>
+          </Row>
         </Col>
       </Row>
     </Col>
