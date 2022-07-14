@@ -34,13 +34,13 @@ const PageAdmin = () => {
   const navigate = useNavigate();
   const onClick = (e) => {
     // console.log('click ', e);
-    navigate(e.key, { replace: true });
+    navigate(e.key);
   };
   return (
     <Row style={{ display: "grid", gridTemplateColumns: '1fr 4fr' }}>
       <Col >
         <Layout.Sider >
-          <Menu onClick={onClick} style={{ width: 256, }} defaultSelectedKeys={['1']} defaultOpenKeys={['sub1']} mode="horizontal" items={items} theme="dark"  />
+          <Menu onClick={onClick} style={{ width: 256, }} defaultSelectedKeys={['1']} defaultOpenKeys={['sub1']} mode="inline" items={items} theme="dark"  />
         </Layout.Sider>
       </Col>
       <Col >
