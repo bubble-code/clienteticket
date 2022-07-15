@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Row, Col, Card, Statistic } from 'antd';
 import DataService from '../service/service'
 import CharFaulsByHall from "./CharFaulsByHall";
+import MenuTopHorizontalPAnalis from "./MenuTopHorizaontalPageAnalisis";
 
 
 
@@ -23,6 +24,9 @@ const AnalisView = () => {
   }, []);
   return (
     <Col>
+      <Row>
+        <MenuTopHorizontalPAnalis />
+      </Row>
       <Row justify="space-around">
         <Col span={5}>
           <Statistic title="Today's faults" value={cant.totalOpenToday} style={{ border: '1px solid #eae6e6', borderRadius: '3px', padding: '8px' }} />

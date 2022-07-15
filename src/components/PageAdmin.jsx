@@ -33,8 +33,7 @@ const items = [
 const PageAdmin = () => {
   const navigate = useNavigate();
   const onClick = (e) => {
-    // console.log('click ', e);
-    navigate(e.key);
+    navigate(e.key, { replace: true });
   };
   return (
     <Row style={{ display: "grid", gridTemplateColumns: '1fr 4fr' }}>

@@ -153,6 +153,12 @@ class DataService {
     const result = await getDocs(querySnapShot);
     return result.docs;
   }
+  async getListComunidad() {
+    const collectionn = collection(db, this._pathComunidades);
+    const querySnapShot = query(collectionn);
+    const result = await getDocs(querySnapShot);
+    return result.docs;
+  }
 
   // metodos para el manejo de los horarios de los tecnicos  
   async getPartialRecaudacion({ comunidad, mes, queryData, startDay = 1 }) {
