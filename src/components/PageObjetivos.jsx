@@ -57,17 +57,17 @@ const PageObjetivos = () => {
           <Row>
             <Col span={6} className='card-new-objetivos' >
               <Card style={{ background: 'transparent' }}>
-                <Statistic title="Diario Alcanzado" value={obj.totalDiario} precision={2} prefix="€" />
+                <Statistic title="Diario Alcanzado" value={obj.totalDiario} precision={2} decimalSeparator="," groupSeparator='.' suffix="€" />
               </Card>
             </Col>
             <Col span={6} className='card-new-objetivos' >
               <Card style={{ background: 'transparent' }}>
-                <Statistic title="Total Alcanzado" value={obj.totalAlcanzado} precision={2} prefix="€" />
+                <Statistic title="Total Alcanzado" value={obj.totalAlcanzado} precision={2} decimalSeparator="," groupSeparator='.' suffix="€" />
               </Card>
             </Col>
             <Col span={6} className='card-new-objetivos' >
               <Card style={{ background: 'transparent' }}>
-                <Statistic title="Objetivo Trimestre" value={obj.ob} precision={0} prefix="€" />
+                <Statistic title="Objetivo Trimestre" value={obj.ob} precision={0} decimalSeparator="," groupSeparator='.' suffix="€" />
               </Card>
             </Col>
           </Row>
