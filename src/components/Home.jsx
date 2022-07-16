@@ -4,7 +4,7 @@ import PageAdmin from "./PageAdmin";
 import useAuth from "../hooks/useAuth";
 
 
-const Home = () => {
+const Home = () => { 
   const { auth } = useAuth();
   const { role } = auth;
   console.log(role)

@@ -154,7 +154,7 @@ const PageHorariosTecnicos = () => {
     setLoading(false)
   }, []);
   const loadListTecnicos = async () => {
-    const queryListTecnicos = await DataService.getListTicketTecnico({ comunidad: comunidad })
+    const queryListTecnicos = await DataService.getListTecnicosByComu({ comunidad: comunidad })
     const temp = [];
     queryListTecnicos?.forEach((el) => {
       temp.push(<p>{el.id}<div><span>Movil</span><span>{el.data().movil}</span></div></p>)

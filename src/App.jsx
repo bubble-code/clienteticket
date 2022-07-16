@@ -16,6 +16,8 @@ import WorkplaceView from './components/WorkplaceView';
 import AccountCenter from './components/AccountCenter';
 import PageHorariosTecnicos from './components/PageHorariosTecnicos';
 import PageObjetivos from './components/PageObjetivos';
+import PageNewHorario from './components/PageNewHorario';
+import ListLeftTecHorario from './components/component/ListLeftTecnicoHorario';
 import 'antd/dist/antd.css';
 import './App.css'
 
@@ -41,6 +43,7 @@ const App = () => {
             <Route path="monitorview" element={<MonitorView />} />
             <Route path="workplaceview" element={<WorkplaceView />} />
             <Route path="accountcenter" element={<AccountCenter />} />
+            <Route path="newHorario" element={<PageNewHorario />} />
           </Route>
         </Route>
       </Route>

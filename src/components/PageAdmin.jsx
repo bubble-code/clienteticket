@@ -13,6 +13,11 @@ function getItem(label, key, icon, children, type) {
   };
 }
 const items = [
+  getItem('Menu Admin', 'inicio', <TableOutlined />,),
+  getItem('Horarios', 'horarios', <TableOutlined />,[
+    getItem('Hacer Horario', 'newHorario', <TableOutlined />,),
+    getItem('Listar Horario', 'listHorario', <TableOutlined />,),
+  ]),
   getItem('Dashboard', 'sub1', <FieldTimeOutlined />, [
     getItem('Analisis', 'analisview'),
     getItem('Monitor', 'monitorview'),
@@ -39,7 +44,7 @@ const PageAdmin = () => {
     <Row style={{ display: "grid", gridTemplateColumns: '1fr 4fr' }}>
       <Col >
         <Layout.Sider >
-          <Menu onClick={onClick} style={{ width: 256, }} defaultSelectedKeys={['1']} defaultOpenKeys={['sub1']} mode="inline" items={items} theme="dark"  />
+          <Menu onClick={onClick} style={{ width: 256, }} defaultSelectedKeys={['inicio']} defaultOpenKeys={['sub1']} mode="inline" items={items} theme="dark" />
         </Layout.Sider>
       </Col>
       <Col >

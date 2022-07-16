@@ -37,7 +37,7 @@ class DataService {
     result.docs.map(doc => console.log(doc.data()));
     return result.docs;
   }
-  async getListTicketTecnico({ comunidad }) {
+  async getListTecnicosByComu({ comunidad }) {
     const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/Tecnicos`);
     const querySnapShot = query(collectionn);
     const result = await getDocs(querySnapShot)

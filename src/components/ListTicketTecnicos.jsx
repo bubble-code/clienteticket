@@ -101,7 +101,7 @@ const ListTicketTecnicos = () => {
   const loadListTicket = async () => {
     let res;
     try {
-      res = await DataService.getListTicketTecnico();
+      res = await DataService.getListTecnicosByComu();
     } catch (error) {
       console.log(error);
     }
