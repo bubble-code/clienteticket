@@ -1,0 +1,35 @@
+.container-grid-horario-new {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 1px;
+    justify-items: stretch;
+    /* align-items: stretch; */
+
+}
+
+.container-list-left-tecnicos-horario {
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    width: 20rem;
+    height: 30rem;
+    border: 1px solid #000;
+    margin-right: 0;
+}
+
+.container-calendario-horario {
+    width: 70rem;
+    border: 1px solid #000;
+    margin-left: 0;
+}
+.item-job{
+    background: rgb(155, 210, 244);
+    text-align: center;
+    border-radius: 5px;
+    padding: 10px 0;
+    margin: 0 2px;
+    cursor: pointer;
+}
+.item-job:hover{
+    background: rgb(64, 85, 99);
+}

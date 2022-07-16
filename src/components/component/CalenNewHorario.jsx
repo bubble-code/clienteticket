@@ -87,7 +87,7 @@ const CalenNewHorario = () => {
     ) : null;
   };
 
-  const dateCellRender = (value) => {
+  const dateCellRender = (value) => {    
     const listData = getListData(value);
     return (
       <ul className="events">
@@ -100,7 +100,11 @@ const CalenNewHorario = () => {
     );
   };
 
-  return <Calendar dateCellRender={dateCellRender} monthCellRender={monthCellRender} />;
+  return (
+    <div className='container-calendario-horario'>
+      <Calendar dateCellRender={dateCellRender} monthCellRender={monthCellRender} onChange={(e)=>console.log(e)} />;
+    </div>
+  )
 };
 
 export default CalenNewHorario;

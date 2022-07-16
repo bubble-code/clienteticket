@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import DataService from '../../service/service';
-import { Avatar, List } from 'antd';
-import '../../style/container-list-left-tecnicos-horario.css';
+import { Avatar, Divider, List } from 'antd';
+import ListJobForNewHorario from './ListJobForNewHorario';
 
 
 const ListLeftTecHorario = ({ comunidad }) => {
@@ -30,7 +30,7 @@ const ListLeftTecHorario = ({ comunidad }) => {
                 itemLayout="horizontal"
                 dataSource={currentListTec}
                 renderItem={(item) => (
-                    <List.Item>
+                    <List.Item >
                         <List.Item.Meta
                             avatar={item.sex === 'm' ? <Avatar src="https://joeschmoe.io/api/v1/male/jon" /> : <Avatar src="https://joeschmoe.io/api/v1/female/jess" />}
                             title={item.name}
@@ -41,6 +41,8 @@ const ListLeftTecHorario = ({ comunidad }) => {
                 loading={loading}
             />
             }
+            <Divider />
+            <ListJobForNewHorario />
         </div>
     )
 };

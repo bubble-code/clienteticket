@@ -4,6 +4,7 @@ import { Menu } from 'antd';
 import DataService from '../../service/service';
 import ListLeftTecHorario from './ListLeftTecnicoHorario';
 import CalenNewHorario from './CalenNewHorario';
+import '../../style/gridNewHorarioStyles.css';
 
 
 const MenuTopHorario = () => {
@@ -35,8 +36,10 @@ const MenuTopHorario = () => {
     return (
         <>
             <Menu onClick={onClickListTByC} selectedKeys={[current]} mode="horizontal" items={itemsComunidades} />
-            <ListLeftTecHorario comunidad={current} />
-            <CalenNewHorario comunidad={current} />
+            <div className='container-grid-horario-new'>
+                <ListLeftTecHorario comunidad={current} />
+                <CalenNewHorario comunidad={current} />
+            </div>
         </>
 
     );
