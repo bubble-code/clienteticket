@@ -3,24 +3,26 @@
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 1px;
     justify-items: stretch;
+    /* width: 50%; */
     /* align-items: stretch; */
 
 }
-
+ 
 .container-list-left-tecnicos-horario {
     display: flex;
     flex-direction: column;
     justify-content:flex-start;
-    width: 20rem;
-    height: 30rem;
+    /* width: 12rem; */
+    /* height: 30rem; */
     border: 1px solid #000;
     margin-right: 0;
 }
 
 .container-calendario-horario {
-    width: 70rem;
+    width: 50rem;
     border: 1px solid #000;
     margin-left: 0;
+    height: 10rem;
 }
 .item-job{
     background: rgb(155, 210, 244);

@@ -88,6 +88,24 @@ const users = [
     role: 4,
     comunidad: 'Mallorca',
   },
+  {
+    user: 'Santoña',
+    pass: '123',
+    role: 4,
+    comunidad: 'Mallorca',
+  },
+  {
+    user: 'Torrelavega',
+    pass: '123',
+    role: 4,
+    comunidad: 'Mallorca',
+  },
+  {
+    user: 'Santander',
+    pass: '123',
+    role: 4,
+    comunidad: 'Mallorca',
+  },
 
 ]
 

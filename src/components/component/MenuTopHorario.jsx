@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-import { Menu } from 'antd';
+import { Col, Menu, Row } from 'antd';
 import DataService from '../../service/service';
 import ListLeftTecHorario from './ListLeftTecnicoHorario';
 import CalenNewHorario from './CalenNewHorario';
@@ -34,13 +34,15 @@ const MenuTopHorario = () => {
     }, [])
 
     return (
-        <>
-            <Menu onClick={onClickListTByC} selectedKeys={[current]} mode="horizontal" items={itemsComunidades} />
+        <Col  >
+            <Col >
+                <Menu onClick={onClickListTByC} selectedKeys={[current]} mode="horizontal" items={itemsComunidades} />
+            </Col>
             <div className='container-grid-horario-new'>
                 <ListLeftTecHorario comunidad={current} />
                 <CalenNewHorario comunidad={current} />
             </div>
-        </>
+        </Col>
 
     );
 };

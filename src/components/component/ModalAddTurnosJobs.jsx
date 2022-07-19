@@ -12,6 +12,7 @@ const ModalAddTurnoJobs = ({ funOpen, isOpen, datte, comunidad }) => {
     const [listTecn, setListTecn] = useState([]);
     const date = new Date();
     const currentDate = ` ${dayOfWeek[datte.getDay()] + ' ' + datte.getDate() + ` - ` + month[(datte.getMonth())] + ' - ' + datte.getFullYear()}`;
+    const { form } = Form.useForm();
     const loadListTec = async () => {
         const result = [];
         const listTec = await DataService.getListTecnicosByComu({ comunidad })
@@ -22,11 +23,18 @@ const ModalAddTurnoJobs = ({ funOpen, isOpen, datte, comunidad }) => {
     }
     const handleOk = () => {
         funOpen(false);
+        form.resetFields();
     };
 
     const handleCancel = () => {
         funOpen(false);
+        form.resetFields();
     };
+    const selectTecChang = (value) => {
+form.setFieldsValue({
+    'listTecn': value
+})
+    }
     useEffect(() => {
         loadListTec();
     }, [comunidad, isOpen])
@@ -34,16 +42,16 @@ const ModalAddTurnoJobs = ({ funOpen, isOpen, datte, comunidad }) => {
     return (
         <Modal title="Añadir Turno & Tarea" visible={isOpen} onOk={handleOk} onCancel={handleCancel} >
             <Card title={<h4>Fecha: {currentDate}</h4>}>
-                <Form layout='horizontal'>
-                    <Form.Item name={'id'} rules={[{ required: true, message: 'Este campo es obligatorio' }]}   >
+                <Form layout='horizontal' form={form}>
+                    <Form.Item name='listTarea' rules={[{ required: true, message: 'Este campo es obligatorio' }]}   >
                         <h3>Tarea</h3>
                         <Select defaultValue="" style={{ width: 300 }} /*onChange={handleChange}*/ placeholder={'placeholder'} className='border-select-selector' >
 
                         </Select>
                     </Form.Item>
-                    <Form.Item name={'id'} rules={[{ required: true, message: 'Este campo es obligatorio' }]}   >
-                        <h3>Tecnico</h3>
-                        <Select mode='multiple' defaultValue="" style={{ width: 300 }} /*onChange={handleChange}*/ placeholder={'placeholder'} className='border-select-selector' >
+                    <Form.Item name='listTecn' rules={[{ required: true, message: 'Este campo es obligatorio' }]}   >
+                        {/* <h3>Tecnico</h3> */}
+                        <Select mode='multiple' defaultValue="" style={{ width: 300 }} onChange={selectTecChang} placeholder={'placeholder'} className='border-select-selector' >
                             {listTecn.map(item => {
                                 // const { id } = item;
                                 return <Option value={item} key={item}>{item}</Option>

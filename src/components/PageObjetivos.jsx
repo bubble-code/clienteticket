@@ -72,7 +72,7 @@ const PageObjetivos = () => {
             </Col>
           </Row>
           <Row gutter={24} justify='start'>
-            <Col span={18} >
+            <Col span={22} >
               <ChartObjetivosView />
             </Col>
           </Row>
