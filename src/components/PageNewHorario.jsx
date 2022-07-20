@@ -6,7 +6,7 @@ import MenuTopHorario from "./component/MenuTopHorario";
 const PageNewHorario = () => {
     const [viewListTecnico, setViewListTecnico] = useState(false);
     return (
-        <Col >
+        <Col span={22} >
             <div >
                 <h1>Cuadrante</h1>
                 <h1>PageNewHorario</h1>

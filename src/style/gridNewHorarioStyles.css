@@ -1,8 +1,9 @@
 .container-grid-horario-new {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 4fr;
     grid-column-gap: 1px;
     justify-items: stretch;
+    gap: 12px;
     /* width: 50%; */
     /* align-items: stretch; */
 
@@ -19,7 +20,7 @@
 }
 
 .container-calendario-horario {
-    width: 50rem;
+    width: 100%;
     border: 1px solid #000;
     margin-left: 0;
     height: 10rem;

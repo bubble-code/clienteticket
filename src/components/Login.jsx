@@ -92,19 +92,19 @@ const users = [
     user: 'Santoña',
     pass: '123',
     role: 4,
-    comunidad: 'Mallorca',
+    comunidad: 'Cantabria',
   },
   {
     user: 'Torrelavega',
     pass: '123',
     role: 4,
-    comunidad: 'Mallorca',
+    comunidad: 'Cantabria',
   },
   {
     user: 'Santander',
     pass: '123',
     role: 4,
-    comunidad: 'Mallorca',
+    comunidad: 'Cantabria',
   },
 
 ]

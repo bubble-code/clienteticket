@@ -47,7 +47,7 @@ const PageAdmin = () => {
           <Menu onClick={onClick} style={{ width: 256, }} defaultSelectedKeys={['inicio']} defaultOpenKeys={['sub1']} mode="inline" items={items} theme="dark" />
         </Layout.Sider>
       </Col>
-      <Col style={{ marginLeft: 0 }}  span={23}>
+      <Col style={{ marginLeft: 0 }}  span={24}  offset={-6}>
         <Outlet />
       </Col>
     </Row>
