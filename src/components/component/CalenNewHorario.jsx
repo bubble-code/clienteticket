@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Badge, Calendar } from 'antd';
-import ModalAddTurnoJobs from './ModalAddTurnosJobs';
+import { useCallback } from 'react';
+// import ModalAddTurnoJobs from './ModalAddTurnosJobs';
 
 const getListData = (value) => {
   let listData;
@@ -77,9 +78,9 @@ const getMonthData = (value) => {
   }
 };
 
-const CalenNewHorario = ({ comunidad }) => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [valueDate, setValueDate] = useState(new Date());
+const CalenNewHorario = ({ valDate, isMoVisible, isvisible }) => {
+  // const [isModalVisible, setIsModalVisible] = useState(false);
+  // const [valueDate, setValueDate] = useState(new Date());
 
   const monthCellRender = (value) => {
     const num = getMonthData(value);
@@ -104,15 +105,16 @@ const CalenNewHorario = ({ comunidad }) => {
     );
   };
 
-  const onSelect = (value) => {
-    setValueDate(new Date(value));
-    setIsModalVisible(true);
-  }
+  const onSelect = useCallback((value) => {
+
+    valDate(new Date(value));
+    isMoVisible(true);
+
+  }, [isvisible]);
 
   return (
     <div className='container-calendario-horario'>
       <Calendar dateCellRender={dateCellRender} monthCellRender={monthCellRender} onSelect={onSelect} />;
-      <ModalAddTurnoJobs isOpen={isModalVisible} funOpen={setIsModalVisible} datte={valueDate} comunidad={comunidad} />
     </div>
   )
 };

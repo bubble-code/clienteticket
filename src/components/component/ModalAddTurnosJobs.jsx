@@ -22,7 +22,7 @@ const ModalAddTurnoJobs = ({ funOpen, isOpen, datte, comunidad }) => {
         const result = [];
         const listTareas = [];
         const listTec = await DataService.getListTecnicosByComu({ comunidad });
-        const listJobs = await (await DataService.getJobsTecnicos({ comunidad })).sort();
+        const listJobs = (await DataService.getJobsTecnicos({ comunidad })).sort();
 
         listTec.forEach(tec => {
             result.push(tec.id);
@@ -36,7 +36,7 @@ const ModalAddTurnoJobs = ({ funOpen, isOpen, datte, comunidad }) => {
 
     }
     const handleOk = () => {
-        console.log("form.getFieldsValue()");
+        console.log(form.getFieldsValue());
         message.success('Submit success!');
         funOpen(false);
         form.resetFields();
@@ -51,6 +51,7 @@ const ModalAddTurnoJobs = ({ funOpen, isOpen, datte, comunidad }) => {
             'selectTecn': value
         });
     }
+    const handleChange = async (value) => {}
 
 
     useEffect(() => {
@@ -60,14 +61,14 @@ const ModalAddTurnoJobs = ({ funOpen, isOpen, datte, comunidad }) => {
     return (
         <Modal title="Añadir Turno & Tarea" visible={isOpen} onOk={handleOk} onCancel={handleCancel} >
             <Card title={<h4>Fecha: {currentDate}</h4>}>
-                <Form layout='horizontal' form={form} >
-                    <Form.Item name='selectTarea' rules={[{ required: true, message: 'Este campo es obligatorio' }]}   >
+                <Form layout='horizontal' form={form} initialValues={{}}>
+                    <Form.Item name={'selectTarea'} rules={[{ required: true, message: 'Este campo es obligatorio' }]}   >
                         <h3>Tarea</h3>
-                        <Select defaultValue="" style={{ width: 300 }} /*onChange={handleChange}*/ placeholder='placeholder' className='border-select-selector' >
+                        <Select defaultValue="" style={{ width: 300 }} onChange={handleChange} placeholder='placeholder' className='border-select-selector' >
                             {listTare.map(job => <Option value={job} key={job}>{job}</Option>)}
                         </Select>
                     </Form.Item>
-                    <Form.Item name='selectTecn' rules={[{ required: true, message: 'Este campo es obligatorio' }]}   >
+                    <Form.Item name={'selectTecn'} rules={[{ required: true, message: 'Este campo es obligatorio' }]}   >
                         <h3>Tecnico</h3>
                         <Select mode='multiple' defaultValue="" style={{ width: 300 }} onChange={selectTecChang} placeholder='tecnico' className='border-select-selector' >
                             {listTecn.map(item => {
@@ -76,19 +77,19 @@ const ModalAddTurnoJobs = ({ funOpen, isOpen, datte, comunidad }) => {
                             })}
                         </Select>
                     </Form.Item>
-                    <Form.Item name='inicio' >
+                    <Form.Item name={'inicio'} >
                         <h3>Inicio</h3>
-                        <Select defaultValue="06:00" style={{ width: 300 }} onChange={selectTecChang} placeholder='inicio' className='border-select-selector' >
+                        <Select defaultValue="06:00" style={{ width: 300 }} /*onChange={selectTecChang}*/ placeholder='inicio' className='border-select-selector' >
                             <Option value={4} key={4}>04:00</Option>
                             <Option value={6} key={6}>06:00</Option>
-                          
+
                         </Select>
                     </Form.Item>
-                    <Form.Item >
+                    <Form.Item name={'fin'} >
                         <h3>Fin</h3>
-                        <Select defaultValue="10:00" style={{ width: 300 }} onChange={selectTecChang} placeholder='inicio' className='border-select-selector' >
+                        <Select defaultValue="10:00" style={{ width: 300 }} /*onChange={selectTecChang}*/ placeholder='inicio' className='border-select-selector' >
                             <Option value={8} key={8}>08:00</Option>
-                            <Option value={10} key={10}>10:00</Option>                          
+                            <Option value={10} key={10}>10:00</Option>
                         </Select>
                     </Form.Item>
                     <Form.Item >

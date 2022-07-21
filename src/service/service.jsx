@@ -162,7 +162,7 @@ class DataService {
   }
 
   // metodos para el manejo de los horarios de los tecnicos  
-  async getJobsTecnicos({comunidad}) {
+  async getJobsTecnicos({ comunidad }) {
     const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/jobs`);
     const querySnapShot = query(collectionn);
     const result = await getDocs(querySnapShot);
@@ -187,8 +187,6 @@ class DataService {
   }
   async getObjetivosTotalAlcanzadosBySalon({ comunidad, salon, periodo }) {
     let result = 0;
-    // const arraCollections = await collectionGroup(getDoc(doc(db, `${this._pathComunidades}/${comunidad}/Salones/${salon}/Objetivos/${periodo}`)));
-    // console.log(arraCollections.get());
     const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/Salones/${salon}/Objetivos/${periodo}/7`);
     const querySnapShot = query(collectionn);
     const arrayDocs = await getDocs(querySnapShot);
@@ -201,8 +199,10 @@ class DataService {
     const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/Salones/${salon}/Objetivos/${periodo}/7`);
     const querySnapShot = query(collectionn);
     const arrayDocs = await getDocs(querySnapShot);
-    const aa = arrayDocs.docs.sort((a, b) => b.id - a.id)
-    return aa[0];
+    const sortDiarios = arrayDocs.docs.sort((a, b) => b.id - a.id)
+    const totalDiario = sortDiarios[0].data().value;
+    const diaa = sortDiarios[0].id;
+    return { totalDiario, diaa };
   }
   async getObjetivosByDayAlcanzadosBySalon({ comunidad, salon, periodo, dia }) {
     const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/Salones/${salon}/Objetivos/${periodo}/7`);
