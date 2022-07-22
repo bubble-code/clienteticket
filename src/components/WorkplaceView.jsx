@@ -6,7 +6,7 @@ import '../style/WorkplaceView.css';
 const WorkplaceView = () => {
   const [listHall, setListHall] = useState([]);
   const getListHall = async () => {
-    const listHall = await DataService.getListHall();
+    const listHall = await DataService.getListHall({ comunidad: 'Madrid' });
     // console.log(listHall);
     setListHall(listHall);
   }

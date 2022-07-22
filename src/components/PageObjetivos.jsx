@@ -5,6 +5,7 @@ import { Row, Col, Statistic, Card, Menu } from 'antd';
 import ChartObjetivosView from './ChartObjetivos';
 import iconTarget from '../style/img/objetivo.gif';
 import '../style/PageObjetivos.css'
+import { async } from '@firebase/util';
 
 const date = new Date();
 const currentMonth = date.getMonth() + 1;
@@ -17,7 +18,7 @@ const itemsMenu = [
   { key: `semana${currentWeek}`, label: 'Semana Actual' },
 ];
 
-const dayOfWeek = ['Dom', 'Lun', 'Mar', 'Miér', 'Jue', 'Vie', 'Sáb',];
+const dayOfWeek = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado',];
 const month = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 
 
@@ -26,13 +27,21 @@ const PageObjetivos = () => {
   const [ddia, setDDia] = useState('');
   const { auth } = useAuth();
   const { comunidad, user } = auth;
-  const day = parseInt(obj.dia)
   const getObjetivos = async () => {
     const objetivos = await DataService.getObjetivosBySalon({ comunidad: comunidad, salon: user, periodo: 3 });
+    const listSalones = await DataService.getListHall({ comunidad: comunidad });
+    const rankingSalones = [];
+    const listArr = await Promise.all(listSalones.map(async (salon) => {
+      console.log(salon.id);
+      return await DataService.getObjetivosLastDayByAlcanzadosBySalon({ comunidad: comunidad, salon: salon.id, periodo: 3, dia: currentDay });
+      rankingSalones.push({});
+    }));
+    console.log(listArr);
     const ob = objetivos.objetivo
     const totalAlcanzado = await DataService.getObjetivosTotalAlcanzadosBySalon({ comunidad: comunidad, salon: user, periodo: 3 });
     const { totalDiario, diaa } = await DataService.getObjetivosLastDayByAlcanzadosBySalon({ comunidad: comunidad, salon: user, periodo: 3, dia: currentDay });
-    const currentDay1 = ` ${dayOfWeek[diaa] + ' ' + diaa + ` - ` + month[(date.getMonth())] + ' - ' + date.getFullYear()}`
+    const diaActualizacion = new Date(`${date.getFullYear() + '-' + date.getMonth() + '-' + diaa}`).getDay();
+    const currentDay1 = ` ${dayOfWeek[diaActualizacion] + ' ' + diaa + ` - ` + month[(date.getMonth())] + ' - ' + date.getFullYear()}`
     setDDia(currentDay1);
     setObj({ ob, totalAlcanzado, totalDiario, diaa });
   }
@@ -61,6 +70,7 @@ const PageObjetivos = () => {
         </Col>
         <Col span={18}>
           <h1>Ultima Actualizacion: {ddia}</h1>
+          <h1>Posicion del Salon: {ddia}</h1>
           <Row>
             <Col span={6} className='card-new-objetivos' >
               <Card style={{ background: 'transparent' }}>
