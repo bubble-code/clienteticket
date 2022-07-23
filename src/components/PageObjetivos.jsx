@@ -21,22 +21,37 @@ const itemsMenu = [
 const dayOfWeek = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado',];
 const month = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 
+const orderArray = (array) => {
+  const newArray = [];
+  array.forEach(element => {
+    newArray.push(element);
+  })
+  return newArray;
+}
+
 
 const PageObjetivos = () => {
   const [obj, setObj] = useState(0);
   const [ddia, setDDia] = useState('');
+  const [rancking, setRancking] = useState([]);
   const { auth } = useAuth();
   const { comunidad, user } = auth;
   const getObjetivos = async () => {
     const objetivos = await DataService.getObjetivosBySalon({ comunidad: comunidad, salon: user, periodo: 3 });
+    // para obtener la posicion del salon
     const listSalones = await DataService.getListHall({ comunidad: comunidad });
     const rankingSalones = [];
-    const listArr = await Promise.all(listSalones.map(async (salon) => {
-      console.log(salon.id);
-      return await DataService.getObjetivosLastDayByAlcanzadosBySalon({ comunidad: comunidad, salon: salon.id, periodo: 3, dia: currentDay });
-      rankingSalones.push({});
-    }));
-    console.log(listArr);
+    Promise.all(
+      listSalones.map(async (salon) => {
+        const { totalDiario: totalDia } = await DataService.getObjetivosLastDayByAlcanzadosBySalon({ comunidad: comunidad, salon: salon.id, periodo: 3, dia: currentDay });
+        rankingSalones[salon.id] = totalDia;
+      })).then(() => {
+        // const arrayOrdenado = rankingSalones.sort((a, b) => b - a);
+        setRancking(rankingSalones);
+      })
+    // setRancking(rankingSalones);
+    console.log(rancking);
+    // fin
     const ob = objetivos.objetivo
     const totalAlcanzado = await DataService.getObjetivosTotalAlcanzadosBySalon({ comunidad: comunidad, salon: user, periodo: 3 });
     const { totalDiario, diaa } = await DataService.getObjetivosLastDayByAlcanzadosBySalon({ comunidad: comunidad, salon: user, periodo: 3, dia: currentDay });
@@ -70,7 +85,7 @@ const PageObjetivos = () => {
         </Col>
         <Col span={18}>
           <h1>Ultima Actualizacion: {ddia}</h1>
-          <h1>Posicion del Salon: {ddia}</h1>
+          <h1>Posicion del Salon: {rancking.length}</h1>
           <Row>
             <Col span={6} className='card-new-objetivos' >
               <Card style={{ background: 'transparent' }}>
