@@ -1,7 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react';
 import useAuth from '../hooks/useAuth';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { Container } from 'reactstrap'
+import { Card, Input, Button, Form } from 'antd';
+import { UserOutlined, LockOutlined, PlayCircleOutlined } from '@ant-design/icons';
 import '../style/login.css';
+import logoMerkur from '../style/img/logo.png';
 
 const users = [
   {
@@ -145,30 +149,50 @@ const LoginPage = () => {
     })
   }
   return (
-    <div className='login'>
-      {/* <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p> */}
-      <form onSubmit={login} className={"login__form"}>
-        <h1>Sign In 😰</h1>
-        <label htmlFor="username">Usuario:</label>
-        <input
-          type="text"
-          id="username"
-          ref={userRef}
-          autoComplete="off"
-          onChange={(e) => setUser(e.target.value)}
-          value={userIn}
-          required
-        />
-        <label htmlFor="password">Contraseña:</label>
-        <input
-          type="password"
-          id="password"
-          onChange={(e) => setPwd(e.target.value)}
-          value={pwd}
-          required
-        />
-        <button type='submit' className='submit__btn'>Aceptar</button>
-      </form>
+    <div className="auth-page" >
+      <Container>
+        <Card className='login ' bordered={false}>
+          <header className='login-title'>
+            <img src={logoMerkur} alt="logo" style={{ height: '60px', display: 'block', zIndex: 1, width: '60%', margin: 0, padding: 0 }} />
+          </header>
+          <p className='login-info'>Use su usuario para acceder</p>
+          {/* <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p> */}
+          <Form onFinish={login} className={"login-form"}>
+            <div className='login-form-input-group'>
+              <h5 htmlFor="username">Usuario:</h5>
+              <Input style={{ backgroundColor: '#12142b', color: 'white', border: 'none' }}
+                type="text"
+                id="username"
+                ref={userRef}
+                autoComplete="off"
+                onChange={(e) => setUser(e.target.value)}
+                value={userIn}
+                required
+                prefix={<UserOutlined />}
+              />
+            </div>
+            <div className='login-form-input-group'>
+              <h5 htmlFor="password">Contraseña:</h5>
+              <Input style={{ backgroundColor: '#12142b', color: 'white', border: 'none' }}
+                type="password"
+                id="password"
+                onChange={(e) => setPwd(e.target.value)}
+                value={pwd}
+                required={true}
+                prefix={<LockOutlined />}
+              />
+            </div>
+
+            <div className='login-form-button-submit'>
+              <Button type='primary' htmlType='submit' shape="default" icon={<PlayCircleOutlined />} title='Login'>Login</Button>
+              {/* <button type='submit' className='submit__btn'>Aceptar</button> */}
+            </div>
+          </Form>
+        </Card>
+      </Container>
+      <footer className='contentFooter'>
+        2022 @ Desarrollado por <a href="https://github.com/bubble-code" >bubble-code</a> and <a href="https://merkur-slots.es/index-2.html" >Merkur Instinct</a>
+      </footer>
     </div>
   );
 }

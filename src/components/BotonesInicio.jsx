@@ -7,9 +7,12 @@ import CardInicioObjetivos from "./CardInicioSalones";
 import CardInicioSalonesHorario from "./CardInicioSalonesHorario";
 import CardInicioNewTicket from "./CardInicioNewTicket";
 import CardInicioListTickets from "./CardInicioListTickets";
+import CardRanking from "./cardRankig";
 import { Card, Statistic } from 'antd';
 import 'antd/dist/antd.css';
 import '../style/home.css';
+import ChartObjetivosView from "./ChartObjetivos";
+import { Container } from 'reactstrap';
 
 const BotonesInicio = () => {
   const [isInicio, setIsInicio] = useState(false)
@@ -78,9 +81,21 @@ const BotonesInicio = () => {
           <Statistic value={'Averias'} precision={2} valueStyle={{ color: '#3f8600', }} />
         </Card>
         : [
-          <CardInicioNewTicket />,
-          <CardInicioListTickets  />,
-          <CardInicioSalonesHorario />
+          <Container className="div1">
+            <ChartObjetivosView style={{ height: '20rem' }} />
+          </Container>,
+          <CardRanking className="div2" />,
+
+          <Container>
+            <CardInicioListTickets />,
+          </Container>,
+          <Container>
+            <CardInicioSalonesHorario />
+          </Container>,
+          <Container>
+            <CardInicioObjetivos />
+          </Container>
+
         ]
       }
       {/* <Card style={{ marginLeft: 20 }} bordered className="boton-inicio-ticket" onClick={handleListTicket}>
@@ -91,7 +106,7 @@ const BotonesInicio = () => {
         <Statistic value={'Iniciar'} precision={2} valueStyle={{ color: '#3f8600', }} /> </Card>
         : <Card style={{ marginLeft: 20 }} bordered className="boton-inicio-ticket" onClick={setFinalizarJornadas}>
           <Statistic value={'Finalizar'} precision={2} valueStyle={{ color: '#3f8600', }} /> </Card>
-        : <CardInicioObjetivos/>
+        : <></>
       }
       <ModalStartWorkingDayTec isVisible={visible} setVisible={setVisible} />
     </div>
