@@ -31,14 +31,14 @@ const App = () => {
         <Route path="unauthorized" element={<Unauthorized />} />
         {/* Protect routes */}
         <Route element={<RequireAuth />}>
-          <Route path="admin" element={<Admin />} />
-          <Route path="inicio/newticket" element={<NewTicket />} />
-          <Route path="inicio/listticket" element={<ListTicket />} />
-          <Route path="inicio/ListTicketTecnicos" element={<ListTicketTecnicos />} />
-          <Route path="inicio/pagehorariostecnicos" element={<PageHorariosTecnicos />} />
-          <Route path="inicio/pageobjetivos" element={<PageObjetivos />} />
           <Route path="/" element={<Home />} >
-            <Route path="inicio" element={<BotonesInicio />} /> 
+            <Route path="inicio" element={<BotonesInicio />} />
+            <Route path="inicio/newticket" element={<NewTicket />} />
+            <Route path="admin" element={<Admin />} />
+            <Route path="inicio/listticket" element={<ListTicket />} />
+            <Route path="inicio/ListTicketTecnicos" element={<ListTicketTecnicos />} />
+            <Route path="inicio/pagehorariostecnicos" element={<PageHorariosTecnicos />} />
+            <Route path="inicio/pageobjetivos" element={<PageObjetivos />} />
             <Route path="analisview" element={<AnalisView />} />
             <Route path="monitorview" element={<MonitorView />} />
             <Route path="workplaceview" element={<WorkplaceView />} />

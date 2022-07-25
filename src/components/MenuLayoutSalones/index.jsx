@@ -13,8 +13,10 @@ function getItem(label, key, icon, children, type) {
     };
 }
 const items = [
-    getItem('Menu Admin', 'inicio', <TableOutlined />,),
-    getItem('Horarios', 'inicio/pageobjetivos', <TableOutlined />),
+    getItem('Inicio', 'inicio', <TableOutlined />,),
+    getItem('Crear Ticket', 'inicio/newticket', <TableOutlined />,),
+    getItem('Lista de Ticket', 'inicio/listticket', <TableOutlined />,),
+    getItem('Horarios Tecnicos', 'inicio/pagehorariostecnicos', <TableOutlined />),
     getItem('Dashboard', 'sub1', <FieldTimeOutlined />),
 ];
 

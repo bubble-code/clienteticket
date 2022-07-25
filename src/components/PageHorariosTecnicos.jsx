@@ -177,7 +177,7 @@ const PageHorariosTecnicos = () => {
   }, [dayStartHorario, dd]);
   return (
     <Row gutter={{ xs: 8, sm: 24, md: 24, lg: 32 }}>
-      <Col span={6} >
+      {/* <Col span={6} >
         <div className='card-left-horario-page'>Horarios Técnicos {comunidad}</div>
         <div className='card-left-horario-page'>
           <Menu
@@ -192,7 +192,7 @@ const PageHorariosTecnicos = () => {
         <div className='card-left-horario-page card-left-horario-page-flex'>
           {[...listTecnicos]}
         </div>
-      </Col>
+      </Col> */}
       <Col span={18} >
         <Card className='main-card-horario-page'  >
           <Row>
