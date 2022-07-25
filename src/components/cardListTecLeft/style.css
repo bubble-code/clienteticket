@@ -1,0 +1,52 @@
+.card-left-horario-page {
+    margin-top: 10px;
+    border-radius: 10px;
+    text-align: center;
+    color: rgba(244, 244, 245, 0.763);
+    font-weight: 600;
+    background: rgba(0, 0, 0, 0.16);
+    border: none !important;
+}
+
+.card-left-horario-page h3 {
+    color: rgb(0, 13, 255);
+    text-align: left;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    font-weight: 400;
+}
+
+.card-left-horario-page:nth-child(2),
+.card-left-horario-page:nth-child(3),
+.card-left-horario-page:nth-child(4) {
+    padding: 10px;
+    text-align: center;
+    /* color: #101111; */
+    font-weight: 400;
+}
+
+.card-left-horario-page-flex p {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.card-left-horario-page-flex span {
+    /* margin-left: 30px; */
+    /* color: #4f39f9; */
+}
+
+.card-left-horario-page p {
+    text-align: left;
+    margin-top: 15px;
+    font-size: 1.2rem;
+    /* font-family: "Proxima Nova Soft",
+        "Helvetica Neue",
+        Arial,
+        "Noto Sans",
+        sans-serif,
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Segoe UI Symbol",
+        "Noto Color Emoji"; */
+}

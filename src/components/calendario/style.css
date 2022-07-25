@@ -1,0 +1,35 @@
+.site-calendar-demo-card {
+  /* width: 300px; */
+  /* background: rgba(0, 0, 0, 0.29) !important; */
+  border-radius: 10px;
+  color: rgba(244, 244, 245, 0.763) !important;
+  margin-top: 10px;
+}
+
+.ant-picker-calendar-mini,
+.ant-picker-panel {
+  border-radius: 10px;
+  border-top: none !important;
+}
+
+.ant-picker-calendar,
+.ant-picker-panel {
+  /* box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  list-style: none;
+  font-feature-settings: 'tnum', "tnum"; */
+  background: rgba(0, 0, 0, 0.16) !important;
+  border: none !important;
+}
+
+.ant-picker-cell {
+  color: rgba(244, 244, 245, 0.763) !important;
+}
+
+.ant-picker-content th {
+  color: #1890ff !important;
+}

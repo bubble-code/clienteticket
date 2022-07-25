@@ -1,7 +1,8 @@
 import { Tag } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 
 
-export const columnsRender = [ 
+export const columnsRender = [
     // {
     //   title: 'Ticket',
     //   dataIndex: 'Ticket',
@@ -51,8 +52,18 @@ export const columnsRender = [
     },
     {
         title: 'TAQUILLERO',
-        dataIndex: 'Taquillero',
         key: 'Taquillero',
+        dataIndex: 'Taquillero',
+        render: (_, { taqui }) => (<>
+            {taqui.map((tag) => {
+                return (<div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <UserOutlined style={{ color: '#2477ff' }} />  <span>{tag.toUpperCase()}</span>
+                </div>
+                );
+            })}
+        </>
+        ),
+
     }
     // {
     //   title: 'Action',

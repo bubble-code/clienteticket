@@ -1,7 +1,10 @@
 import React from 'react';
 import { Outlet, useNavigate } from 'react-router-dom'
-import { Col, Layout, Menu, Row } from 'antd';
-import { FieldTimeOutlined, TableOutlined, UserOutlined } from '@ant-design/icons';
+import { Col, Menu } from 'antd';
+import { TableOutlined } from '@ant-design/icons';
+import Calendario from '../calendario/Calendario';
+import './style.css';
+import CardListTecLeft from '../cardListTecLeft';
 
 function getItem(label, key, icon, children, type) {
     return {
@@ -16,8 +19,7 @@ const items = [
     getItem('Inicio', 'inicio', <TableOutlined />,),
     getItem('Crear Ticket', 'inicio/newticket', <TableOutlined />,),
     getItem('Lista de Ticket', 'inicio/listticket', <TableOutlined />,),
-    getItem('Horarios Tecnicos', 'inicio/pagehorariostecnicos', <TableOutlined />),
-    getItem('Dashboard', 'sub1', <FieldTimeOutlined />),
+    getItem('Horarios Tecnicos', 'inicio/pagehorariostecnicos', <TableOutlined />)
 ];
 
 const MenuLayoutSalones = () => {
@@ -27,11 +29,13 @@ const MenuLayoutSalones = () => {
     };
     return (
         <div style={{ display: "grid", gridTemplateColumns: '1fr 4fr', marginRight: 0, height: '100%' }}  >
-            <Col style={{ width: 250 }} >
+            <Col style={{ marginTop: '50px' }} span={20} >
                 {/* <Col style={{ border: 'solid 1px red' }}> */}
-                <Layout.Sider style={{ width: 256, background: 'transparent !important' }} >
-                    <Menu onClick={onClick} style={{ background: 'transparent !important' }} defaultSelectedKeys={['inicio']} defaultOpenKeys={['sub1']} mode="vertical" items={items} />
-                </Layout.Sider>
+                {/* <Layout.Sider style={{ width: '100% !important', background: 'transparent !important', border:'solid 1px red' }} > */}
+                <Menu onClick={onClick} style={{ background: 'transparent !important' }} defaultSelectedKeys={['inicio']} defaultOpenKeys={['sub1']} mode="vertical" items={items} />
+                <Calendario />
+                <CardListTecLeft />
+                {/* </Layout.Sider> */}
                 {/* </Col> */}
             </Col>
             <Col >

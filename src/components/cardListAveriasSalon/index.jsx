@@ -38,7 +38,7 @@ const CardListAveriasSalon = ({ salon }) => {
         listDocs?.forEach((doc, index) => {
             const tem = doc.data();
             const { currentDate, state = 'Abierto', detallesTicket = "", taquillero, maquina } = tem;
-            dataListTickets.push({ key: index, Ticket: index, Creado: currentDate, Asunto: detallesTicket, tags: [state], Taquillero: taquillero, Maquina: maquina });
+            dataListTickets.push({ key: index, Ticket: index, Creado: currentDate, Asunto: detallesTicket, tags: [state], taqui: [taquillero], Taquillero: taquillero, Maquina: maquina });
         })
         setListTickets(dataListTickets)
     }
