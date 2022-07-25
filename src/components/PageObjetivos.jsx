@@ -53,7 +53,7 @@ const PageObjetivos = () => {
     setRancking(rankingSalones);
     console.log(rancking);
     // fin
-    const ob = objetivos.objetivo
+    const ob = objetivos.objetivo 
     const totalAlcanzado = await DataService.getObjetivosTotalAlcanzadosBySalon({ comunidad: comunidad, salon: user, periodo: 3 });
     const { totalDiario, diaa } = await DataService.getObjetivosLastDayByAlcanzadosBySalon({ comunidad: comunidad, salon: user, periodo: 3, dia: currentDay });
     const diaActualizacion = new Date(`${date.getFullYear() + '-' + date.getMonth() + '-' + diaa}`).getDay();

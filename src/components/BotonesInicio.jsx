@@ -8,6 +8,9 @@ import CardInicioSalonesHorario from "./CardInicioSalonesHorario";
 import CardInicioNewTicket from "./CardInicioNewTicket";
 import CardInicioListTickets from "./CardInicioListTickets";
 import CardRanking from "./cardRankig";
+import CardRepoDiario from "./cardReporteDiario";
+import CardTotalAlcanzado from "./cardTotalAlcanzado";
+import CardObjTrimestre from "./cardObjTrimestre";
 import { Card, Statistic } from 'antd';
 import 'antd/dist/antd.css';
 import '../style/home.css';
@@ -71,7 +74,7 @@ const BotonesInicio = () => {
     }
   }
   useEffect(() => {
-    loadIsInicio(user);
+    // loadIsInicio(user);
     // console.log(isInicio)
   }, [])
   return (role === 1 ? <></> :
@@ -85,16 +88,18 @@ const BotonesInicio = () => {
             <ChartObjetivosView style={{ height: '20rem' }} />
           </Container>,
           <CardRanking className="div2" />,
-
-          <Container>
-            <CardInicioListTickets />,
-          </Container>,
-          <Container>
-            <CardInicioSalonesHorario />
-          </Container>,
-          <Container>
-            <CardInicioObjetivos />
-          </Container>
+          <CardRepoDiario title="DIARIO ALCANZADO" />,
+          <CardTotalAlcanzado title="TOTAL ALCANZADO" />,
+          <CardObjTrimestre title="OBJETIVOS TRIMESTRE" />,
+          // <Container>
+          //   <CardInicioListTickets />,
+          // </Container>,
+          // <Container>
+          //   <CardInicioSalonesHorario />
+          // </Container>,
+          // <Container>
+          //   <CardInicioObjetivos />
+          // </Container>
 
         ]
       }

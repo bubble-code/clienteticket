@@ -15,21 +15,7 @@ function getItem(label, key, icon, children, type) {
 const items = [
     getItem('Menu Admin', 'inicio', <TableOutlined />,),
     getItem('Horarios', 'inicio/pageobjetivos', <TableOutlined />),
-    getItem('Dashboard', 'sub1', <FieldTimeOutlined />, [
-        getItem('Analisis', 'analisview'),
-        getItem('Monitor', 'monitorview'),
-        getItem('Workplace', 'workplaceview'),
-    ]),
-    getItem('Account', 'sub2', <UserOutlined />, [
-        getItem('Account Center', 'accountcenter'),
-        getItem('Account Settings', 'PageHorariosTecnicos'),
-    ]),
-    getItem('List', 'sub3', <TableOutlined />, [
-        getItem('Search List', '6'),
-        getItem('Faults List', '7'),
-        getItem('Solved List', '8'),
-        getItem('Delayed List', '9'),
-    ]),
+    getItem('Dashboard', 'sub1', <FieldTimeOutlined />),
 ];
 
 const MenuLayoutSalones = () => {
@@ -42,7 +28,7 @@ const MenuLayoutSalones = () => {
             <Col style={{ width: 250 }} >
                 {/* <Col style={{ border: 'solid 1px red' }}> */}
                 <Layout.Sider style={{ width: 256, background: 'transparent !important' }} >
-                    <Menu onClick={onClick} style={{ background: 'transparent !important' }} defaultSelectedKeys={['inicio']} defaultOpenKeys={['sub1']} mode="inline" items={items} />
+                    <Menu onClick={onClick} style={{ background: 'transparent !important' }} defaultSelectedKeys={['inicio']} defaultOpenKeys={['sub1']} mode="vertical" items={items} />
                 </Layout.Sider>
                 {/* </Col> */}
             </Col>
