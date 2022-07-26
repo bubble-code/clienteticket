@@ -6,6 +6,7 @@ import ChartObjetivosView from './ChartObjetivos';
 import iconTarget from '../style/img/objetivo.gif';
 import '../style/PageObjetivos.css'
 import { async } from '@firebase/util';
+import { useCallback } from 'react';
 
 const date = new Date();
 const currentMonth = date.getMonth() + 1;
@@ -64,7 +65,7 @@ const PageObjetivos = () => {
   }
   useEffect(() => {
     getObjetivos();
-  }, [])
+  },[])
   return (
     <Col span={{ xs: 8, sm: 24, md: 24, lg: 32 }}>
       <Row gutter={{ xs: 8, sm: 24, md: 24, lg: 32 }}>
