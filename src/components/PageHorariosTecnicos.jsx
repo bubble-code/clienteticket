@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Col, Row, Table, Typography, Card, Menu } from 'antd';
 import DataService from '../service/service';
 import useAuth from '../hooks/useAuth';
-import Calendario from './Calendario';
 import '../style/TablehorarioTecnicos.css';
 import { useCallback } from 'react';
-import { async } from '@firebase/util';
 
 
 const { Text } = Typography;
@@ -47,7 +45,6 @@ const PageHorariosTecnicos = () => {
   const [loading, setLoading] = useState(true)
   const [colums, setColums] = useState(columns);
   const [dayStartHorario, setDayStartHorario] = useState(currentDay - currentWeek);
-  const [listTecnicos, setListTecnicos] = useState([])
   const dd = useCallback(async ({ dayStart }) => {
     const temColums1 = colums[0];
     const temColums = colums.filter(col => col.dataIndex >= dayStart);
@@ -153,14 +150,7 @@ const PageHorariosTecnicos = () => {
     setData([globalObject, partialObject, tecnicoObject, cierreObject, guardiaObject, otrosObject, vacacionesObject]);
     setLoading(false)
   }, []);
-  const loadListTecnicos = async () => {
-    const queryListTecnicos = await DataService.getListTecnicosByComu({ comunidad: comunidad })
-    const temp = [];
-    queryListTecnicos?.forEach((el) => {
-      temp.push(<p>{el.id}<div><span>Movil</span><span>{el.data().movil}</span></div></p>)
-    });
-    setListTecnicos(temp)
-  }
+ 
   const onCLickMenu = (e) => {
     const firtDayofWeek = currentDay - currentWeek;
     const f = {
@@ -173,11 +163,10 @@ const PageHorariosTecnicos = () => {
   }
   useEffect(() => {
     dd({ dayStart: dayStartHorario });
-    loadListTecnicos();
   }, [dayStartHorario, dd]);
   return (
     <Row gutter={{ xs: 8, sm: 24, md: 24, lg: 32 }}>
-      <Col span={6} >
+      {/* <Col span={6} >
         <div className='card-left-horario-page'>Horarios Técnicos {comunidad}</div>
         <div className='card-left-horario-page'>
           <Menu
@@ -185,14 +174,11 @@ const PageHorariosTecnicos = () => {
             defaultSelectedKeys={[`semana`]}
             mode='inline'
             items={itemsMenu} />
-        </div>
-        <div className='card-left-horario-page'> 
-          <Calendario /> 
-        </div>
+        </div>        
         <div className='card-left-horario-page card-left-horario-page-flex'>
           {[...listTecnicos]}
         </div>
-      </Col>
+      </Col> */}
       <Col span={18} >
         <Card className='main-card-horario-page'  >
           <Row>

@@ -1,30 +1,74 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 
-.card-title{
+.card-title {
   border: solid 1px #000;
   border-radius: 5px;
 }
 
-div.ant-space-item:nth-child(1) > p:nth-child(1){
+div.ant-space-item:nth-child(1)>p:nth-child(1) {
   font-family: 'Nunito', sans-serif;
   font-size: 22px;
   color: rgb(0, 18, 139);
   margin-bottom: 0;
 }
-.divider{
+
+.divider {
   border-top: solid 1px rgba(0, 0, 0, 0.5);
   margin-top: 0px;
-  margin-bottom: 5px; 
+  margin-bottom: 5px;
 }
-.border-select-selector{
+
+.border-select-selector {
   border: solid 1px rgba(0, 0, 0, 0.5);
 }
-.mainCardTicke{
+
+.mainCardTicket {
   border-radius: 5px !important;
   padding: 10px !important;
-  margin: 40px !important;
+  margin-right: 40px !important;
   border: 1px solid #000 !important;
   font-family: sans-serif;
+  background: rgba(0, 0, 0, .24) !important;
   /* top:0; */
   /* width:100%; */
+}
+
+.mainCardTicket h1,
+.mainCardTicket h5,
+.mainCardTicket h3 {
+  color: rgba(244, 244, 245, 0.762) !important;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.mainCardTicket h3 {
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.mainCardTicket input {
+  background: #040620 !important;
+  color: rgba(244, 244, 245, 0.762) !important;
+  border: none;
+}
+
+.ant-select-selector,
+#detallesTicket {
+  background: #040620 !important;
+  color: rgba(244, 244, 245, 0.762) !important;
+  border: none !important;
+}
+
+.ant-select-arrow svg {
+  fill: white !important;
+}
+
+.ant-select-dropdown {
+  background: #040620 !important;
+}
+.ant-select-item{
+  color: rgba(244, 244, 245, 0.762) !important;
+}
+.ant-select-item:hover{
+  background:#1e28b5 !important; ;
 }

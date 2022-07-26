@@ -43,7 +43,7 @@ const NewTicket = () => {
     message.success("Ticket creado correctamente");
     form.resetFields();
     await DataService.newTicket({ ...values, currentDate, currenTime, user });
-    goBack();
+    // goBack();
   }
   /**
    * LoadLists is an async function that calls DataService.getMaquinas and
@@ -65,7 +65,7 @@ const NewTicket = () => {
     loadLists(user);
   }, [user]);
   return (
-    <Card className='mainCardTicke' >
+    <Card className='mainCardTicket' >
       <Form
         labelCol={{ span: 4 }}
         wrapperCol={{ span: 14 }}
@@ -75,15 +75,15 @@ const NewTicket = () => {
         form={form}
       >
         <Row gutter={{ xs: 8, sm: 24, md: 24, lg: 32 }} >
-          <Col span={16} className="gutter-row" >
+          <Col span={20} className="gutter-row" >
             <Row justify='space-around'>
-              <Col span={16}>
+              <Col span={20}>
                 <h1 style={{ marginBottom: 0 }}>Formulario de rellenado de nuevo ticket</h1>
                 <h5 style={{ marginTop: 0 }}>Por favor, complete el siguiente formulario para crear un nuevo ticket</h5>
-                <Divider className='divider' />
+                {/* <Divider className='divider' /> */}
               </Col>
               <Col>
-                <h3>Cliente: <span>{user}</span></h3>
+                <h3>Cliente: <span>{user}</span></h3> 
               </Col>
             </Row>
           </Col>
@@ -120,7 +120,7 @@ const NewTicket = () => {
               </Form.Item>
             </Col>
             <Col span={18} className="gutter-row">
-              <h3>Detalles de Ticket</h3>
+              <h3>Detalles de la Averia</h3>
               <Form.Item name={'detallesTicket'} rules={[{ required: true, message: 'Este campo es obligatorio' }]}>
                 <TextArea rows={4} title="Detalles de Ticket" className='border-select-selector' />
               </Form.Item>

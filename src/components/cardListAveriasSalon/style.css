@@ -1,0 +1,75 @@
+.mainCardListTicket {
+    border-radius: 5px !important;
+    padding: 10px !important;
+    margin-right: 40px !important;
+    border: 1px solid #000 !important;
+    font-family: sans-serif;
+    background: rgba(0, 0, 0, .24) !important;
+    /* top:0; */
+    /* width:100%; */
+    height: auto;
+}
+
+.mainCardListTicket h3 {
+    color: rgba(244, 244, 245, .9);
+    font-size: 1.25rem;
+    line-height: 1.2;
+    font-family: Open Sans, sans-serif;
+    letter-spacing: 2px;
+    font-weight: 300;
+    margin-bottom: 70px;
+
+}
+
+.ant-table {
+    background: transparent !important;
+    color: rgba(244, 244, 245, .9) !important;
+    font-size: 1.1rem !important;
+    margin-top: 55px !important;
+}
+
+/* .ant-table-tbody tr:hover{
+    background: transparent !important;
+    color: rgba(244, 244, 245, .9);
+    font-size: 1.25rem;
+} */
+.ant-table-cell-row-hover {
+    background: transparent !important;
+}
+
+.ant-table-thead>tr>th {
+    background: transparent !important;
+    color: rgba(244, 244, 245, .9) !important;
+    font-size: 1.15rem !important;
+    line-height: 1.2 !important;
+    font-family: Open Sans, sans-serif !important;
+    letter-spacing: 2px !important;
+    font-weight: 300 !important;
+}
+
+.ant-pagination-item-link {
+    background: #c7d0ff !important;
+}
+
+.ant-pagination-item-link svg {
+    fill: #000 !important;
+}
+
+.ant-pagination-item-active {
+    background: #92a4fe !important;
+    /* border-color: #1890ff; */
+}
+
+.ant-pagination-item-active a {
+    color: #000 !important;
+    font-weight: 700 !important;
+}
+
+/* Styles for segmented menu */
+.ant-segmented-item-selected{
+    background: #92a4fe !important;
+    border-color: #92a4fe !important;
+}
+.ant-segmented-item-label{
+    
+}

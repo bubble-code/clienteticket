@@ -1,0 +1,56 @@
+.cardRanking {
+    display: block;
+    position: relative;
+    padding: 20px;
+    margin: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: rgba(244, 244, 245, .6);
+    margin-bottom: 40px;
+    border-radius: 10px;
+    background: transparent !important;
+    box-shadow: 0 25px 20px -20px rgba(0, 0, 0, .1), 0 0 15px rgba(0, 0, 0, .06);
+    padding-top: 0;
+}
+
+.cardRanking-divider {
+    background-color: antiquewhite;
+}
+
+.cardRanking h5 {
+    color: rgba(244, 244, 245, .9);
+    font-size: 1.25rem;
+    line-height: 1.2;
+    font-family: Open Sans, sans-serif;
+    letter-spacing: 2px;
+}
+
+.cardRanking p {
+    font-size: 1rem;
+}
+
+.items-ranking {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    color: rgba(244, 244, 245, .9);
+    font-size: 1.25rem;
+    line-height: 1.2;
+    font-family: Open Sans, sans-serif;
+    letter-spacing: 2px;
+    font-weight: 300;
+    width: 340px;
+}
+
+.items-ranking span {
+    margin-right: 8px;
+    line-height: 1.6;
+}
+
+.items-ranking img {
+    width: 26px;
+    height: auto;
+    margin-right: 60px;
+    padding: 0px;
+}

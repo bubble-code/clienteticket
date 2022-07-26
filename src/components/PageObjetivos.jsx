@@ -37,11 +37,11 @@ const PageObjetivos = () => {
   const [rancking, setRancking] = useState([]);
   const { auth } = useAuth();
   const { comunidad, user } = auth;
+  const rankingSalones = [];
   const getObjetivos = async () => {
     const objetivos = await DataService.getObjetivosBySalon({ comunidad: comunidad, salon: user, periodo: 3 });
     // para obtener la posicion del salon
     const listSalones = await DataService.getListHall({ comunidad: comunidad });
-    const rankingSalones = [];
     Promise.all(
       listSalones.map(async (salon) => {
         const { totalDiario: totalDia } = await DataService.getObjetivosLastDayByAlcanzadosBySalon({ comunidad: comunidad, salon: salon.id, periodo: 3, dia: currentDay });
@@ -50,10 +50,10 @@ const PageObjetivos = () => {
         // const arrayOrdenado = rankingSalones.sort((a, b) => b - a);
         setRancking(rankingSalones);
       })
-    // setRancking(rankingSalones);
+    setRancking(rankingSalones);
     console.log(rancking);
     // fin
-    const ob = objetivos.objetivo
+    const ob = objetivos.objetivo 
     const totalAlcanzado = await DataService.getObjetivosTotalAlcanzadosBySalon({ comunidad: comunidad, salon: user, periodo: 3 });
     const { totalDiario, diaa } = await DataService.getObjetivosLastDayByAlcanzadosBySalon({ comunidad: comunidad, salon: user, periodo: 3, dia: currentDay });
     const diaActualizacion = new Date(`${date.getFullYear() + '-' + date.getMonth() + '-' + diaa}`).getDay();

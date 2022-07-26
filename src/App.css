@@ -1,22 +1,35 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
+
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
+html {
+  font-weight: 100;
+  font-size: 14px;
+}
+
+
 body {
-  /* overflow: hidden; */
-	background-color: #eeecf475;
-	min-height: 100vh;
-  max-width: 100vw;
   overflow-x: hidden;
-	/* font-family: Montserrat, sans-serif; */	
-	/* display: flex;
+  color: rgba(#f4f4f5, 0.9);
+  background: radial-gradient(farthest-side ellipse at 10% 0, #333867 20%, #17193B);
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  /* min-height: 100vh;
+  max-width: 100vw;
+  overflow-x: hidden; */
+  /* font-family: Montserrat, sans-serif; */
+  /* display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
   margin: 0; 
 */
 }
+
 /* h3 {
 	margin: 10px 0;
 }
@@ -29,7 +42,8 @@ p {
 	line-height: 21px;
 } */
 .App-header {
-  background-color: #231E39;;
+  background-color: #231E39;
+  ;
   min-height: 6vh;
   display: flex;
   flex-direction: column;
@@ -38,29 +52,32 @@ p {
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
 .boton-inicio-ticket::before,
 .boton-inicio-ticket::after {
-  content:'';
-  position:absolute;
-  top:0;
-  right:0;
-  height:1px;
-  width:0;
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 1px;
+  width: 0;
   background: #2B4C8C;
   box-shadow:
-   -1px -1px 5px 0px #fff,
-   7px 7px 20px 0px #2B4C8C,
-   4px 4px 5px 0px #2B4C8C;
-  transition:400ms ease all;
+    -1px -1px 5px 0px #fff,
+    7px 7px 20px 0px #2B4C8C,
+    4px 4px 5px 0px #2B4C8C;
+  transition: 400ms ease all;
 }
-.boton-inicio-ticket::after{
-  right:inherit;
-  top:inherit;
-  left:0;
-  bottom:0;
+
+.boton-inicio-ticket::after {
+  right: inherit;
+  top: inherit;
+  left: 0;
+  bottom: 0;
 }
+
 .boton-inicio-ticket:hover::before,
-.boton-inicio-ticket:hover::after{
-  width:100%;
-  transition:800ms ease all;
+.boton-inicio-ticket:hover::after {
+  width: 100%;
+  transition: 800ms ease all;
 }

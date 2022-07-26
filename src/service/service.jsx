@@ -30,12 +30,12 @@ class DataService {
     const { maquina, tipoAveria, prioridad, estadoMaquina, taquillero, cantDinero, detallesTicket, currentDate, currenTime, user } = ticket;
     const collectionn = collection(db, this._pathAverias);
     return await addDoc(collectionn, { maquina, tipoAveria, prioridad, estadoMaquina, taquillero, cantDinero, detallesTicket, currentDate, currenTime, user, state: 'Abierto' });
-  } id
+  } ;
   async getListaAverias(salon) {
     const collectionn = collection(db, this._pathAverias);
     const querySnapShot = query(collectionn, where('user', '==', salon));
     const result = await getDocs(querySnapShot);
-    result.docs.map(doc => console.log(doc.data()));
+    // result.docs.map(doc => console.log(doc.data()));
     return result.docs;
   }
   async getListTecnicosByComu({ comunidad }) {
