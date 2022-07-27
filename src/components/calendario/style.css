@@ -8,8 +8,12 @@
 
 .ant-picker-calendar-mini,
 .ant-picker-panel {
-  border-radius: 10px;
+  border-radius: 10px !important;
   border-top: none !important;
+}
+.ant-picker-content{
+  table-layout: auto !important;
+  height: 200px !important;
 }
 
 .ant-picker-calendar,
@@ -24,6 +28,7 @@
   font-feature-settings: 'tnum', "tnum"; */
   background: rgba(0, 0, 0, 0.16) !important;
   border: none !important;
+  font-size: 10px !important;
 }
 
 .ant-picker-cell {

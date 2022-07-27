@@ -1,52 +1,77 @@
+.main-card-horario-page{
+  border-radius: 10px !important; 
+  padding: 10px !important;
+  margin: 40px !important;
+  /* border: 1px solid #000 !important; */
+  font-family: sans-serif;
+  /* top:0; */
+  width:1000px;
+  background: rgba(0, 0, 0, 0.16) !important;
+}
 .tableHorarioTecnicos {
-  width: 100%;
+  max-width: 1000px;
+  max-height: 900px;
   border-collapse: collapse;
   border-spacing: 0;
   font-family: 'Open Sans', sans-serif;
-  font-size: 10px; 
-  background: #e5effa;
+  /* background: #e5effa; */
+  /* border: solid 1px #c5c5c5; */
 }
 .tableHorarioTecnicos th{
   background: #e5effa !important;
   text-align: center;
-  padding: 8px;
-  font-weight: bold;
-  color: #2686BD !important;
+  /* padding: 8px; */
+  font-weight: 100 !important;
+  /* color: #2686BD !important; */
   border:none !important;
-  border-top: 1px solid #2686BD !important;
-  border-bottom: 1px solid #2686BD !important;
-  border-radius: 5px;
+  /* border-top: 1px solid #2686BD !important; */
+  /* border-bottom: 1px solid #2686BD !important; */
+  /* border-radius: 5px; */
+  font-size: 0.4em !important; 
 }
 .tableHorarioTecnicos th:hover{
   background-color: rgb(184, 180, 180);
-}
-.tableHorarioTecnicos tr td:nth-child(1){
-  text-align: center;
-  background: #e5effa;
-  padding: 1px !important;
-  border-left: 1px solid #2686BD ;
-  border-right: 1px solid #2686BD ;
-  border-radius: 5px;
 }
 .tableHorarioTecnicos thead th {
 padding: 0;
 text-align: center;
 background: #9DC3C2;
-border: 1px solid #d2e8e7;
+/* border: 1px solid #d2e8e7; */
+}
+.tableHorarioTecnicos tr td:nth-child(1){
+  text-align: center;
+  visibility: hidden;
+  /* background: #e5effa; */
+  /* padding: 1px !important; */
+  /* border-left: 1px solid #2686BD ;
+  border-right: 1px solid #2686BD ; */
+  /* border-radius: 5px; */
+  font-size: 0.8rem !important; 
+  font-weight: 100;
+  letter-spacing: 1px;
+  width: 2px !important;
+  padding: 0 !important;
+}
+th.ant-table-cell:nth-child(1){
+  visibility: hidden;
+  width: 2px !important;
+  padding: 0 !important;
 }
 .tableHorarioTecnicos tbody td {
 padding: 0;
 /* text-align: center; */
-background: #e5effa;
+/* background: #e5effa; */
 /* border: 1px solid #d2e8e7; */
 }
 .cardInTableHorarios{
-  border: solid 1px #4f39f9;
+  /* border: solid 1px #4f39f9; */
   border-radius: 3px;
   padding: 2px;
   text-align: center;
   background-color: #4f39f965;
   margin: 3px 2px 3px 2px;
+  font-size: 0.8rem !important;
+  color: rgba(244, 244, 245, 0.763) !important;
 }
 .cardInTablePartial{
   background-color: #7cf39065 !important;
@@ -83,19 +108,19 @@ background: #e5effa;
   background:  #92a9a7 40px;
  
 }
-.cardInTableHorarios p{
-  font-size: 10px;
+.cardInTableHorarios p:nth-child(1){
+  /* font-size: 10px; */
   color: #000;
-  font-weight: bold;
+  font-weight: 600;
   margin: 0px;
+  font-size: 0.9em;
+  text-transform: uppercase;
+  padding-top: 4px;
 }
-.main-card-horario-page{
-  border-radius: 5px !important; 
-  padding: 10px !important;
-  margin: 40px !important;
-  /* border: 1px solid #000 !important; */
-  font-family: sans-serif;
-  /* top:0; */
-  /* width:100%; */
-  background: transparent !important;
+
+.ant-card-body{
+  padding: 0px !important;
+}
+.ant-table-cell-fix-left{
+  /* background: transparent !important; */
 }

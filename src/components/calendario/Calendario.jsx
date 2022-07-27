@@ -8,7 +8,7 @@ const Calendario = () => {
   };
 
   return (
-    <div className="site-calendar-demo-card">
+    <div className="site-calendar-demo-card" >
       <Calendar fullscreen={false} onPanelChange={onPanelChange} headerRender={() => { }} />
     </div>
   );

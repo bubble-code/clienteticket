@@ -4,6 +4,7 @@ import DataService from '../service/service';
 import useAuth from '../hooks/useAuth';
 import '../style/TablehorarioTecnicos.css';
 import { useCallback } from 'react';
+import { Container } from 'reactstrap'
 
 
 const { Text } = Typography;
@@ -22,7 +23,7 @@ const dayOfWeek = ['Dom', 'Lun', 'Mar', 'Miér', 'Jue', 'Vie', 'Sáb',];
 const columns = [
   {
     title: 'Horario',
-    width: 100,
+    width: 1,
     dataIndex: 'horario',
     key: 'horario',
     fixed: 'left',
@@ -32,9 +33,10 @@ for (let i = 1; i <= currentCantDaybyMonth; i++) {
   const dayofWeek = new Date(date.getFullYear(), date.getMonth(), i).getDay();
   columns.push({
     title: `${dayOfWeek[dayofWeek]} ${i}`,
+    style: { background: 'red' },
     dataIndex: i,
     key: `dia${i}`,
-    width: 90,
+    width: 100,
   });
 }
 
@@ -84,7 +86,8 @@ const PageHorariosTecnicos = () => {
       day = el.id;
       globalObject[day] = <div className='cardInTableHorarios'>
         <p>{el.data().salon}</p>
-        <p>{el.data().inicio} - {el.data().fin}</p>
+        <p>Global</p>
+        {/* <p>{el.data().inicio} - {el.data().fin}</p> */}
         <p>{el.data().Tecnicos}</p>
       </div>
     })
@@ -93,8 +96,9 @@ const PageHorariosTecnicos = () => {
       let day = 0;
       day = el.id;
       partialObject[day] = <div className='cardInTableHorarios cardInTablePartial'>
+        {/* <p> -</p> */}
         <p>{el.data().salon}</p>
-        <p>{el.data().inicio} - {el.data().fin}</p>
+        {/* <p>{el.data().inicio} - {el.data().fin}</p> */}
         <p>{el.data().Tecnicos}</p>
       </div>
     })
@@ -104,7 +108,7 @@ const PageHorariosTecnicos = () => {
       day = el.id;
       tecnicoObject[day] = <div className='cardInTableHorarios cardInTableTecnico'>
         <p>{el.data().salon}</p>
-        <p>{el.data().inicio} - {el.data().fin}</p>
+        {/* <p>{el.data().inicio} - {el.data().fin}</p> */}
         <p>{el.data().Tecnicos}</p>
       </div>
     });
@@ -114,7 +118,7 @@ const PageHorariosTecnicos = () => {
       day = el.id;
       cierreObject[day] = <div className='cardInTableHorarios cardInTableCierre'>
         <p>{el.data().salon}</p>
-        <p>{el.data().inicio} - {el.data().fin}</p>
+        {/* <p>{el.data().inicio} - {el.data().fin}</p> */}
         <p>{el.data().Tecnicos}</p>
       </div>
     });
@@ -128,7 +132,7 @@ const PageHorariosTecnicos = () => {
       day = el.id;
       guardiaObject[day] = <div className='cardInTableHorarios cardInTableGuardia'>
         <p>{el.data().salon}</p>
-        <p>{el.data().inicio} - {el.data().fin}</p>
+        {/* <p>{el.data().inicio} - {el.data().fin}</p> */}
         <p>{el.data().Tecnicos}</p>
       </div>
     })
@@ -138,7 +142,7 @@ const PageHorariosTecnicos = () => {
       day = el.id;
       otrosObject[day] = <div className='cardInTableHorarios cardOtros'>
         <p>{el.data().place}</p>
-        <p>{el.data().causa}</p>
+        {/* <p>{el.data().causa}</p> */}
         <p>{el.data().Tecnicos}</p>
       </div>
     })
@@ -149,8 +153,8 @@ const PageHorariosTecnicos = () => {
     }
     setData([globalObject, partialObject, tecnicoObject, cierreObject, guardiaObject, otrosObject, vacacionesObject]);
     setLoading(false)
-  }, []);
- 
+  }, [comunidad]);
+
   const onCLickMenu = (e) => {
     const firtDayofWeek = currentDay - currentWeek;
     const f = {
@@ -162,11 +166,12 @@ const PageHorariosTecnicos = () => {
     // dd({ dayStart: dayStartHorario })
   }
   useEffect(() => {
-    dd({ dayStart: dayStartHorario });
+    dd({ dayStart: 1 });
   }, [dayStartHorario, dd]);
   return (
-    <Row gutter={{ xs: 8, sm: 24, md: 24, lg: 32 }}>
-      {/* <Col span={6} >
+    <>
+      {/*<Row gutter={{ xs: 8, sm: 8, md: 8, lg: 8 }}>
+       <Col span={6} >
         <div className='card-left-horario-page'>Horarios Técnicos {comunidad}</div>
         <div className='card-left-horario-page'>
           <Menu
@@ -178,22 +183,24 @@ const PageHorariosTecnicos = () => {
         <div className='card-left-horario-page card-left-horario-page-flex'>
           {[...listTecnicos]}
         </div>
-      </Col> */}
-      <Col span={18} >
-        <Card className='main-card-horario-page'  >
-          <Row>
-            <Table className='tableHorarioTecnicos'
-              columns={colums}
-              dataSource={data ?? []}
-              pagination={{ pageSize: 10, responsive: true, }}
-              direction='ltr' scroll={{ x: 500, y: false }}
-              loading={loading}
-            // title={() => <Text>{`Calendario de Guardia de los tecnicos para el mes de ${date.getMonth() + 1}`} </Text>}
-            />
-          </Row>
-        </Card>
-      </Col>
-    </Row>
+      </Col> 
+      <Col span={8}  >
+    <Row gutter={8}>*/}
+      <Container className='main-card-horario-page'>
+        <Table className='tableHorarioTecnicos'
+          columns={colums}
+          dataSource={data ?? []}
+          pagination={{ pageSize: 10, responsive: true, }}
+          direction='ltr' scroll={{ x: 500, y: false }}
+          loading={loading}
+          style={{ width: 'auto' }}
+        // title={() => <Text>{`Calendario de Guardia de los tecnicos para el mes de ${date.getMonth() + 1}`} </Text>}
+        />
+      </Container>
+      {/*</Row>
+        </Col>
+      </Row> */}
+    </>
   );
 }
 
