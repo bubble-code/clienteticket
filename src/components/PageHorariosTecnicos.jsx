@@ -33,10 +33,11 @@ for (let i = 1; i <= currentCantDaybyMonth; i++) {
   const dayofWeek = new Date(date.getFullYear(), date.getMonth(), i).getDay();
   columns.push({
     title: `${dayOfWeek[dayofWeek]} ${i}`,
-    style: { background: 'red' },
+    style: { background: 'red', fontsize: '0.8em' },
     dataIndex: i,
     key: `dia${i}`,
-    width: 100,
+    width: 70,
+    responsive:['sm']
   });
 }
 
