@@ -33,6 +33,12 @@ const items = [
     getItem('Solved List', '8'),
     getItem('Delayed List', '9'),
   ]),
+  getItem('Salones', 'sub4', <TableOutlined />, [
+    getItem('Objetivos', 'objetivos'),
+    getItem('Facturacion', '7'),
+    // getItem('Solved List', '8'),
+    // getItem('Delayed List', '9'),
+  ]),
 ];
 
 const PageAdmin = () => {

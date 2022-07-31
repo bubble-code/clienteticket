@@ -17,7 +17,7 @@ import AccountCenter from './components/AccountCenter';
 import PageHorariosTecnicos from './components/PageHorariosTecnicos';
 import PageObjetivos from './components/PageObjetivos';
 import PageNewHorario from './components/PageNewHorario';
-import ListLeftTecHorario from './components/component/ListLeftTecnicoHorario';
+import CardObjetivosSalones from './components/cardObjetivos/CardObjetivos';
 import 'antd/dist/antd.css';
 import './App.css'
 
@@ -44,6 +44,7 @@ const App = () => {
             <Route path="workplaceview" element={<WorkplaceView />} />
             <Route path="accountcenter" element={<AccountCenter />} />
             <Route path="newHorario" element={<PageNewHorario />} />
+            <Route path="objetivos" element={<CardObjetivosSalones />} />
           </Route>
         </Route>
       </Route>
