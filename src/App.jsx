@@ -16,7 +16,7 @@ import WorkplaceView from './components/WorkplaceView';
 import AccountCenter from './components/AccountCenter';
 import PageHorariosTecnicos from './components/PageHorariosTecnicos';
 import PageObjetivos from './components/PageObjetivos';
-import PageNewHorario from './components/PageNewHorario';
+import PageNewHorario from './components/PageNewHorario/PageNewHorario';
 import CardObjetivosSalones from './components/cardObjetivos/CardObjetivos';
 import 'antd/dist/antd.css';
 import './App.css'

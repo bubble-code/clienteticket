@@ -110,6 +110,31 @@ const users = [
     role: 4,
     comunidad: 'Cantabria',
   },
+  {
+    user: 'Alsasua',
+    pass: '123',
+    role: 4,
+    comunidad: 'Navarra',
+  },
+  {
+    user: 'Mendebaldea',
+    pass: '123',
+    role: 4,
+    comunidad: 'Navarra',
+  },
+  {
+    user: 'Olite',
+    pass: '123',
+    role: 4,
+    comunidad: 'Navarra',
+  },
+  {
+    user: 'Tudela',
+    pass: '123',
+    role: 4,
+    comunidad: 'Navarra',
+  },
+
 
 ]
 

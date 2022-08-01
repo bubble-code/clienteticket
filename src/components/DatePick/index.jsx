@@ -3,14 +3,14 @@ import React from 'react';
 import './style.css';
 
 
-const DatePick = ({ setFecha }) => {
+const DatePick = ({ setFecha, type }) => {
     const onChange = (date, dateString) => {
         setFecha(dateString);
         console.log(dateString);
     };
     return (
         <Space direction="horizontal">
-            <DatePicker onChange={onChange} />
+            <DatePicker onChange={onChange} className='date-picker-main' picker={type} />
         </Space>);
 };
 

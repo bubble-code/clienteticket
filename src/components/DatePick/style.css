@@ -1,0 +1,16 @@
+.date-picker-main,
+.ant-picker-panel-container {
+    background: transparent !important;
+}
+
+.date-picker-main input {
+    background: transparent !important;
+    color: rgb(116, 238, 68) !important;
+}
+.ant-picker-suffix{
+    color: rgb(116, 238, 68) !important;
+}
+.ant-picker-clear{
+    color: rgb(116, 238, 68) !important;
+    background: transparent !important;
+}

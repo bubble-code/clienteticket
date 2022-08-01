@@ -30,7 +30,7 @@ const TabListComunidadesHeader = ({ setComunidad }) => {
         loadListComunidades();
     }, [])
     return (<>
-        <Tabs defaultActiveKey="1" onChange={onChange} color='red'>
+        <Tabs  onChange={onChange} color='red' className='tab-header-camunidades'>
             {itemsComunidades.map(item => (
                 <TabPane tab={item.label} key={item.key}> </TabPane>
             ))}

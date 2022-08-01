@@ -1,0 +1,15 @@
+.tab-header-camunidades {
+    color: white !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0 !important;
+}
+
+.tab-header-camunidades .ant-tabs-tab-btn {
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+}
+.row-fecha-horario{
+    margin: 0 0 0 0 !important;
+    padding: 0 0 0 0 !important;
+}
