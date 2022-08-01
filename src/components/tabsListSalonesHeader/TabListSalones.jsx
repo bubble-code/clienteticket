@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import DataService from '../../service/service';
-import FormObjSalones from '../formObjeSalones/FormObjSalones';
-
 import { Tabs } from 'antd';
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
+import { MailOutlined } from '@ant-design/icons';
 import './style.css';
 
 const { TabPane } = Tabs;
 
-const onChange = (key) => {
-    console.log(key);
-};
 
-const TabListComunidadesHeader = () => {
+const TabListComunidadesHeader = ({ setComunidad }) => {
     const [itemsComunidades, setItemsComunidades] = useState([]);
+
+    const onChange = (key) => {
+        setComunidad(key);
+    };
     const loadListComunidades = async () => {
         const items = [];
         const list = await DataService.getListComunidad()//.sort((a, b) => b.id - a.id);
@@ -30,12 +29,14 @@ const TabListComunidadesHeader = () => {
     useEffect(() => {
         loadListComunidades();
     }, [])
-    return (
+    return (<>
         <Tabs defaultActiveKey="1" onChange={onChange} color='red'>
             {itemsComunidades.map(item => (
-                <TabPane tab={item.label} key={item.key}>{<FormObjSalones comunidad={item.label} key={item.label} />} </TabPane>
+                <TabPane tab={item.label} key={item.key}> </TabPane>
             ))}
-        </Tabs>);
+        </Tabs>;
+    </>
+    );
 };
 
 export default TabListComunidadesHeader;

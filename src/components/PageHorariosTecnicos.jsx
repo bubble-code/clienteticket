@@ -23,7 +23,7 @@ const dayOfWeek = ['Dom', 'Lun', 'Mar', 'Miér', 'Jue', 'Vie', 'Sáb',];
 const columns = [
   {
     title: 'Horario',
-    width: 1,
+    width: 10,
     dataIndex: 'horario',
     key: 'horario',
     fixed: 'left',
@@ -194,7 +194,7 @@ const PageHorariosTecnicos = () => {
           pagination={{ pageSize: 10, responsive: true, }}
           direction='ltr' scroll={{ x: 500, y: false }}
           loading={loading}
-          style={{ width: 'auto' }}
+          // style={{ width: 'auto' }}
         // title={() => <Text>{`Calendario de Guardia de los tecnicos para el mes de ${date.getMonth() + 1}`} </Text>}
         />
       </Container>

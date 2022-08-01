@@ -2,5 +2,24 @@
     color: aliceblue;
     background: #e49400;
     width: 100%;
+}
 
+.title-table-objetivos h1 {
+    color: #9d6806 !important;
+    font-size: 1.5rem !important;
+    font-weight: 400 !important;
+    text-align: left;
+    margin: 0 0 0 0 !important;
+    padding: 0 0 0 0 !important;
+}
+#tableSalonesObjEditable{
+    width: 100%;
+    margin: 0 0 0 0 !important;
+    padding: 0 0 0 0 !important;
+}
+#tableSalonesObjEditable table,
+#tableSalonesObjEditable th,
+#tableSalonesObjEditable td,
+#tableSalonesObjEditable .ant-table-container {
+    border: none !important;    
 }

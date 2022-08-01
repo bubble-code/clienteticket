@@ -35,7 +35,7 @@ const items = [
   ]),
   getItem('Salones', 'sub4', <TableOutlined />, [
     getItem('Objetivos', 'objetivos'),
-    getItem('Facturacion', '7'),
+    getItem('Facturacion', 'facturacion'),
     // getItem('Solved List', '8'),
     // getItem('Delayed List', '9'),
   ]),

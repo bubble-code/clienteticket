@@ -1,5 +1,5 @@
 import { db } from './firebase';
-import { collection, getDoc, getDocs, onSnapshot, doc, query, where, addDoc, setDoc, deleteDoc } from 'firebase/firestore'
+import { collection, getDoc, getDocs, onSnapshot, doc, query, where, addDoc, setDoc, deleteDoc, updateDoc } from 'firebase/firestore'
 
 
 class DataService {
@@ -30,7 +30,7 @@ class DataService {
     const { maquina, tipoAveria, prioridad, estadoMaquina, taquillero, cantDinero, detallesTicket, currentDate, currenTime, user } = ticket;
     const collectionn = collection(db, this._pathAverias);
     return await addDoc(collectionn, { maquina, tipoAveria, prioridad, estadoMaquina, taquillero, cantDinero, detallesTicket, currentDate, currenTime, user, state: 'Abierto' });
-  } ;
+  };
   async getListaAverias(salon) {
     const collectionn = collection(db, this._pathAverias);
     const querySnapShot = query(collectionn, where('user', '==', salon));
@@ -148,6 +148,7 @@ class DataService {
     })
     return locations;
   }
+
   async getListHall({ comunidad }) {
     const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/Salones`);
     // const collectionn = collection(db, this._pathSalones);
@@ -155,6 +156,7 @@ class DataService {
     const result = await getDocs(querySnapShot);
     return result.docs;
   }
+
   async getListComunidad() {
     const collectionn = collection(db, this._pathComunidades);
     const querySnapShot = query(collectionn);
@@ -177,10 +179,13 @@ class DataService {
     const result = tempResult.docs.filter(doc => doc.id >= startDay);
     return result;
   }
+  // ***🍕*******************************Metodos para los Objetivos***********************************************************
+  // Actualizar Objetivos
+  async updateObjetivo({ comunidad, salon, objetivo, periodo }) {
+    const objetivosRef = doc(db, `${this._pathComunidades}/${comunidad}/Salones/${salon}/Objetivos/${periodo}`);
+    await updateDoc(objetivosRef, { objetivo: objetivo });
+  }
 
-  /**
-   * It gets the objectives of a classroom by community, classroom and period.
-   */
   async getObjetivosBySalon({ comunidad, salon, periodo }) {
     const collectionn = doc(db, `${this._pathComunidades}/${comunidad}/Salones/${salon}/Objetivos/${periodo}`);
     const result = await getDoc(collectionn);
@@ -211,6 +216,14 @@ class DataService {
     const arrayDocs = await getDocs(querySnapShot);
     // const aa = arrayDocs.docs.sort((a, b) => b.id - a.id)
     return arrayDocs.docs;
+  }
+  // **********************************Metodos para los Objetivos***********************************************************
+  // **********************************facturacion***********************************************************
+  async postFacturacionBySalon({ comunidad, salon, periodo, dia, mes, value }) {
+    const converValue = Number(value);
+    const docRef = doc(db, `${this._pathComunidades}/${comunidad}/Salones/${salon}/Objetivos/${periodo}/${mes}`, `${dia}`);
+    await setDoc(docRef, { value: converValue });
+    // return result.data();
   }
 }
 export default new DataService();

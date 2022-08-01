@@ -2,24 +2,18 @@ import React, { useState } from 'react';
 import TabListComunidadesHeader from '../tabsListSalonesHeader/TabListSalones';
 import { Card } from 'antd';
 import './style.css';
-import FormObjSalones from '../formObjeSalones/FormObjSalones';
+import FormFacturacionSalones from '../formFacturacionSalones';
 
 
-const CardObjetivosSalones = () => {
-
+const CardFacturacionSalones = () => {
     const [currentComunidad, setCurrentComunidad] = useState(null);
+
     return (
         <Card className='mainCardTicket' >
             <TabListComunidadesHeader setComunidad={setCurrentComunidad} />
-            <FormObjSalones comunidad={currentComunidad} />
+            <FormFacturacionSalones comunidad={currentComunidad} />
         </Card >
     );
 };
 
-
-
-export default CardObjetivosSalones;
-
-
-
-
+export default CardFacturacionSalones;

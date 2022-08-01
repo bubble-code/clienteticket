@@ -20,6 +20,7 @@ import PageNewHorario from './components/PageNewHorario';
 import CardObjetivosSalones from './components/cardObjetivos/CardObjetivos';
 import 'antd/dist/antd.css';
 import './App.css'
+import CardFacturacionSalones from './components/cardFacturacionSalones';
 
 
 const App = () => {
@@ -45,6 +46,7 @@ const App = () => {
             <Route path="accountcenter" element={<AccountCenter />} />
             <Route path="newHorario" element={<PageNewHorario />} />
             <Route path="objetivos" element={<CardObjetivosSalones />} />
+            <Route path="facturacion" element={<CardFacturacionSalones />} />
           </Route>
         </Route>
       </Route>
