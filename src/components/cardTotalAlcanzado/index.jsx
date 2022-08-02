@@ -16,7 +16,10 @@ const CardTotalAlcanzado = ({ title }) => {
 
     const loadigTotal = async () => {
         const objetivo = await DataService.getObjetivosBySalon({ comunidad: comunidad, salon: user, periodo: 3 })
-        const totalAlcanzado = await DataService.getObjetivosTotalAlcanzadosBySalon({ comunidad: comunidad, salon: user, periodo: 3 })
+        const totalAlcanzado7 = await DataService.getObjetivosTotalAlcanzadosBySalon({ comunidad: comunidad, salon: user, periodo: 3, mes: 7 }) || 0;
+        const totalAlcanzado8 = await DataService.getObjetivosTotalAlcanzadosBySalon({ comunidad: comunidad, salon: user, periodo: 3, mes: 8 }) || 0;
+        const totalAlcanzado9 = await DataService.getObjetivosTotalAlcanzadosBySalon({ comunidad: comunidad, salon: user, periodo: 3, mes: 9 }) || 0;
+        const totalAlcanzado = totalAlcanzado7 + totalAlcanzado8 + totalAlcanzado9;
         const porce = Math.floor((Math.floor(totalAlcanzado) / Math.floor(objetivo.objetivo)) * 100);
         // console.log(Math.floor(objetivo.objetivo));
         setTotal(totalAlcanzado);

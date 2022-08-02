@@ -10,13 +10,6 @@ import "./style.css"
 import DataService from "../../service/service";
 import useAuth from "../../hooks/useAuth";
 
-const data = [
-    'Carabanchel',
-    'Mejorada',
-    'Villanueva',
-    'Alcala 2',
-    'Alcobendas',
-];
 
 const renderRanking = (item, index) => {
     switch (index) {
@@ -43,6 +36,7 @@ const renderRanking = (item, index) => {
     }
 }
 
+const month = new Date().getMonth() + 1;
 
 const CardRanking = () => {
     const [ranking, setRanking] = useState([])
@@ -54,7 +48,12 @@ const CardRanking = () => {
         const listSalones = await DataService.getListHall({ comunidad: comunidad });
         Promise.all(
             listSalones.map(async (salon) => {
-                const { totalDiario: totalDia } = await DataService.getObjetivosLastDayByAlcanzadosBySalon({ comunidad: comunidad, salon: salon.id, periodo: 3 });
+                const { totalDiario: totalDia } = await DataService.getObjetivosLastDayByAlcanzadosBySalon({
+                    comunidad: comunidad,
+                    salon: salon.id,
+                    periodo: 3,
+                    mes: month 
+                });
                 arrayDocs.push({ salon: salon.id, totalDia });
                 // arrayDocs[salon.id] = totalDia;
             })).then(() => {

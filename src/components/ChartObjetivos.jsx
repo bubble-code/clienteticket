@@ -7,6 +7,9 @@ import useAuth from "../hooks/useAuth";
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
+const month = new Date().getMonth() + 1;
+
+
 const ChartObjetivosView = () => {
   const { auth } = useAuth();
   const { comunidad, user } = auth;
@@ -15,7 +18,7 @@ const ChartObjetivosView = () => {
   const valueLineaCero = [];
   const [dataset, setDataset] = useState({ labelArray, valuesArray });
   const loadObjetivos = async () => {
-    const res = await DataService.getObjetivosByDayAlcanzadosBySalon({ comunidad, periodo: 3, salon: user })
+    const res = await DataService.getObjetivosByDayAlcanzadosBySalon({ comunidad, periodo: 3, salon: user, mes: month });
     res.sort((a, b) => a.id - b.id).forEach(doc => {
       labelArray.push(doc.id);
       valuesArray.push(doc.data().value);

@@ -191,9 +191,9 @@ class DataService {
     const result = await getDoc(collectionn);
     return result.data();
   }
-  async getObjetivosTotalAlcanzadosBySalon({ comunidad, salon, periodo }) {
+  async getObjetivosTotalAlcanzadosBySalon({ comunidad, salon, periodo, mes }) {
     let result = 0;
-    const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/Salones/${salon}/Objetivos/${periodo}/7`);
+    const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/Salones/${salon}/Objetivos/${periodo}/${mes}`);
     const querySnapShot = query(collectionn);
     const arrayDocs = await getDocs(querySnapShot);
     arrayDocs.forEach(doc => {
@@ -201,8 +201,8 @@ class DataService {
     })
     return result;
   }
-  async getObjetivosLastDayByAlcanzadosBySalon({ comunidad, salon, periodo, dia }) {
-    const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/Salones/${salon}/Objetivos/${periodo}/7`);
+  async getObjetivosLastDayByAlcanzadosBySalon({ comunidad, salon, periodo, mes }) {
+    const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/Salones/${salon}/Objetivos/${periodo}/${mes}`);
     const querySnapShot = query(collectionn);
     const arrayDocs = await getDocs(querySnapShot);
     const sortDiarios = arrayDocs.docs?.sort((a, b) => b.id - a.id)
@@ -210,8 +210,8 @@ class DataService {
     const diaa = sortDiarios[0]?.id;
     return { totalDiario, diaa };
   }
-  async getObjetivosByDayAlcanzadosBySalon({ comunidad, salon, periodo, dia }) {
-    const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/Salones/${salon}/Objetivos/${periodo}/7`);
+  async getObjetivosByDayAlcanzadosBySalon({ comunidad, salon, periodo, mes }) {
+    const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/Salones/${salon}/Objetivos/${periodo}/${mes}`);
     const querySnapShot = query(collectionn);
     const arrayDocs = await getDocs(querySnapShot);
     // const aa = arrayDocs.docs.sort((a, b) => b.id - a.id)
