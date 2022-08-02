@@ -23,7 +23,7 @@ const dayOfWeek = ['Dom', 'Lun', 'Mar', 'Miér', 'Jue', 'Vie', 'Sáb',];
 const columns = [
   {
     title: 'Horario',
-    width: 10,
+    width: 90,
     dataIndex: 'horario',
     key: 'horario',
     fixed: 'left',

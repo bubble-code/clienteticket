@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import DataService from '../../service/service';
-// import useAuth from '../../hooks/useAuth';
+
+import { month, dayOfWeek } from '../month';
 import { Form, Card, Select, Input, Modal, message } from 'antd';
+import DatePick from '../DatePick';
+import './style.css';
 
 const { Option } = Select;
-
-const dayOfWeek = ['Dom', 'Lun', 'Mar', 'Miér', 'Jue', 'Vie', 'Sáb',];
-const month = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 
 
 const ModalAddTurnoJobs = ({ funOpen, isOpen, datte, comunidad }) => {
     const [listTecn, setListTecn] = useState([]);
     const [listTare, setListTare] = useState([]);
     const date = new Date();
-    const currentDate = ` ${dayOfWeek[datte.getDay()] + ' ' + datte.getDate() + ` - ` + month[(datte.getMonth())] + ' - ' + datte.getFullYear()}`;
+    const currentDate = `${month[(datte.getMonth())]}`;
     const [form] = Form.useForm();
     // const { auth } = useAuth();
     // const { comunidad, user } = auth;
@@ -51,7 +51,7 @@ const ModalAddTurnoJobs = ({ funOpen, isOpen, datte, comunidad }) => {
             'selectTecn': value
         });
     }
-    const handleChange = async (value) => {}
+    const handleChange = async (value) => { }
 
 
     useEffect(() => {
@@ -59,9 +59,12 @@ const ModalAddTurnoJobs = ({ funOpen, isOpen, datte, comunidad }) => {
     }, [comunidad, isOpen])
 
     return (
-        <Modal title="Añadir Turno & Tarea" visible={isOpen} onOk={handleOk} onCancel={handleCancel} >
-            <Card title={<h4>Fecha: {currentDate}</h4>}>
+        <Modal title={<h4>{currentDate}</h4>} visible={isOpen} onOk={handleOk} onCancel={handleCancel} className='modal-new-jobs'>
+            <Card>
                 <Form layout='horizontal' form={form} initialValues={{}}>
+                    <Form.Item name='dia'>
+                        <DatePick setFecha={handleChange} type='day' />
+                    </Form.Item>
                     <Form.Item name={'selectTarea'} rules={[{ required: true, message: 'Este campo es obligatorio' }]}   >
                         <h3>Tarea</h3>
                         <Select defaultValue="" style={{ width: 300 }} onChange={handleChange} placeholder='placeholder' className='border-select-selector' >

@@ -1,63 +1,57 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Space, Table, Tag } from 'antd';
-import { cntWeek, numberWeek } from '../month'
-const columns = [
+import { cntWeek, numberWeek, headerDiasTableHorario } from '../month'
+
+
+const dataColSemana = [
     {
-        title: 'Name',
-        dataIndex: 'name',
-        key: 'name',
-        render: (text) => <a>{text}</a>,
-    }
-];
-//  function to get the list of days of the current week
-const getDaysOfWeek = () => {
-    const date = new Date();
-    const days = [];
-    for (let i = 1; i <= 7; i++) {
-        const day = new Date(date);
-        day.setDate(date.getDate() - date.getDay() + i);
-        days.push(day);
-    }
-    console.log(days);
-    return days;
-};
-// number of week by date
-const cntdfWeek = () => {
-
-}
-
-
-const data = [
+        key: '0',
+        semana: 'Guardias',
+        tags: ['nice', 'developer'],
+    },
     {
         key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
+        semana: 'Otros',
         tags: ['nice', 'developer'],
     },
     {
         key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-        tags: ['loser'],
+        semana: 'Vacaciones',
+        render: (text) => <a style={{ color: 'blue' }}>{text}</a>,
     },
     {
         key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park',
-        tags: ['cool', 'teacher'],
+        semana: 'Tecnico',
+        tags: ['nice', 'developer'],
+    },
+    {
+        key: '4',
+        semana: 'Global',
+        tags: ['nice', 'developer'],
+    },
+    {
+        key: '5',
+        semana: 'Parcial',
+        tags: ['nice', 'developer'],
+    },
+    {
+        key: '6',
+        semana: 'Al Cierre',
+        tags: ['nice', 'developer'],
     },
 ];
 
 
-console.log(cntWeek());
-console.log(numberWeek());
-
-const TableHorarioCreate = () => {
-    getDaysOfWeek();
-    return (
-        <Table columns={columns} dataSource={data} />);
+const TableHorarioCreate = ({ mes }) => {
+    const listTablesHorarios = [];
+    const [dataCuadrante, setDataCuadrante] = ([dataColSemana]);
+    for (let i = 0, dia = 1; i < cntWeek(); i++, dia = dia + 7) {
+        let stringDate = `2022-${mes}-${dia}`;
+        const columns = [...headerDiasTableHorario({ semana: 31 + i, fecha: stringDate })]
+        listTablesHorarios.push(<Table columns={columns} dataSource={dataCuadrante} pagination={false} />)
+    }
+    return <>
+        {[...listTablesHorarios]}
+    </>;
 }
 export default TableHorarioCreate;

@@ -1,0 +1,31 @@
+.modal-new-jobs .ant-modal-content {
+    background: rgb(198, 198, 199);
+    color: white;
+    border: none;
+    border-radius: 10px;
+}
+
+.modal-new-jobs .ant-card,
+.modal-new-jobs .ant-modal-header,
+.modal-new-jobs .ant-modal-close,
+.modal-new-jobs h4,
+.modal-new-jobs .ant-modal-body h3 {
+    background: transparent;
+    border: none;
+    color: black;
+    font-weight: 400;
+    letter-spacing: 1px;
+    /* text-transform: uppercase; */
+}
+
+
+.modal-new-jobs .ant-modal-body .ant-select-selector {
+    background: rgba(38, 10, 178, 0.43) !important;
+    color: white;
+    border: none;
+    border-radius: 10px;
+}
+
+.modal-new-jobs .border-select-selector {
+    border: none;
+}

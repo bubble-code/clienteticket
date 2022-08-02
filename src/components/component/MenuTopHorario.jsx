@@ -42,7 +42,7 @@ const MenuTopHorario = () => {
                 <Menu onClick={onClickListTByC} selectedKeys={[current]} mode="horizontal" items={itemsComunidades} />
             </Col>
             <div className='container-grid-horario-new'>
-                <ListLeftTecHorario comunidad={current} />
+                <ListLeftTecHorario comunidad={current} /> 
                 <CalenNewHorario comunidad={current} valDate={setValueDate} isMoVisible={setIsModalVisible} isvisible={isModalVisible} />
                 <ModalAddTurnoJobs isOpen={isModalVisible} funOpen={setIsModalVisible} datte={valueDate} comunidad={current} />
             </div>
