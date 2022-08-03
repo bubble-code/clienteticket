@@ -20,11 +20,7 @@ class DataService {
     await setDoc(collectionn, { noMaquina, permiso, denominacion, observacion });
   }
 
-  async getMaquinas1(salon) {
-    const collectionn = collection(db, "salones/Madrid/Averias")
-    const querySnapshot = await getDocs(query(collectionn));
-    querySnapshot.docs.map(doc => console.log(doc.id))
-  }
+  
   async getMaquinas({ salon, comunidad }) {
     const path = `${this._pathComunidades}/${comunidad}/Salones/${salon}/Maquinas`;
     const collectionn = collection(db, path);

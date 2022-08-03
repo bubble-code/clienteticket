@@ -22,7 +22,7 @@ const NewTicket = () => {
   const [listTipoAverias, setlistTipoAverias] = useState([]);
   const [form] = Form.useForm();
   const { auth } = useAuth();
-  const { user } = auth;
+  const { user, comunidad } = auth;
   const navigate = useNavigate();
 
   /**
@@ -50,9 +50,9 @@ const NewTicket = () => {
    * DataService.getTipostAverias, and then sets the state of listMaquinas and
    * listTipoAverias.
    */
-  const loadLists = async (salon) => {
+  const loadLists = async ({ use, comu }) => {
     try {
-      const listMaquinas = await DataService.getMaquinas(salon);
+      const listMaquinas = await DataService.getMaquinas({ salon: use, comunidad: comu });
       const listTipAverias = await DataService.getTipostAverias();
       setListMaquinas(listMaquinas.docs);
       setlistTipoAverias(listTipAverias.docs)
@@ -62,8 +62,8 @@ const NewTicket = () => {
   }
 
   useEffect(() => {
-    loadLists(user);
-  }, [user]);
+    loadLists({ use: user, comu: comunidad });
+  }, [user, comunidad]);
   return (
     <Card className='mainCardTicket' >
       <Form
@@ -83,7 +83,7 @@ const NewTicket = () => {
                 {/* <Divider className='divider' /> */}
               </Col>
               <Col>
-                <h3>Cliente: <span>{user}</span></h3> 
+                <h3>Cliente: <span>{user}</span></h3>
               </Col>
             </Row>
           </Col>

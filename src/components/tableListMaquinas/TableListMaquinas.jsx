@@ -12,7 +12,7 @@ const TableListMaquinas = ({ salon, comunidad }) => {
     const [maquinas, setMaquinas] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    const loadMaquinas = async () => {
+    const loadMaquinas = async ({ salon, comunidad }) => {
         setLoading(true);
         const listMaquinas = [];
         const arrayMaquinas = await DataService.getMaquinas({ salon, comunidad });
@@ -30,8 +30,8 @@ const TableListMaquinas = ({ salon, comunidad }) => {
     }
 
     useEffect(() => {
-        loadMaquinas();
-    }, [salon]);
+        loadMaquinas({ salon, comunidad });
+    }, [salon, comunidad]);
 
 
     return <>
