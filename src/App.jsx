@@ -21,6 +21,7 @@ import CardObjetivosSalones from './components/cardObjetivos/CardObjetivos';
 import 'antd/dist/antd.css';
 import './App.css'
 import CardFacturacionSalones from './components/cardFacturacionSalones';
+import PageMaquinasAdmin from './components/pageMaquinasAdmin';
 
 
 const App = () => {
@@ -47,6 +48,7 @@ const App = () => {
             <Route path="newHorario" element={<PageNewHorario />} />
             <Route path="objetivos" element={<CardObjetivosSalones />} />
             <Route path="facturacion" element={<CardFacturacionSalones />} />
+            <Route path="maquinasAdmin" element={<PageMaquinasAdmin />} />
           </Route>
         </Route>
       </Route>

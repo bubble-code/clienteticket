@@ -1,0 +1,22 @@
+.boton-salones {
+    margin-right: 12px;
+}
+
+.boton-salones.ant-btn-primary {
+    background-color: #2d8515bb;
+    border-color: #2d8515;
+    color: #f4f4f5;
+    font-family: Open Sans, sans-serif;
+    letter-spacing: 1px;
+    font-weight: 300;
+    font-size: 1.1rem;
+    border-radius: 10px;
+}
+
+.boton-salones.ant-btn-primary:hover,
+.boton-salones.ant-btn-primary:focus,
+.boton-salones.active {
+    color: #fff;
+    border-color: rgba(0, 0, 0, 0.531);
+    background: rgba(0, 0, 0, 0.531);
+}

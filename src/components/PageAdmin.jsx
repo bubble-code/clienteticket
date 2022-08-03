@@ -36,6 +36,7 @@ const items = [
   getItem('Salones', 'sub4', <TableOutlined />, [
     getItem('Objetivos', 'objetivos'),
     getItem('Facturacion', 'facturacion'),
+    getItem('Maquinas', 'maquinasAdmin'),
     // getItem('Solved List', '8'),
     // getItem('Delayed List', '9'),
   ]),
@@ -50,10 +51,19 @@ const PageAdmin = () => {
     <Row style={{ display: "grid", gridTemplateColumns: '1fr 4fr', marginLeft: 0 }}>
       <Col style={{ marginRight: 0 }}>
         <Layout.Sider >
-          <Menu onClick={onClick} style={{ width: 256, }} defaultSelectedKeys={['inicio']} defaultOpenKeys={['sub1']} mode="inline" items={items} theme="dark" />
+          <Menu
+            onClick={onClick}
+            style={{ width: 256, }}
+            defaultSelectedKeys={['inicio']}
+            // defaultOpenKeys={['sub1']}
+            mode="inline"
+            items={items}
+            theme="dark"
+            inlineCollapsed={true}
+          />
         </Layout.Sider>
       </Col>
-      <Col style={{ marginLeft: 0 }}  span={24}  offset={-6}>
+      <Col style={{ marginLeft: 0 }} span={24} offset={-6}>
         <Outlet />
       </Col>
     </Row>
