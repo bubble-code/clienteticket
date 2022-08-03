@@ -12,6 +12,28 @@ class DataService {
   _pathComunidades = "/salones";
   _pathJobs = "jobs";
 
+
+  // Add a new machine to hall
+  async addMachine({ comunidad, salon, data }) {
+    const { plaza, noMaquina, permiso, denominacion, observacion } = data;
+    const collectionn = doc(db, `${this._pathComunidades}/${comunidad}/Salones/${salon}/Maquinas`, plaza);
+    await setDoc(collectionn, { noMaquina, permiso, denominacion, observacion });
+  }
+
+
+  // async closeTicket({ ticket, comment }) {
+  //   const date = new Date();
+  //   const closeTime = (date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds());
+  //   const closetDate = (date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear());
+  //   const collectionn = collection(db, this._pathAveriasCerradas);
+  //   const result = await this.getTicketById({ ticket });
+  //   await addDoc(collectionn, { ...result, comment, closeTime, closetDate });
+  //   await deleteDoc(doc(db, this._pathAverias, ticket))
+  // }
+
+
+
+
   async getMaquinas1(salon) {
     const collectionn = collection(db, "salones/Madrid/Averias")
     const querySnapshot = await getDocs(query(collectionn));
@@ -70,7 +92,7 @@ class DataService {
     const dateInicio = (date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear());
     // const collectionn = collection(db, `${this._pathIsInicioTec}/${tec}/Inicio`);
     const result = await getDoc(doc(db, `${this._pathIsInicioTec}/${tec}/Inicio`, dateInicio));
-    console.log(result.data());
+    // console.log(result.data());
     return result.data()?.hora ?? '00:00:00';
   }
 

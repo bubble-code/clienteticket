@@ -15,6 +15,8 @@ const BotonesSalon = ({ comunidad, setSalon }) => {
     }
     const loadSalones = async () => {
         const arraySalones = await DataService.getListHall({ comunidad });
+        setActiveSalon(null)
+        setSalon(null)
         setSalones(arraySalones);
     }
 

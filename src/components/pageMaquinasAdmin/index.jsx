@@ -6,6 +6,7 @@ import './style.css';
 import TabListComunidadesHeader from "../tabsListSalonesHeader/TabListSalones";
 import TableListMaquinas from "../tableListMaquinas/TableListMaquinas";
 import BotonesSalon from "../botonesSalon";
+import ModalAddMaquina from "../modalAddMaquina";
 
 const PageMaquinasAdmin = () => {
     const [comunidad, setComunidad] = useState(null);
@@ -28,12 +29,18 @@ const PageMaquinasAdmin = () => {
                             <Col>
                                 <BotonesSalon comunidad={comunidad} setSalon={setSalon} />
                             </Col>
-                            <Button type="primary" onClick={() => setIsModalVisible(true)} >Agregar Maquina</Button>
+                            {salon ? <Button type="primary" onClick={() => setIsModalVisible(true)} >Agregar Maquina</Button> : <></>}
+                            <ModalAddMaquina
+                                cancel={setIsModalVisible}
+                                visibl={isModalVisible}
+                                comunidad={comunidad}
+                                salon={salon}
+                            />
                         </Row>
-                        <TableListMaquinas salon={salon} />
+                        {salon ? <TableListMaquinas salon={salon} /> : <h1>Seleccione un Salon</h1>}
                     </Col>
                 </Row> :
-                <Col span={24}></Col>}
+                <Col span={24}><h1>Debe seleccionar una comunidad</h1></Col>}
         </Col >
     );
 }

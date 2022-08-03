@@ -10,12 +10,13 @@ import DataService from '../../service/service';
 const TableListMaquinas = ({ salon }) => {
 
     const [maquinas, setMaquinas] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     const loadMaquinas = async () => {
+        setLoading(true);
         const listMaquinas = [];
         const arrayMaquinas = await DataService.getMaquinas(salon);
         arrayMaquinas.forEach((maqui) => {
-            console.log(maqui.data());
             listMaquinas.push({
                 id: maqui.id,
                 noMaquina: maqui.data().noMaquina,
@@ -24,6 +25,7 @@ const TableListMaquinas = ({ salon }) => {
                 observacion: maqui.data().observacion,
             });
         });
+        setLoading(false);
         setMaquinas(listMaquinas);
     }
 
@@ -33,7 +35,7 @@ const TableListMaquinas = ({ salon }) => {
 
 
     return <>
-        <Table columns={schemaColumnListMaquinas} dataSource={maquinas} pagination={false} />
+        <Table columns={schemaColumnListMaquinas} dataSource={maquinas} pagination={false} loading={loading} />
     </>;
 }
 export default TableListMaquinas;
