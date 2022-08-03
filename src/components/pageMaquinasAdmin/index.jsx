@@ -37,7 +37,7 @@ const PageMaquinasAdmin = () => {
                                 salon={salon}
                             />
                         </Row>
-                        {salon ? <TableListMaquinas salon={salon} /> : <h1>Seleccione un Salon</h1>}
+                        {salon ? <TableListMaquinas salon={salon} comunidad={comunidad} /> : <h1>Seleccione un Salon</h1>}
                     </Col>
                 </Row> :
                 <Col span={24}><h1>Debe seleccionar una comunidad</h1></Col>}

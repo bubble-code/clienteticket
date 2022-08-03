@@ -7,7 +7,7 @@ import DataService from '../../service/service';
 
 
 
-const TableListMaquinas = ({ salon }) => {
+const TableListMaquinas = ({ salon, comunidad }) => {
 
     const [maquinas, setMaquinas] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -15,7 +15,7 @@ const TableListMaquinas = ({ salon }) => {
     const loadMaquinas = async () => {
         setLoading(true);
         const listMaquinas = [];
-        const arrayMaquinas = await DataService.getMaquinas(salon);
+        const arrayMaquinas = await DataService.getMaquinas({ salon, comunidad });
         arrayMaquinas.forEach((maqui) => {
             listMaquinas.push({
                 id: maqui.id,

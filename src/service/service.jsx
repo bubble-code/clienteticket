@@ -20,27 +20,13 @@ class DataService {
     await setDoc(collectionn, { noMaquina, permiso, denominacion, observacion });
   }
 
-
-  // async closeTicket({ ticket, comment }) {
-  //   const date = new Date();
-  //   const closeTime = (date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds());
-  //   const closetDate = (date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear());
-  //   const collectionn = collection(db, this._pathAveriasCerradas);
-  //   const result = await this.getTicketById({ ticket });
-  //   await addDoc(collectionn, { ...result, comment, closeTime, closetDate });
-  //   await deleteDoc(doc(db, this._pathAverias, ticket))
-  // }
-
-
-
-
   async getMaquinas1(salon) {
     const collectionn = collection(db, "salones/Madrid/Averias")
     const querySnapshot = await getDocs(query(collectionn));
     querySnapshot.docs.map(doc => console.log(doc.id))
   }
-  async getMaquinas(salon) {
-    const path = `${this._pathSalones}/${salon}/Maquinas`;
+  async getMaquinas({ salon, comunidad }) {
+    const path = `${this._pathComunidades}/${comunidad}/Salones/${salon}/Maquinas`;
     const collectionn = collection(db, path);
     return await getDocs(query(collectionn));
   }
