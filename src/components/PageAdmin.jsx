@@ -18,9 +18,9 @@ const items = [
     getItem('Hacer Horario', 'newHorario', <TableOutlined />,),
     getItem('Listar Horario', 'listHorario', <TableOutlined />,),
   ]),
-  getItem('Dashboard', 'sub1', <FieldTimeOutlined />, [
+  getItem('Monitor', 'sub1', <FieldTimeOutlined />, [
     getItem('Analisis', 'analisview'),
-    getItem('Monitor', 'monitorview'),
+    getItem('Mapa', 'monitorview'),
     getItem('Workplace', 'workplaceview'),
   ]),
   getItem('Account', 'sub2', <UserOutlined />, [

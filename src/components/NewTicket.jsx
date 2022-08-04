@@ -42,7 +42,7 @@ const NewTicket = () => {
     const currentDate = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
     message.success("Ticket creado correctamente");
     form.resetFields();
-    await DataService.newTicket({ ...values, currentDate, currenTime, user });
+    await DataService.newTicket({ticket:{ ...values, currentDate, currenTime, user },comunidad:comunidad});
     // goBack();
   }
   /**
@@ -51,10 +51,20 @@ const NewTicket = () => {
    * listTipoAverias.
    */
   const loadLists = async ({ use, comu }) => {
+    const listMaquinas = [];
     try {
-      const listMaquinas = await DataService.getMaquinas({ salon: use, comunidad: comu });
+      const listMaq = await DataService.getMaquinas({ salon: use, comunidad: comu });
       const listTipAverias = await DataService.getTipostAverias();
-      setListMaquinas(listMaquinas.docs);
+      listMaq.forEach((maqui) => {
+        listMaquinas.push({
+          id: maqui.id,
+          // noMaquina: maqui.data().noMaquina,
+          // permiso: maqui.data().permiso,
+          denominacion: maqui.data().denominacion,
+          // observacion: maqui.data().observacion,
+        });
+      });
+      setListMaquinas(listMaquinas);
       setlistTipoAverias(listTipAverias.docs)
     } catch (error) {
       console.log('error');

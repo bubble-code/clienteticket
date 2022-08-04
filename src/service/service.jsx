@@ -20,7 +20,7 @@ class DataService {
     await setDoc(collectionn, { noMaquina, permiso, denominacion, observacion });
   }
 
-  
+
   async getMaquinas({ salon, comunidad }) {
     const path = `${this._pathComunidades}/${comunidad}/Salones/${salon}/Maquinas`;
     const collectionn = collection(db, path);
@@ -30,54 +30,24 @@ class DataService {
     const collectionn = collection(db, this._pathTipoAverias);
     return await getDocs(query(collectionn));
   }
-  async newTicket(ticket) {
+  // ************************Tickets*************************************************************************
+  async newTicket({ ticket, comunidad }) {
     const { maquina, tipoAveria, prioridad, estadoMaquina, taquillero, cantDinero, detallesTicket, currentDate, currenTime, user } = ticket;
-    const collectionn = collection(db, this._pathAverias);
+    const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/Averias`);
     return await addDoc(collectionn, { maquina, tipoAveria, prioridad, estadoMaquina, taquillero, cantDinero, detallesTicket, currentDate, currenTime, user, state: 'Abierto' });
   };
-  async getListaAverias(salon) {
-    const collectionn = collection(db, this._pathAverias);
+  async getListaAverias({ salon, comunidad }) {
+    const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/Averias`);
     const querySnapShot = query(collectionn, where('user', '==', salon));
     const result = await getDocs(querySnapShot);
-    // result.docs.map(doc => console.log(doc.data()));
     return result.docs;
   }
   async getListTecnicosByComu({ comunidad }) {
     const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/Tecnicos`);
     const querySnapShot = query(collectionn);
     const result = await getDocs(querySnapShot)
-    // console.log(result.docs);
     return result.docs;
   }
-  async getStateInicioTecnico({ tec }) {
-    const result = await getDoc(doc(db, this._pathIsInicioTec, tec))
-    return result.data().isInicio;
-  }
-  async setIniciarJornada({ tec }) {
-    await setDoc(doc(db, this._pathIsInicioTec, tec), { isInicio: true })
-    const date = new Date();
-    const currenTime = (date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds());
-    const currentDate = (date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear());
-    const inicoRef = doc(db, `${this._pathIsInicioTec}/${tec}/Inicio`, currentDate)
-    await setDoc(inicoRef, { hora: currenTime })
-  }
-  async setFinalizarJornada({ tec }) {
-    await setDoc(doc(db, this._pathIsInicioTec, tec), { isInicio: false })
-    const date = new Date();
-    const currenTime = (date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds());
-    const currentDate = (date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear());
-    const inicoRef = doc(db, `${this._pathIsInicioTec}/${tec}/Cierre`, currentDate)
-    await setDoc(inicoRef, { hora: currenTime })
-  }
-  async getTimeStartTec({ tec }) {
-    const date = new Date();
-    const dateInicio = (date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear());
-    // const collectionn = collection(db, `${this._pathIsInicioTec}/${tec}/Inicio`);
-    const result = await getDoc(doc(db, `${this._pathIsInicioTec}/${tec}/Inicio`, dateInicio));
-    // console.log(result.data());
-    return result.data()?.hora ?? '00:00:00';
-  }
-
   async getTicketById({ ticket }) {
     const result = await getDoc(doc(db, this._pathAverias, ticket))
     return result.data();
@@ -126,9 +96,9 @@ class DataService {
     const result = await getDocs(querySnapShot);
     return result.docs.length;
   }
-  async getHallWithTicketOpen() {
+  async getHallWithTicketOpen({ comunidad }) {
     const arrayHallWhitFauls = []
-    const collectionn = collection(db, this._pathAverias);
+    const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/Averias`);
     const querySnapShot = query(collectionn);
     const result = await getDocs(querySnapShot);
     result.docs.forEach(doc => {
@@ -141,17 +111,38 @@ class DataService {
     })
     return arrayHallWhitFauls;
   }
-  async getLocationsHall() {
-    const collectionn = collection(db, this._pathSalones);
-    const querySnapShot = query(collectionn);
-    const result = await getDocs(querySnapShot);
-    const locations = [];
-    result.docs.forEach(doc => {
-      const { _lat, _long } = doc.data().location;
-      locations[doc.id] = { _lat, _long };
-    })
-    return locations;
+  // ************************Tickets*************************************************************************
+
+
+  async getStateInicioTecnico({ tec }) {
+    const result = await getDoc(doc(db, this._pathIsInicioTec, tec))
+    return result.data().isInicio;
   }
+  async setIniciarJornada({ tec }) {
+    await setDoc(doc(db, this._pathIsInicioTec, tec), { isInicio: true })
+    const date = new Date();
+    const currenTime = (date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds());
+    const currentDate = (date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear());
+    const inicoRef = doc(db, `${this._pathIsInicioTec}/${tec}/Inicio`, currentDate)
+    await setDoc(inicoRef, { hora: currenTime })
+  }
+  async setFinalizarJornada({ tec }) {
+    await setDoc(doc(db, this._pathIsInicioTec, tec), { isInicio: false })
+    const date = new Date();
+    const currenTime = (date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds());
+    const currentDate = (date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear());
+    const inicoRef = doc(db, `${this._pathIsInicioTec}/${tec}/Cierre`, currentDate)
+    await setDoc(inicoRef, { hora: currenTime })
+  }
+  async getTimeStartTec({ tec }) {
+    const date = new Date();
+    const dateInicio = (date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear());
+    // const collectionn = collection(db, `${this._pathIsInicioTec}/${tec}/Inicio`);
+    const result = await getDoc(doc(db, `${this._pathIsInicioTec}/${tec}/Inicio`, dateInicio));
+    // console.log(result.data());
+    return result.data()?.hora ?? '00:00:00';
+  }
+
 
   async getListHall({ comunidad }) {
     const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/Salones`);
@@ -228,6 +219,24 @@ class DataService {
     const docRef = doc(db, `${this._pathComunidades}/${comunidad}/Salones/${salon}/Objetivos/${periodo}/${mes}`, `${dia}`);
     await setDoc(docRef, { value: converValue });
     // return result.data();
+  }
+  // **********************************Mapas***********************************************************
+  async getLocationsHall({ comunidad }) {
+    const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/Salones`);
+    const querySnapShot = query(collectionn);
+    const result = await getDocs(querySnapShot);
+    const locations = [];
+    result.docs.forEach(doc => {
+      const { _lat, _long } = doc.data().location;
+      locations[doc.id] = { _lat, _long };
+    })
+    return locations;
+  }
+  async getLocationComunidad({ comunidad }) {
+    const collectionn = doc(db, `${this._pathComunidades}/${comunidad}`);
+    const result = await getDoc(collectionn);
+    const { _lat, _long } = result.data().center;
+    return { _lat, _long };
   }
 }
 export default new DataService();

@@ -22,6 +22,7 @@ import 'antd/dist/antd.css';
 import './App.css'
 import CardFacturacionSalones from './components/cardFacturacionSalones';
 import PageMaquinasAdmin from './components/pageMaquinasAdmin';
+import PageMapa from './components/pagemapa/PageMapa';
 
 
 const App = () => {
@@ -42,7 +43,7 @@ const App = () => {
             <Route path="inicio/pagehorariostecnicos" element={<PageHorariosTecnicos />} />
             <Route path="inicio/pageobjetivos" element={<PageObjetivos />} />
             <Route path="analisview" element={<AnalisView />} />
-            <Route path="monitorview" element={<MonitorView />} />
+            <Route path="monitorview" element={<PageMapa />} />
             <Route path="workplaceview" element={<WorkplaceView />} />
             <Route path="accountcenter" element={<AccountCenter />} />
             <Route path="newHorario" element={<PageNewHorario />} />

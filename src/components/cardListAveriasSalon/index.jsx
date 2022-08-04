@@ -12,7 +12,7 @@ const CardListAveriasSalon = ({ salon }) => {
     const [segmentValue, setSegmentValue] = useState("Abiertos");
     const [listTickets, setListTickets] = useState([]);
     const { auth } = useAuth();
-    const { user } = auth;
+    const { user, comunidad } = auth;
     const dataListTickets = [];
     const onChangeSegment = async (e) => {
         if (e === 'Abiertos') {
@@ -26,7 +26,7 @@ const CardListAveriasSalon = ({ salon }) => {
     const loadListFauls = async () => {
         let res;
         try {
-            res = await DataService.getListaAverias(user);
+            res = await DataService.getListaAverias({ salon: user, comunidad: comunidad });
         } catch (error) {
             console.log('error');
         }
