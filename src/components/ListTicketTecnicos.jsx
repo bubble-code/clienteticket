@@ -14,11 +14,11 @@ const ListTicketTecnicos = () => {
   const dataListTickets = [];
   const { auth } = useAuth();
   // const { isInicio } = auth;
-  const { user } = auth;
+  const { user, comunidad } = auth;
   const [listTickets, setListTickets] = useState([]);
   // console.log(auth)
-  const showModal = ({ id }) => {
-    setIdModal(id)
+  const showModal = ({ id, maquina }) => {
+    setIdModal({ id, maquina });
     // console.log(id)
     setVisibleModalAccinoTicke(true);
   };
@@ -91,21 +91,21 @@ const ListTicketTecnicos = () => {
       key: 'operation',
       render: isInicio ? (_, record) => (
         <Space size="middle">
-          <Button onClick={() => { showModal({ id: record.key }) }} >Resolver</Button>
+          <Button onClick={() => { showModal({ id: record.key, maquina: record.Maquina }) }} >Resolver</Button>
           <Button onClick={() => { showModalAplazar({ id: record.key }) }}>Aplazar</Button>
         </Space>
       ) : () => <></>,
     },
   ];
   // console.log({ isInicio })
-  const loadListTicket = async () => {
+  const loadListTicket = async ({ comu }) => {
     let res;
     try {
-      res = await DataService.getListTecnicosByComu();
+      res = await DataService.getListTicketByComunidad({ comunidad: comu });
+      buildList(res);
     } catch (error) {
       console.log(error);
     }
-    buildList(res);
   }
   const buildList = (listDocs) => {
     listDocs?.forEach((doc, index) => {
@@ -132,9 +132,9 @@ const ListTicketTecnicos = () => {
   };
 
   useEffect(() => {
-    loadListTicket();
+    loadListTicket({ comu: comunidad });
     loadIsInicio(user)
-  }, [])
+  }, [comunidad, user])
 
   return (<Col>
     <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32, }} >
@@ -144,7 +144,7 @@ const ListTicketTecnicos = () => {
         <Table columns={columns} dataSource={listTickets} style={{ width: '100%' }} expandable={{ expandedRowRender: (record) => { return <p>{record.Asunto}</p> } }} />
       </Col>
     </Row>
-    <ModalAccionTicker visibl={visibleModalAccinoTicke} cancel={handleCancel} id={idModal} />
+    <ModalAccionTicker visibl={visibleModalAccinoTicke} cancel={handleCancel} current={idModal}  />
     <ModalAplazarTicker visibl={visibleModalAplazarTicke} cancel={handleModalAplazar} id={idModal} />
   </Col>)
 }

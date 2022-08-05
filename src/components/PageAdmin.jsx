@@ -13,7 +13,7 @@ function getItem(label, key, icon, children, type) {
   };
 }
 const items = [
-  getItem('Menu Admin', 'inicio', <TableOutlined />,),
+  getItem('Menu Admin', '/admin', <TableOutlined />,),
   getItem('Horarios', 'horarios', <TableOutlined />, [
     getItem('Hacer Horario', 'newHorario', <TableOutlined />,),
     getItem('Listar Horario', 'listHorario', <TableOutlined />,),

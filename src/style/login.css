@@ -1,7 +1,7 @@
 .auth-page {
   /* padding-top: 2vh; */
   height: 100vh;
-  padding-top: 10vh;
+  /* padding-top: 10vh; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -15,7 +15,7 @@
   max-width: 385px;
   background: rgba(0, 0, 0, .24) !important;
   border-radius: 10px !important;
-
+  padding: 18px !important;
 }
 
 .login header.login-title {

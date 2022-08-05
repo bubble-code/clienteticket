@@ -4,7 +4,8 @@ import DataService from '../service/service'
 
 
 const { TextArea } = Input;
-const ModalAccionTicker = ({ id, visibl, cancel }) => {
+const ModalAccionTicker = ({ current, visibl, cancel }) => {
+  const { id, maquina } = current;
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
 
@@ -24,7 +25,7 @@ const ModalAccionTicker = ({ id, visibl, cancel }) => {
     <>
       <Modal
         visible={visibl}
-        title={id}
+        title={maquina}
         onCancel={handleCancel}
         footer={[]}
       >

@@ -13,7 +13,7 @@ class DataService {
   _pathJobs = "jobs";
 
 
-  // Add a new machine to hall
+  // **********************************Add a new machine to hall****************************************************
   async addMachine({ comunidad, salon, data }) {
     const { plaza, noMaquina, permiso, denominacion, observacion } = data;
     const collectionn = doc(db, `${this._pathComunidades}/${comunidad}/Salones/${salon}/Maquinas`, plaza);
@@ -26,11 +26,12 @@ class DataService {
     const collectionn = collection(db, path);
     return await getDocs(query(collectionn));
   }
+  // **********************************Add a new machine to hall****************************************************
+  // ************************Tickets*************************************************************************
   async getTipostAverias() {
     const collectionn = collection(db, this._pathTipoAverias);
     return await getDocs(query(collectionn));
   }
-  // ************************Tickets*************************************************************************
   async newTicket({ ticket, comunidad }) {
     const { maquina, tipoAveria, prioridad, estadoMaquina, taquillero, cantDinero, detallesTicket, currentDate, currenTime, user } = ticket;
     const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/Averias`);
@@ -40,12 +41,6 @@ class DataService {
     const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/Averias`);
     const querySnapShot = query(collectionn, where('user', '==', salon));
     const result = await getDocs(querySnapShot);
-    return result.docs;
-  }
-  async getListTecnicosByComu({ comunidad }) {
-    const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/Tecnicos`);
-    const querySnapShot = query(collectionn);
-    const result = await getDocs(querySnapShot)
     return result.docs;
   }
   async getTicketById({ ticket }) {
@@ -111,9 +106,21 @@ class DataService {
     })
     return arrayHallWhitFauls;
   }
+  async getListTicketByComunidad({ comunidad }) {
+    const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/Averias`);
+    const querySnapShot = query(collectionn);
+    const result = await getDocs(querySnapShot);
+    return result.docs;
+  }
   // ************************Tickets*************************************************************************
 
-
+  // *****************************************Tecnicos***********************************************************
+  async getListTecnicosByComu({ comunidad }) {
+    const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/Tecnicos`);
+    const querySnapShot = query(collectionn);
+    const result = await getDocs(querySnapShot)
+    return result.docs;
+  }
   async getStateInicioTecnico({ tec }) {
     const result = await getDoc(doc(db, this._pathIsInicioTec, tec))
     return result.data().isInicio;
@@ -143,7 +150,7 @@ class DataService {
     return result.data()?.hora ?? '00:00:00';
   }
 
-
+// ******************************************Tecnicos***********************************************************
   async getListHall({ comunidad }) {
     const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/Salones`);
     // const collectionn = collection(db, this._pathSalones);

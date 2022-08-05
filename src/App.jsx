@@ -2,14 +2,13 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import LoginPage from './components/Login';
 import Layout from './components/Layouts';
-import Home from './components/Home';
 import Unauthorized from './components/Unauthorized';
 import RequireAuth from './components/RequireAuth';
 import Admin from './components/Admin';
 import NewTicket from './components/NewTicket';
 import ListTicket from './components/ListTicket';
 import ListTicketTecnicos from './components/ListTicketTecnicos';
-import BotonesInicio from './components/BotonesInicio';
+import BotonesInicio from './components/botonesPageTecnicos/BotonesInicio';
 import AnalisView from './components/AnalisView';
 import MonitorView from './components/MonitorView';
 import WorkplaceView from './components/WorkplaceView';
@@ -23,6 +22,10 @@ import './App.css'
 import CardFacturacionSalones from './components/cardFacturacionSalones';
 import PageMaquinasAdmin from './components/pageMaquinasAdmin';
 import PageMapa from './components/pagemapa/PageMapa';
+import MenuLayoutSalones from './components/MenuLayoutSalones';
+import PageAdmin from './components/PageAdmin';
+import PageInicioSalon from './components/pageInicioSalon/PageInicioSalon';
+import PageTecnicos from './components/pageTecnicos/PageTecnicos';
 
 
 const App = () => {
@@ -34,14 +37,15 @@ const App = () => {
         <Route path="unauthorized" element={<Unauthorized />} />
         {/* Protect routes */}
         <Route element={<RequireAuth />}>
-          <Route path="/" element={<Home />} >
-            <Route path="inicio" element={<BotonesInicio />} />
-            <Route path="inicio/newticket" element={<NewTicket />} />
+          <Route path="salon" element={<MenuLayoutSalones />} >
+            <Route path="inicio" element={<PageInicioSalon />} />
+            <Route path="newticket" element={<NewTicket />} />
+            <Route path="listticket" element={<ListTicket />} />
+            <Route path="pagehorariostecnicos" element={<PageHorariosTecnicos />} />
+            <Route path="pageobjetivos" element={<PageObjetivos />} />
+          </Route>
+          <Route path="admin" element={<PageAdmin />} >
             <Route path="admin" element={<Admin />} />
-            <Route path="inicio/listticket" element={<ListTicket />} />
-            <Route path="inicio/ListTicketTecnicos" element={<ListTicketTecnicos />} />
-            <Route path="inicio/pagehorariostecnicos" element={<PageHorariosTecnicos />} />
-            <Route path="inicio/pageobjetivos" element={<PageObjetivos />} />
             <Route path="analisview" element={<AnalisView />} />
             <Route path="monitorview" element={<PageMapa />} />
             <Route path="workplaceview" element={<WorkplaceView />} />
@@ -50,6 +54,11 @@ const App = () => {
             <Route path="objetivos" element={<CardObjetivosSalones />} />
             <Route path="facturacion" element={<CardFacturacionSalones />} />
             <Route path="maquinasAdmin" element={<PageMaquinasAdmin />} />
+          </Route>
+          <Route path="pagetecnicos" element={<PageTecnicos />} >
+            <Route path='botonesInicio' element={<BotonesInicio />} />
+            <Route path="ListTicketTecnicos" element={<ListTicketTecnicos />} />
+
           </Route>
         </Route>
       </Route>

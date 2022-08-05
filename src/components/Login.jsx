@@ -183,7 +183,6 @@ const users = [
     comunidad: 'Navarra',
   },
 
-
 ]
 
 const LoginPage = () => {
@@ -216,7 +215,17 @@ const LoginPage = () => {
         setAuth({ user, pwd, role, isInicio: false, comunidad });
         setUser('');
         setPwd('');
-        navigate('/inicio', { replace: true });
+        switch (role) {
+          case 1:
+            navigate('/admin', { replace: true });
+            break;
+          case 2:
+            navigate('/pagetecnicos/botonesInicio', { replace: true });
+            break;
+          default:
+            navigate('/salon/inicio', { replace: true });
+        }
+        return;
       }
 
     })
@@ -226,7 +235,7 @@ const LoginPage = () => {
       <Container>
         <Card className='login ' bordered={false}>
           <header className='login-title'>
-            <img src={logoMerkur} alt="logo" style={{ height: '60px', display: 'block', zIndex: 1, width: '60%', margin: 0, padding: 0 }} />
+            <img src={logoMerkur} alt="logo" style={{ height: '60px', display: 'block', zIndex: 1, width: '60%', margin: 0 }} />
           </header>
           <p className='login-info'>Use su usuario para acceder</p>
           {/* <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p> */}
