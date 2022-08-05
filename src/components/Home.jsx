@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import PageAdmin from "./PageAdmin";
 import MenuLayoutSalones from "./MenuLayoutSalones";
 import useAuth from "../hooks/useAuth";
-import BotonesInicio from "./botonesPageTecnicos/BotonesInicio";
+import BotonesInicio from "./BotonesInicio";
 
 
 const Home = () => {
