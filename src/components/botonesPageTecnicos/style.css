@@ -1,0 +1,52 @@
+.container-page-inicio-tec {
+    height: 90vh;
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid-page-tec {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 40px;
+}
+
+.boton-inicio-ticket {
+    border: solid 1px #000;
+    cursor: pointer;
+    width: 200px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.boton-inicio-ticket::before,
+.boton-inicio-ticket::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 1px;
+  width: 0;
+  background: #2B4C8C;
+  box-shadow:
+    -1px -1px 5px 0px #fff,
+    7px 7px 20px 0px #2B4C8C,
+    4px 4px 5px 0px #2B4C8C;
+  transition: 400ms ease all;
+}
+
+.boton-inicio-ticket::after {
+  right: inherit;
+  top: inherit;
+  left: 0;
+  bottom: 0;
+}
+
+.boton-inicio-ticket:hover::before,
+.boton-inicio-ticket:hover::after {
+  width: 100%;
+  transition: 800ms ease all;
+}

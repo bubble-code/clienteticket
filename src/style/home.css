@@ -18,14 +18,7 @@
 .div5 { grid-area: 2 / 3 / 3 / 4; }
 
 
-.boton-inicio-ticket {
-  border: solid 1px #000;
-  cursor: pointer;
-  width: 200px;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-}
+
 
 @keyframes float {
   0% {

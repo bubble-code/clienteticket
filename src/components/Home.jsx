@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import PageAdmin from "./PageAdmin";
 import MenuLayoutSalones from "./MenuLayoutSalones";
 import useAuth from "../hooks/useAuth";
+import BotonesInicio from "./botonesPageTecnicos/BotonesInicio";
 
 
 const Home = () => {
@@ -13,7 +14,8 @@ const Home = () => {
     <div>
       {role === 1 && <PageAdmin />}
       {role === 4 && <MenuLayoutSalones />}
-      {/* {role === 1 ? <></> : <Outlet />} */}
+      {role === 2 && <BotonesInicio />}
+      {/* {role === 2 ? <></> : <Outlet />} */}
 
     </div>
   );

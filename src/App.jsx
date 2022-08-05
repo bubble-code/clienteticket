@@ -9,7 +9,7 @@ import Admin from './components/Admin';
 import NewTicket from './components/NewTicket';
 import ListTicket from './components/ListTicket';
 import ListTicketTecnicos from './components/ListTicketTecnicos';
-import BotonesInicio from './components/BotonesInicio';
+import BotonesInicio from './components/botonesPageTecnicos/BotonesInicio';
 import AnalisView from './components/AnalisView';
 import MonitorView from './components/MonitorView';
 import WorkplaceView from './components/WorkplaceView';
