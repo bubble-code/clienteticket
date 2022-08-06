@@ -1,0 +1,27 @@
+.tec-active {
+    color: blue !important;
+}
+
+.tec-activos-badge {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    color: rgba(244, 244, 245, .9);
+    font-size: 1.25rem;
+    line-height: 1.2;
+    font-family: Open Sans, sans-serif;
+    letter-spacing: 2px;
+    font-weight: 300;
+    width: 340px;
+    margin-bottom: 10px;
+}
+
+.tec-activos-badge .ant-badge-status-dot {
+    width: 8px;
+    height: 8px;
+}
+
+.tec-activos-badge .ant-badge-status-text {
+    color: white;
+}

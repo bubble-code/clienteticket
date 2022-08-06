@@ -235,7 +235,7 @@ const LoginPage = () => {
       <Container>
         <Card className='login ' bordered={false}>
           <header className='login-title'>
-            <img src={logoMerkur} alt="logo" style={{ height: '60px', display: 'block', zIndex: 1, width: '60%', margin: 0 }} />
+            <img src={logoMerkur} alt="logo" style={{ height: '60px', display: 'block', zIndex: 1, width: '60%', margin: 0,  }} />
           </header>
           <p className='login-info'>Use su usuario para acceder</p>
           {/* <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p> */}

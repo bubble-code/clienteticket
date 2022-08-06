@@ -1,4 +1,4 @@
-.holderStyle{
+.holderStyle {
   display: flex;
   position: 'relative';
   font-size: 24px;
@@ -10,16 +10,17 @@
   border: solid 2px #000000;
   border-radius: 4px;
   background-color: aliceblue;
-  box-shadow: 2px 2px 12px rgba(0,0,0,0.5);
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.5);
   transition: width 0.35s height 0.35s ease;
 }
+
 .holderStyle:before {
   content: "";
   display: block;
   position: absolute;
   /* background-color: #000000; */
   /* opacity:0; */
-  transition:opacity 500ms;
+  transition: opacity 500ms;
   bottom: -45px;
   left: 0;
   width: 0;
@@ -28,12 +29,14 @@
   border-style: solid;
   border-color: red transparent transparent;
 }
-.holderStyle:hover{
+
+.holderStyle:hover {
   /* height: 0; */
   transform: scale(1.1);
-  overflow: hidden; 
+  overflow: hidden;
 }
-.holderStyle:hover:before{
+
+.holderStyle:hover:before {
   /* transform: scale(1.1);
   bottom: -45px;
   left: 0;
@@ -41,7 +44,8 @@
   height: 0; */
   /* overflow: hidden; */
 }
-.textStyle{
+
+.textStyle {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,8 +56,37 @@
   font-weight: 'bold';
   font-size: '24px';
   color: 'black';
-};
-.popoverStyle{
-  background-color: #000000;
-  opacity: 0.3;
+}
+
+;
+
+.popoverStyle {
+  /* background-color: #000000;
+  opacity: 0.3; */
+}
+.badge-ribbon-container{
+  /* background: rgba(0, 0, 0, 0.7); */
+  border-radius: 10px;
+}
+.badge-ribbon-text{
+  border-radius: 10px;
+}
+.badge-ribbon-text .ant-popover-title {
+  color: #fff !important;
+  font-weight: 400;
+  font-size: 1.2rem;
+  border-bottom: none;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 10px;
+}
+
+.badge-text {
+  background: rgba(0, 0, 0, 0.7);
+  border: solid 1px #000000;
+  color: #fff !important;
+  text-align: left;
+  font-size: 1.1rem;
+  padding-left: 5px;
+  border-radius: 10px;
+  margin: 0 0 3px 0;
 }
