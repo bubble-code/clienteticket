@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import DataService from '../../service/service';
 import ModalStartWorkingDayTec from "../modalIniciarJornada/ModalStartWorkingDayTec";
-import { Card, Statistic, Row, Col } from 'antd';
+import { Card, Statistic } from 'antd';
 import './style.css';
 import { Container } from "reactstrap";
 
@@ -13,13 +13,8 @@ const BotonesInicio = () => {
   const navigate = useNavigate();
   const { setAuth } = useAuth();
   const { auth } = useAuth();
-  const { role, user } = auth;
-  // console.log(setAuth)
+  const { user, comunidad } = auth;
 
-  const handleNewTicket = (e) => {
-    // e.preventDefault();
-    navigate('newticket', { replace: true });
-  }
 
   const handleListTicketTecnicos = (e) => {
     e.preventDefault();
@@ -28,15 +23,12 @@ const BotonesInicio = () => {
   const handleHorariosTecnicos = (e) => {
     navigate('PageHorariosTecnicos', { replace: true });
   }
-  const handleListTicket = (e) => {
-    // e.preventDefault();
-    navigate('listticket', { replace: true });
-  }
-  const loadIsInicio = async (user) => {
+
+  const loadIsInicio = async ({ user, aut }) => {
     let res;
     try {
       res = await DataService.getStateInicioTecnico({ tec: user })
-      // console.log(res)
+      setAuth({ isInicio: res, ...aut })
       setIsInicio(res)
 
     } catch (error) {
@@ -45,43 +37,41 @@ const BotonesInicio = () => {
   }
   const setIniciarJornadas = async () => {
     setVisibleIniciarJornada(true);
-    try {
-      await DataService.setIniciarJornada({ tec: user })
-      setAuth({ isInicio: true, ...auth })
-      // console.log(auth)
-      setIsInicio(true)
-    } catch (error) {
-      console.log(error);
-    }
+    setIsInicio(true)
   }
   const setFinalizarJornadas = async () => {
     try {
-      await DataService.setFinalizarJornada({ tec: user })
-      setAuth({ isInicio: false, ...auth })
+      await DataService.setFinalizarJornada({ tec: user, comunidad })
       setIsInicio(false)
     } catch (error) {
       console.log(error);
     }
   }
   useEffect(() => {
-    loadIsInicio(user);
-  }, [user])
-  return (
-    <Container span={24} className='container-page-inicio-tec' >
-      <Card className="boton-inicio-ticket" onClick={handleListTicketTecnicos}>
-        <Statistic value={'Averias'} precision={2} valueStyle={{ color: '#3f8600', }} />
-      </Card>
+    loadIsInicio({ user, aut: auth });  
+}, [ user])
+return (
+  <Container span={24} className='container-page-inicio-tec' >
+    <Card className="boton-inicio-ticket" onClick={handleListTicketTecnicos}>
+      <Statistic value={'Averias'} precision={2} valueStyle={{ color: '#3f8600', }} />
+    </Card>
+    {!isInicio ?
       <Card className="boton-inicio-ticket" onClick={setIniciarJornadas}>
         <Statistic value={'Iniciar'} precision={2} valueStyle={{ color: '#3f8600', }} />
+      </Card> :
+      <Card className="boton-inicio-ticket" onClick={setFinalizarJornadas}>
+        <Statistic value={'Finalizar'} precision={2} valueStyle={{ color: '#3f8600', }} />
       </Card>
-      <Card className="boton-inicio-ticket" onClick={handleListTicketTecnicos}>
-        <Statistic value={'Averias'} precision={2} valueStyle={{ color: '#3f8600', }} />
-      </Card>
-      <Card className="boton-inicio-ticket" onClick={setIniciarJornadas}>
-        <Statistic value={'Iniciar'} precision={2} valueStyle={{ color: '#3f8600', }} />
-      </Card>
-      <ModalStartWorkingDayTec isVisible={visibleIniciarJornada} setVisible={setVisibleIniciarJornada} />
-    </Container>
-  );
+    }
+
+    {/* <Card className="boton-inicio-ticket" onClick={handleListTicketTecnicos}>
+      <Statistic value={'Averias'} precision={2} valueStyle={{ color: '#3f8600', }} />
+    </Card>
+    <Card className="boton-inicio-ticket" onClick={setIniciarJornadas}>
+      <Statistic value={'Iniciar'} precision={2} valueStyle={{ color: '#3f8600', }} />
+    </Card> */}
+    <ModalStartWorkingDayTec isVisible={visibleIniciarJornada} setVisible={setVisibleIniciarJornada} />
+  </Container>
+);
 }
 export default BotonesInicio;

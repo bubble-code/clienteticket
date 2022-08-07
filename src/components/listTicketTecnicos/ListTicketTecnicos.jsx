@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import DataService from '../service/service';
-import useAuth from '../hooks/useAuth';
-import { Col, Row, Space, Table, Tag, Badge, Dropdown, Menu, Button } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
-import ModalAccionTicker from "./ModalAccionTicke";
-import ModalAplazarTicker from "./ModalAplazarTicket";
+import DataService from '../../service/service';
+import useAuth from '../../hooks/useAuth';
+import { Col, Row, Space, Table, Tag, Button } from 'antd';
+import ModalAccionTicker from "../ModalAccionTicke";
+import ModalAplazarTicker from "../ModalAplazarTicket";
+
+import { expandedRowRender } from './columnsRender';
+import './style.css';
 
 const ListTicketTecnicos = () => {
   const [isInicio, setIsInicio] = useState(false)
@@ -36,7 +38,7 @@ const ListTicketTecnicos = () => {
   const loadIsInicio = async (user) => {
     let res;
     try {
-      res = await DataService.getStateInicioTecnico({ tec: user })
+      res = await DataService.getStateInicioTecnico({ tec: user, comunidad })
       // console.log(res)
       setIsInicio(res)
 
@@ -68,13 +70,12 @@ const ListTicketTecnicos = () => {
         <>
           {tags.map((tag) => {
             let color;
-            color = tag === 'Abierto' ? 'green' : 'geekblue';
-
-            // if (tag === 'Abierto') {
-            //   color = 'green';
-            // } else {
-            //   color = 'geekblue';
-            // }
+            if (tag === 'Abierto') {
+              color = '#2477ff';
+            }
+            if (tag === 'En Proceso') {
+              color = '#2d8515';
+            }
 
             return (
               <Tag color={color} key={tag}>
@@ -117,19 +118,6 @@ const ListTicketTecnicos = () => {
     setListTickets(dataListTickets)
   }
 
-  const expandedRowRender = ({ key, Detalles }) => {
-    // console.log({ key })
-    const columns = [
-      {
-        title: 'Detalles',
-        dataIndex: 'Detalles',
-        key: 'Detalles',
-      },
-    ]
-    const data = [];
-    data.push({ key, Detalles })
-    return <Table columns={columns} dataSource={data} pagination={false} />;
-  };
 
   useEffect(() => {
     loadListTicket({ comu: comunidad });
@@ -144,7 +132,7 @@ const ListTicketTecnicos = () => {
         <Table columns={columns} dataSource={listTickets} style={{ width: '100%' }} expandable={{ expandedRowRender: (record) => { return <p>{record.Asunto}</p> } }} />
       </Col>
     </Row>
-    <ModalAccionTicker visibl={visibleModalAccinoTicke} cancel={handleCancel} current={idModal}  />
+    <ModalAccionTicker visibl={visibleModalAccinoTicke} cancel={handleCancel} current={idModal} />
     <ModalAplazarTicker visibl={visibleModalAplazarTicke} cancel={handleModalAplazar} id={idModal} />
   </Col>)
 }

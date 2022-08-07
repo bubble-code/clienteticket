@@ -77,7 +77,6 @@ class DataService {
     return result.docs.length;
   }
   async getCantTicketStandBy({ comunidad, hall }) {
-    console.log({ comunidad, hall });
     const collectionn = collection(db, `${this._pathComunidades}/${comunidad}/Averias`);
     const querySnapShot = query(collectionn, where('user', '==', hall), where('state', '==', "En Proceso"));
     const result = await getDocs(querySnapShot);
@@ -123,8 +122,8 @@ class DataService {
     const result = await getDocs(querySnapShot)
     return result.docs;
   }
-  async getStateInicioTecnico({ tec }) {
-    const result = await getDoc(doc(db, this._pathIsInicioTec, tec))
+  async getStateInicioTecnico({ comunidad, tec }) {
+    const result = await getDoc(doc(db, `${this._pathComunidades}/${comunidad}/Tecnicos`, tec))
     return result.data().isInicio;
   }
   async setIniciarJornada({ tec, comunidad, place }) {
@@ -135,8 +134,8 @@ class DataService {
     const inicoRef = doc(db, `${this._pathComunidades}/${comunidad}/Tecnicos/${tec}/Inicio`, currentDate)
     await setDoc(inicoRef, { hora: currenTime, lugar: place })
   }
-  async setFinalizarJornada({ tec }) {
-    await setDoc(doc(db, this._pathIsInicioTec, tec), { isInicio: false })
+  async setFinalizarJornada({ comunidad, tec }) {
+    await setDoc(doc(db, `${this._pathComunidades}/${comunidad}/Tecnicos`, tec), { isInicio: false })
     const date = new Date();
     const currenTime = (date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds());
     const currentDate = (date.getDate() + '-' + (date.getMonth() + 1) + '-' + date.getFullYear());

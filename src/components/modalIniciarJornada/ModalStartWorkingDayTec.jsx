@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import DataService from '../../service/service'
-import { Button, Modal, Form, Input } from 'antd';
+import { Button, Modal, Form } from 'antd';
+import 'antd/dist/antd.min.css';
+import 'antd/dist/antd.variable.min.css';
 import SelectList0 from "../SelectListMauinas";
 import { useEffect } from "react";
 
 
 const ModalStartWorkingDayTec = ({ isVisible, setVisible }) => {
+
   const [loading, setLoading] = useState(false);
   const { auth } = useAuth();
   const { user, comunidad } = auth;
@@ -36,7 +39,7 @@ const ModalStartWorkingDayTec = ({ isVisible, setVisible }) => {
   };
 
   useEffect(() => {
-    loadIsInicio({ com: comunidad })
+    loadIsInicio({ com: comunidad });    
   }, [comunidad]);
 
   return (
@@ -51,17 +54,18 @@ const ModalStartWorkingDayTec = ({ isVisible, setVisible }) => {
       >
         <Form layout="vertical" onFinish={handleOk} form={form} initialValues={{}} >
           <SelectList0 list={listHalls} id='salon' placeholder={'Seleccione el salon'} />
-          <Form.Item>
-            <Button key="back" onClick={handleCancel}>
-              No Iniciar
-            </Button>
-          </Form.Item>
-          <Form.Item>
-            <Button type="primary" loading={loading} htmlType="submit">
-              Comenzar
-            </Button>
-
-          </Form.Item>
+          <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+              <Form.Item>
+                <Button key="back" type="primary" onClick={handleCancel} danger shape="round">
+                  No Iniciar
+                </Button>
+              </Form.Item>
+              <Form.Item>
+                <Button type="primary" loading={loading} htmlType="submit" shape="round">
+                  Comenzar
+                </Button>
+              </Form.Item>
+          </div>
         </Form>
       </Modal>
     </>

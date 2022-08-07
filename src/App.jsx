@@ -6,11 +6,9 @@ import Unauthorized from './components/Unauthorized';
 import RequireAuth from './components/RequireAuth';
 import Admin from './components/Admin';
 import NewTicket from './components/NewTicket';
-import ListTicket from './components/ListTicket';
-import ListTicketTecnicos from './components/ListTicketTecnicos';
+import ListTicketTecnicos from './components/listTicketTecnicos/ListTicketTecnicos';
 import BotonesInicio from './components/botonesPageTecnicos/BotonesInicio';
 import AnalisView from './components/AnalisView';
-import MonitorView from './components/MonitorView';
 import WorkplaceView from './components/WorkplaceView';
 import AccountCenter from './components/AccountCenter';
 import PageHorariosTecnicos from './components/PageHorariosTecnicos';
@@ -26,21 +24,22 @@ import MenuLayoutSalones from './components/MenuLayoutSalones';
 import PageAdmin from './components/PageAdmin';
 import PageInicioSalon from './components/pageInicioSalon/PageInicioSalon';
 import PageTecnicos from './components/pageTecnicos/PageTecnicos';
+import CardListAveriasSalon from './components/cardListAveriasSalon';
 
 
 const App = () => {
   return (
     <Routes>
+      {/* Public routes */}
+      <Route path="/" element={<LoginPage />} />
       <Route path="/" element={<Layout />} >
-        {/* Public routes */}
-        <Route path="login" element={<LoginPage />} />
-        <Route path="unauthorized" element={<Unauthorized />} />
+        <Route path="*" element={<Unauthorized />} />
         {/* Protect routes */}
         <Route element={<RequireAuth />}>
           <Route path="salon" element={<MenuLayoutSalones />} >
             <Route path="inicio" element={<PageInicioSalon />} />
             <Route path="newticket" element={<NewTicket />} />
-            <Route path="listticket" element={<ListTicket />} />
+            <Route path="listticket" element={<CardListAveriasSalon />} />
             <Route path="pagehorariostecnicos" element={<PageHorariosTecnicos />} />
             <Route path="pageobjetivos" element={<PageObjetivos />} />
           </Route>
@@ -58,7 +57,6 @@ const App = () => {
           <Route path="pagetecnicos" element={<PageTecnicos />} >
             <Route path='botonesInicio' element={<BotonesInicio />} />
             <Route path="ListTicketTecnicos" element={<ListTicketTecnicos />} />
-
           </Route>
         </Route>
       </Route>

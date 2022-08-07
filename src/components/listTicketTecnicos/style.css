@@ -1,0 +1,3 @@
+tr.ant-table-expanded-row > td, tr.ant-table-expanded-row:hover > td{
+    background: #10143c !important;
+}

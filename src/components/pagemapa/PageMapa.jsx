@@ -28,7 +28,6 @@ const PageMapa = () => {
                     lat={locations[item]._lat}
                     lng={locations[item]._long}
                 />);
-            // console.log(locations[item]);
         }
         setLocationList(markers);
     }
@@ -40,7 +39,6 @@ const PageMapa = () => {
 
 
     const loadigTecnicos = useCallback(async (comuni) => {
-        console.log(comuni)
         const listTec = [];
         const lisTecTemp = await DataService.getListTecnicosByComu({ comunidad: comuni });
         lisTecTemp.forEach((tecnico) => {

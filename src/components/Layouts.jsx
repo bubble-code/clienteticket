@@ -7,7 +7,7 @@ import MenuHeader from './MenuHeader';
 const Layout = () => {
   const navigate = useNavigate();
   const pathName = useLocation().pathname;
-  const goBack = () => navigate('/inicio', { replace: true })
+  const goBack = () => navigate('/', { replace: true })
   return (
     <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
       <Col span={24}>

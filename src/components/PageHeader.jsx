@@ -1,18 +1,19 @@
 import React from "react";
-import { PageHeader, Button, Tag, Avatar, Divider, notification } from "antd";
+import { useNavigate } from "react-router-dom";
+import { PageHeader, Avatar, Divider, notification } from "antd";
 import { SettingOutlined, BellOutlined, PoweroffOutlined } from '@ant-design/icons';
 import useAuth from '../hooks/useAuth';
 import '../style/header.css'
 import logo from '../style/img/logo.png';
-// import fondo from '../style/img/fondo.png';
 
 const MainPageHeader = () => {
+  const navigate = useNavigate();
   const { auth } = useAuth();
   const { user } = auth;
 
   const logout = () => {
     localStorage.removeItem('token');
-    window.location.reload();
+    navigate('/', { replace: true });
   }
   const openNotification = (placement) => {
     notification.info({
@@ -30,8 +31,6 @@ const MainPageHeader = () => {
     <PageHeader
       title={<img src={logo} alt="logo" className="Header-img" />}
       className="site-page-header"
-      // subTitle="This is a subtitle"
-      // tags={<Tag color="blue">Running</Tag>}
       extra={[
         <Avatar src="https://joeschmoe.io/api/v1/random" />,
         <span className="id-salon-header">Salon: {user}</span>,
@@ -41,12 +40,6 @@ const MainPageHeader = () => {
         <PoweroffOutlined className="icon-salon-header" onClick={logout} />,
       ]}
     />
-    // <header className="App-header" >
-    //   <div className="Header-container" style={{ backgroundImage: `url(${fondo})` }}>
-    //     <div className="Header-img"><img src={logo} alt="" /></div>
-    //     <div></div>
-    //   </div>
-    // </header>
   );
 }
 
