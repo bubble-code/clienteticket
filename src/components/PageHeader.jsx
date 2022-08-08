@@ -28,8 +28,8 @@ const MainPageHeader = () => {
   };
 
   return (
-    <PageHeader
-      title={<img src={logo} alt="logo" className="Header-img" />}
+    <PageHeader //src={logo}
+      title={<img src="https://joeschmoe.io/api/v1/random" alt="logo" className="Header-img" />}
       className="site-page-header"
       extra={[
         <Avatar src="https://joeschmoe.io/api/v1/random" />,

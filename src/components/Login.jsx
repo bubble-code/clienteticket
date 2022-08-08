@@ -9,176 +9,146 @@ import logoMerkur from '../style/img/logo.png';
 
 const users = [
   {
-    user: 'Adrian',
-    pass: '123',
+    user: 'Tec1',
+    pass: 'mio',
     role: 2,
     comunidad: 'Madrid',
-  },
+  },  
   {
-    user: 'Jonay',
-    pass: '123',
-    role: 2,
-    comunidad: 'Madrid',
-  },
-  {
-    user: 'Ramiro',
-    pass: '123',
+    user: 'Tec2',
+    pass: 'mio',
     role: 2,
     comunidad: 'Mallorca',
   },
   {
-    user: 'Yamila',
-    pass: '123',
-    role: 2,
-    comunidad: 'Mallorca',
-  },
-  {
-    user: 'Viviana',
-    pass: '123',
-    role: 2,
-    comunidad: 'Mallorca',
-  },
-  {
-    user: 'Jose Manuel',
-    pass: '123',
+    user: 'Tec3',
+    pass: 'mio',
     role: 2,
     comunidad: 'Cantabria',
   },
   {
-    user: 'Javier',
-    pass: '123',
-    role: 2,
-    comunidad: 'Cantabria',
-  },
-  {
-    user: 'Nelson',
-    pass: '123',
-    role: 2,
-    comunidad: 'Navarra',
-  },
-  {
-    user: 'Joaquin',
-    pass: '123',
+    user: 'Tec4',
+    pass: 'mio',
     role: 2,
     comunidad: 'Navarra',
   },
   {
     user: 'Admin',
-    pass: '123',
+    pass: 'mio',
     role: 1,
     comunidad: 'Madrid',
   },
   {
     user: 'Alcala 260',
-    pass: '123',
+    pass: 'mio',
     role: 4,
     comunidad: 'Madrid',
   },
   {
     user: 'Alcala 610',
-    pass: '123',
+    pass: 'mio',
     role: 4,
     comunidad: 'Madrid',
   },
   {
     user: 'Alcobendas',
-    pass: '123',
+    pass: 'mio',
     role: 4,
     comunidad: 'Madrid',
   },
   {
     user: 'Carabanchel',
-    pass: '123',
+    pass: 'mio',
     role: 4,
     comunidad: 'Madrid',
   },
   {
     user: 'Carabanchel 2',
-    pass: '123',
+    pass: 'mio',
     role: 4,
     comunidad: 'Madrid',
   },
   {
     user: 'Mejorada del campo',
-    pass: '123',
+    pass: 'mio',
     role: 4,
     comunidad: 'Madrid',
   },
   {
     user: 'Villanueva de la Cañada',
-    pass: '123',
+    pass: 'mio',
     role: 4,
     comunidad: 'Madrid',
   },
   {
     user: 'Tropicana',
-    pass: '123',
+    pass: 'mio',
     role: 4,
     comunidad: 'Mallorca',
   },
   {
     user: 'Riviera',
-    pass: '123',
+    pass: 'mio',
     role: 4,
     comunidad: 'Mallorca',
   },
   {
     user: 'Fortuna',
-    pass: '123',
+    pass: 'mio',
     role: 4,
     comunidad: 'Mallorca',
   },
   {
     user: 'Malibu',
-    pass: '123',
+    pass: 'mio',
     role: 4,
     comunidad: 'Mallorca',
   },
   {
     user: 'Cancun',
-    pass: '123',
+    pass: 'mio',
     role: 4,
     comunidad: 'Mallorca',
   },
   {
     user: 'Santoña',
-    pass: '123',
+    pass: 'mio',
     role: 4,
     comunidad: 'Cantabria',
   },
   {
     user: 'Torrelavega',
-    pass: '123',
+    pass: 'mio',
     role: 4,
     comunidad: 'Cantabria',
   },
   {
     user: 'Santander',
-    pass: '123',
+    pass: 'mio',
     role: 4,
     comunidad: 'Cantabria',
   },
   {
     user: 'Alsasua',
-    pass: '123',
+    pass: 'mio',
     role: 4,
     comunidad: 'Navarra',
   },
   {
     user: 'Mendebaldea',
-    pass: '123',
+    pass: 'mio',
     role: 4,
     comunidad: 'Navarra',
   },
   {
     user: 'Olite',
-    pass: '123',
+    pass: 'mio',
     role: 4,
     comunidad: 'Navarra',
   },
   {
     user: 'Tudela',
-    pass: '123',
+    pass: 'mio',
     role: 4,
     comunidad: 'Navarra',
   },
@@ -235,7 +205,7 @@ const LoginPage = () => {
       <Container>
         <Card className='login ' bordered={false}>
           <header className='login-title'>
-            <img src={logoMerkur} alt="logo" style={{ height: '60px', display: 'block', zIndex: 1, width: '60%', margin: 0,  }} />
+            {/* <img src={logoMerkur} alt="logo" style={{ height: '60px', display: 'block', zIndex: 1, width: '60%', margin: 0,  }} /> */}
           </header>
           <p className='login-info'>Use su usuario para acceder</p>
           {/* <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p> */}
@@ -273,7 +243,7 @@ const LoginPage = () => {
         </Card>
       </Container>
       <footer className='contentFooter'>
-        2022 @ Desarrollado por <a href="https://github.com/bubble-code" >bubble-code</a> and <a href="https://merkur-slots.es/index-2.html" >Merkur Instinct</a>
+        Copyright @ 2022 Todos los Derechos Reservados  <a href="https://github.com/bubble-code" >Alejandro</a>
       </footer>
     </div>
   );
