@@ -27,7 +27,7 @@ const BotonesInicio = () => {
   const loadIsInicio = async ({ user, aut }) => {
     let res;
     try {
-      res = await DataService.getStateInicioTecnico({ tec: user })
+      res = await DataService.getStateInicioTecnico({ tec: user, comunidad })
       setAuth({ isInicio: res, ...aut })
       setIsInicio(res)
 
@@ -48,30 +48,30 @@ const BotonesInicio = () => {
     }
   }
   useEffect(() => {
-    loadIsInicio({ user, aut: auth });  
-}, [ user])
-return (
-  <Container span={24} className='container-page-inicio-tec' >
-    <Card className="boton-inicio-ticket" onClick={handleListTicketTecnicos}>
-      <Statistic value={'Averias'} precision={2} valueStyle={{ color: '#3f8600', }} />
-    </Card>
-    {!isInicio ?
-      <Card className="boton-inicio-ticket" onClick={setIniciarJornadas}>
-        <Statistic value={'Iniciar'} precision={2} valueStyle={{ color: '#3f8600', }} />
-      </Card> :
-      <Card className="boton-inicio-ticket" onClick={setFinalizarJornadas}>
-        <Statistic value={'Finalizar'} precision={2} valueStyle={{ color: '#3f8600', }} />
+    loadIsInicio({ user, aut: auth });
+  }, [user])
+  return (
+    <Container span={24} className='container-page-inicio-tec' >
+      <Card className="boton-inicio-ticket" onClick={handleListTicketTecnicos}>
+        <Statistic value={'Averias'} precision={2} valueStyle={{ color: '#3f8600', }} />
       </Card>
-    }
+      {!isInicio ?
+        <Card className="boton-inicio-ticket" onClick={setIniciarJornadas}>
+          <Statistic value={'Iniciar'} precision={2} valueStyle={{ color: '#3f8600', }} />
+        </Card> :
+        <Card className="boton-inicio-ticket" onClick={setFinalizarJornadas}>
+          <Statistic value={'Finalizar'} precision={2} valueStyle={{ color: '#3f8600', }} />
+        </Card>
+      }
 
-    {/* <Card className="boton-inicio-ticket" onClick={handleListTicketTecnicos}>
+      {/* <Card className="boton-inicio-ticket" onClick={handleListTicketTecnicos}>
       <Statistic value={'Averias'} precision={2} valueStyle={{ color: '#3f8600', }} />
     </Card>
     <Card className="boton-inicio-ticket" onClick={setIniciarJornadas}>
       <Statistic value={'Iniciar'} precision={2} valueStyle={{ color: '#3f8600', }} />
     </Card> */}
-    <ModalStartWorkingDayTec isVisible={visibleIniciarJornada} setVisible={setVisibleIniciarJornada} />
-  </Container>
-);
+      <ModalStartWorkingDayTec isVisible={visibleIniciarJornada} setVisible={setVisibleIniciarJornada} />
+    </Container>
+  );
 }
 export default BotonesInicio;
